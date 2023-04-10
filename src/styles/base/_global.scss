@@ -1,0 +1,17 @@
+html,
+body,
+#app {
+  width: 100%;
+  height: 100vh;
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background-color: var(--homepage-background);
+  overflow: hidden;
+}
