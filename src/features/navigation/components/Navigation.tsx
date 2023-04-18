@@ -4,7 +4,7 @@ interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = ({}) => {
   return (
-    <nav className="fixed top-0 left-0 px-6 flex items-center justify-between h-18 w-full z-40">
+    <nav className="fixed top-0 left-0 px-6 flex items-center justify-between h-18 w-full backdrop-blur-xl z-40">
       <div className="basis-1/6">L</div>
       <NavLinkList />
       <div className="flex basis-1/6">

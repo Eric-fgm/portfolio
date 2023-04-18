@@ -9,6 +9,7 @@ const SolidGraphIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({
       width={width}
       height={height}
       viewBox="0 0 1024 1024"
+      {...props}
     >
       <path
         fill="currentColor"

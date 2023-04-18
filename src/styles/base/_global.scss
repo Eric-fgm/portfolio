@@ -15,3 +15,39 @@ body,
   background-color: var(--homepage-background);
   overflow: hidden;
 }
+
+.scroll-y-sortingpage {
+  overflow: hidden scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // &::-webkit-scrollbar {
+  //   background-color: transparent;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background: #303d58;
+  //   border: solid 4px var(--sortingpage-background);
+  //   border-radius: 12px;
+  // }
+}
+
+.scroll-x-sortingpage {
+  overflow: scroll hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // &::-webkit-scrollbar {
+  //   background-color: transparent;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background: #303d58;
+  //   border: solid 4px #192234;
+  //   border-radius: 12px;
+  // }
+}

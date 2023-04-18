@@ -44,8 +44,10 @@ export async function generateMetadata({
 export default async function LocaleLayout({ children }: LocaleLayoutProps) {
   return (
     <div id="app">
+      {/* <div className="relative w-full h-full overflow-x-hidden overflow-y-scroll"> */}
       <Navigation />
       {children}
+      {/* </div> */}
     </div>
   );
 }

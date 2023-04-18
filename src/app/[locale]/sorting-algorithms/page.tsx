@@ -1,3 +1,10 @@
+import { Header } from "@/components";
+import {
+  ControlPanel,
+  SortingTypeList,
+  SortingVisualizer,
+} from "@/features/sortingAlgorithms";
+import { SortingSettingsProvider } from "@/features/sortingAlgorithms/providers";
 import { getDictionary } from "@/helpers/get-dictionary";
 import type { Locale } from "@/helpers/i18n-config";
 
@@ -10,5 +17,20 @@ export default async function SortingPage({
 }: SortingPageProps) {
   const t = await getDictionary(locale);
 
-  return <main className="relative w-full h-full bg-sortingpage"></main>;
+  return (
+    <SortingSettingsProvider>
+      <main className="relative pt-18 pb-4 h-full bg-sortingpage scroll-y-sortingpage">
+        <Header
+          subhead="Visualizer"
+          headline="Sorting Algorithms"
+          className="py-8"
+        />
+        <SortingTypeList />
+        <div className="mx-auto pt-4 flex gap-4 max-w-[1220px] lg:pt-12">
+          <ControlPanel />
+          <SortingVisualizer />
+        </div>
+      </main>
+    </SortingSettingsProvider>
+  );
 }
