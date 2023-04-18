@@ -24,7 +24,9 @@ const Input: React.FC<InputProps> = ({
 }) => {
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
+      // @ts-ignore
       if (type === "number") return onChange(parseInt(event.target.value));
+      // @ts-ignore
       onChange(event.target.value);
     },
     [type, onChange]
