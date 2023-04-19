@@ -19,16 +19,23 @@ const SortingType: React.FC<SortingTypeProps> = ({
   const { speed, className } = sortingTypeMap[type];
   return (
     <li
-      className={`pl-4 pr-5 flex flex-shrink-0 items-center h-13 gap-3 bg-sortingpage-secondary rounded-2xl cursor-pointer will-active-border ${
+      className={`flex-shrink-0 bg-sortingpage-secondary rounded-2xl cursor-pointer will-active-border ${
         isActive ? "active-border" : ""
       }`}
       {...props}
     >
-      <Icon className={`text-muted ${iconClassName}`} />
-      <div>
-        <h5 className={`text-[10px] font-semibold ${className}`}>{speed}</h5>
-        <h4 className="text-sm font-medium">{name}</h4>
-      </div>
+      <button
+        type="button"
+        className="pl-4 pr-5 flex items-center h-13 gap-3 rounded-2xl"
+      >
+        <Icon className={`text-muted ${iconClassName}`} />
+        <div>
+          <h5 className={`text-left text-[10px] font-semibold ${className}`}>
+            {speed}
+          </h5>
+          <h4 className="text-sm font-medium">{name}</h4>
+        </div>
+      </button>
     </li>
   );
 };

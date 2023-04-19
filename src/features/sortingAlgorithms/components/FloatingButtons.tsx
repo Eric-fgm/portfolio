@@ -21,13 +21,13 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = () => {
       {status === "started" ? (
         <Button
           icon={SolidPause}
-          className="p-2 rounded-full"
+          className="p-2"
           onClick={() => handleChangeStatus("stopped")}
         />
       ) : (
         <Button
           icon={SolidPlay}
-          className="p-2 rounded-full"
+          className="p-2"
           {...(status === "stopped" && {
             onClick: () => handleChangeStatus("started"),
           })}
