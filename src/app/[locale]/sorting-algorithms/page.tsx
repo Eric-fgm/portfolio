@@ -1,6 +1,7 @@
 import { Header } from "@/components";
 import {
   ControlPanel,
+  FloatingButtons,
   SortingTypeList,
   SortingVisualizer,
 } from "@/features/sortingAlgorithms";
@@ -28,6 +29,7 @@ export default async function SortingPage({
         <SortingTypeList />
         <div className="mx-auto pt-4 flex gap-4 max-w-[1220px] lg:pt-12">
           <ControlPanel />
+          <FloatingButtons />
           <SortingVisualizer />
         </div>
       </main>

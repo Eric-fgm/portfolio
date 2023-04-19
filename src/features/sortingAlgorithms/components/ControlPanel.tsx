@@ -10,6 +10,7 @@ interface ControlPanelProps {}
 
 const ControlPanel: React.FC<ControlPanelProps> = () => {
   const {
+    isOpened,
     type,
     size,
     speed,
@@ -21,7 +22,11 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
   } = useContext(SortingSettingsContext);
 
   return (
-    <div className="fixed left-4 bottom-18 flex flex-col gap-4 w-56 z-30 xl:static">
+    <div
+      className={`fixed pl-6 left-0 bottom-[68px] flex flex-col gap-4 w-56 transition-transform z-50 xl:static xl:pl-0 xl:transition-none xl:z-10 ${
+        isOpened ? "" : "-translate-x-full xl:translate-x-0"
+      }`}
+    >
       <Wrapper title="SETTINGS" className="shadow-2xl xl:shadow-none">
         <div className="flex flex-col gap-3">
           <FormField name="Size">

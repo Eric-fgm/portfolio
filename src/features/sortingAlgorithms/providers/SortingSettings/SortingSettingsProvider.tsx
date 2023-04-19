@@ -16,6 +16,8 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
   const [speed, setSpeed] = useState<SortingSettingsProps["speed"]>([25]);
   const [status, setStatus] =
     useState<SortingSettingsProps["status"]>("stopped");
+  const [isOpened, setIsOpened] =
+    useState<SortingSettingsProps["isOpened"]>(false);
 
   const handleChangeSize = useCallback(
     (size: SortingSettingsProps["size"]) => setSize(size),
@@ -38,6 +40,11 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
     []
   );
 
+  const handleToggleSettings = useCallback(
+    () => setIsOpened((wasOpened) => !wasOpened),
+    []
+  );
+
   return (
     <SortingSettingsContext.Provider
       value={{
@@ -46,11 +53,13 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
         size,
         speed,
         status,
+        isOpened,
         handleChangeSize,
         handleChangeSpeed,
         handleChangeStatus,
         handleChangeType,
         handleChangeSeed,
+        handleToggleSettings,
       }}
     >
       {children}

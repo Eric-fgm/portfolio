@@ -1,22 +1,20 @@
 "use client";
 import { createContext } from "react";
+import type { SortTypes } from "@/features/sortingAlgorithms/helpers";
 
 export interface SortingSettingsProps {
-  type:
-    | "bubbleSort"
-    | "selectionSort"
-    | "mergeSort"
-    | "quickSort"
-    | "countingSort";
+  type: SortTypes;
   size: number;
   seed: number;
   speed: number[];
   status: "stopped" | "started" | "completed";
+  isOpened: boolean;
   handleChangeSeed: () => void;
   handleChangeSize: (size: number) => void;
   handleChangeSpeed: (speed: number[]) => void;
   handleChangeStatus: (status: SortingSettingsProps["status"]) => void;
   handleChangeType: (status: SortingSettingsProps["type"]) => void;
+  handleToggleSettings: () => void;
 }
 
 const defaultProps: SortingSettingsProps = {
@@ -25,11 +23,13 @@ const defaultProps: SortingSettingsProps = {
   speed: [20],
   status: "stopped",
   seed: 1,
+  isOpened: false,
   handleChangeSize: () => {},
   handleChangeSpeed: () => {},
   handleChangeStatus: () => {},
   handleChangeType: () => {},
   handleChangeSeed: () => {},
+  handleToggleSettings: () => {},
 };
 
 const SortingSettingsContext = createContext(defaultProps);

@@ -51,3 +51,19 @@ body,
   //   border-radius: 12px;
   // }
 }
+
+.will-active {
+  &-border {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition-property: outline, transform;
+  }
+}
+
+.active {
+  &-border {
+    outline-color: #202d45;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
