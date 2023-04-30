@@ -1,8 +1,11 @@
 import { SolidLanguage } from "@/icons";
 
-interface LanguageSwitcherProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface LanguageSwitcherProps extends React.HTMLAttributes<HTMLDivElement> {
+  minimal?: boolean;
+}
 
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
+  minimal = false,
   className = "",
   ...props
 }) => {
@@ -12,7 +15,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       {...props}
     >
       <SolidLanguage />
-      <span className="text-xs">English</span>
+      {!minimal && <span className="text-xs">English</span>}
     </div>
   );
 };

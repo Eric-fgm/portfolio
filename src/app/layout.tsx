@@ -1,3 +1,4 @@
+import Providers from "@/providers/Providers";
 import "@/styles/main.scss";
 import { Inter } from "next/font/google";
 
@@ -14,7 +15,9 @@ const inter = Inter({
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html className={inter.className}>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
