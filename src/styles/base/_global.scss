@@ -52,30 +52,41 @@ body,
   // }
 }
 
-.will-active {
-  &-border {
-    position: relative;
+rect.path {
+  animation: appear 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  fill: #6378a1;
+}
 
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      box-shadow: 0 0 0 2px #202d45;
-      border: 2px solid var(--sortingpage-background);
-      border-radius: 16px;
-      opacity: 0;
-      transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    }
+rect.end {
+  animation: appearEnd 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  fill: #d07575;
+}
+
+rect.wall {
+  animation: appear 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  fill: #394969;
+}
+
+@keyframes appear {
+  from {
+    transform: scale(0.3);
+  }
+  to {
+    transform: scale(1);
   }
 }
 
-.active {
-  &-border {
-    &::before {
-      opacity: 1;
-    }
+@keyframes appearEnd {
+  from {
+    transform: scale(0.4);
+  }
+  to {
+    transform: scale(1);
   }
 }

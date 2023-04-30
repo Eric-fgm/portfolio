@@ -1,3 +1,4 @@
+import { limitValue } from "@/features/sortingAlgorithms/helpers";
 import { useCallback } from "react";
 
 type InputExtendedProps =
@@ -24,8 +25,9 @@ const Input: React.FC<InputProps> = ({
 }) => {
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      // @ts-ignore
-      if (type === "number") return onChange(parseInt(event.target.value));
+      if (type === "number")
+        // @ts-ignore
+        return onChange(limitValue(parseInt(event.target.value)));
       // @ts-ignore
       onChange(event.target.value);
     },

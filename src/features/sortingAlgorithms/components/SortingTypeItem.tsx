@@ -1,14 +1,14 @@
 import { sortingTypeMap } from "@/helpers/mapping";
 import { SortSpecification } from "@/features/sortingAlgorithms/helpers";
 
-interface SortingTypeProps
+interface SortingTypeItemProps
   extends React.HTMLAttributes<HTMLLIElement>,
     Omit<SortSpecification, "desc"> {
   iconClassName?: string;
   isActive: boolean;
 }
 
-const SortingType: React.FC<SortingTypeProps> = ({
+const SortingTypeItem: React.FC<SortingTypeItemProps> = ({
   type = 1,
   name = "",
   icon: Icon,
@@ -19,8 +19,8 @@ const SortingType: React.FC<SortingTypeProps> = ({
   const { speed, className } = sortingTypeMap[type];
   return (
     <li
-      className={`flex-shrink-0 bg-sortingpage-secondary rounded-2xl cursor-pointer will-active-border ${
-        isActive ? "active-border" : ""
+      className={`flex-shrink-0 bg-sortingpage-secondary rounded-2xl cursor-pointer ${
+        isActive ? "active-sortingpage-accent active-offset-sortingpage" : ""
       }`}
       {...props}
     >
@@ -40,4 +40,4 @@ const SortingType: React.FC<SortingTypeProps> = ({
   );
 };
 
-export default SortingType;
+export default SortingTypeItem;

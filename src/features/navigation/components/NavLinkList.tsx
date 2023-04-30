@@ -13,7 +13,7 @@ const NavLinkList: React.FC<NavLinkListProps> = ({}) => {
   return (
     <div className="flex gap-12">
       <NavLink icon={SolidSorting} text="Sorting" href="/sorting-algorithms" />
-      <NavLink icon={SolidGraph} text="Graphs" href="/graphs-algorithms" />
+      <NavLink icon={SolidGraph} text="Graphs" href="/graph-algorithms" />
       <NavLink
         icon={SolidLightning}
         text="Dynamic"

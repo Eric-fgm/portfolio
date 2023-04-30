@@ -1,5 +1,5 @@
 "use client";
-import { SortingType } from "@/features/sortingAlgorithms";
+import { SortingTypeItem } from "@/features/sortingAlgorithms";
 import {
   SolidBubble,
   SolidCount,
@@ -23,7 +23,7 @@ const SortingTypeList: React.FC<SortingTypeListProps> = () => {
     <div className="relative flex justify-center overflow-hidden">
       <ul className="px-4 py-1 flex gap-4 scroll-x-sortingpage">
         {sortList.map((id) => (
-          <SortingType
+          <SortingTypeItem
             key={id}
             icon={sortSpecification[id].icon}
             type={sortSpecification[id].type}

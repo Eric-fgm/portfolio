@@ -2,7 +2,21 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.FC<React.SVGProps<SVGSVGElement>>;
   text?: string;
   iconSize?: number;
+  theme?: keyof typeof themeMap;
 }
+
+const themeMap = {
+  darkBlue: {
+    bg: "bg-sortingpage",
+    textColor: "text-white",
+    iconColor: "text-muted",
+  },
+  lightBlue: {
+    bg: "bg-graphpage",
+    textColor: "text-white",
+    iconColor: "text-graph",
+  },
+};
 
 const Button: React.FC<ButtonProps> = ({
   icon: Icon,
@@ -10,18 +24,22 @@ const Button: React.FC<ButtonProps> = ({
   type = "button",
   className = "",
   iconSize = 24,
+  theme = "darkBlue",
   ...props
 }) => {
+  const { bg, iconColor, textColor } = themeMap[theme];
   return (
     <button
       type={type}
-      className={`flex items-center justify-center gap-2 bg-sortingpage rounded-lg ${className}`}
+      className={`flex items-center justify-center gap-2 rounded-lg ${bg} ${className}`}
       {...props}
     >
       {Icon && (
-        <Icon width={iconSize} height={iconSize} className="text-muted" />
+        <Icon width={iconSize} height={iconSize} className={iconColor} />
       )}
-      {text && <span className="text-sm">{text}</span>}
+      {text && (
+        <span className={`text-rg font-medium ${textColor}`}>{text}</span>
+      )}
     </button>
   );
 };

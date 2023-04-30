@@ -12,7 +12,7 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
 }) => {
   const [type, setType] = useState<SortingSettingsProps["type"]>("bubbleSort");
   const [seed, setSeed] = useState<SortingSettingsProps["seed"]>(1);
-  const [size, setSize] = useState<SortingSettingsProps["size"]>(125);
+  const [size, setSize] = useState<SortingSettingsProps["size"]>(350);
   const [speed, setSpeed] = useState<SortingSettingsProps["speed"]>([25]);
   const [status, setStatus] =
     useState<SortingSettingsProps["status"]>("stopped");

@@ -19,7 +19,7 @@ export interface SortingSettingsProps {
 
 const defaultProps: SortingSettingsProps = {
   type: "bubbleSort",
-  size: 125,
+  size: 350,
   speed: [20],
   status: "stopped",
   seed: 1,

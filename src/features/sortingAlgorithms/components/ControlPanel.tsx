@@ -33,7 +33,7 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
             <FormField name="Size">
               <Input
                 type="number"
-                placeholder="1-500"
+                placeholder="2-500"
                 value={size}
                 onChange={handleChangeSize}
               />

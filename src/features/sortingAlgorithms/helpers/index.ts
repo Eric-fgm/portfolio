@@ -157,3 +157,11 @@ export const merge = (
 
 export const getRandomValue = () =>
   Math.floor(Math.random() * MAX_SORT_VALUE) + 1;
+
+export const limitValue = (value: number) => {
+  if (typeof value !== "number") return 350;
+  if (isNaN(value)) return 2;
+  if (value > 500) return 500;
+  if (value < 2) return 2;
+  return value;
+};
