@@ -1,5 +1,4 @@
 "use client";
-
 import { LanguageSwitcher, NavLinkList } from "@/features/navigation";
 import { SolidMenu } from "@/icons";
 import { useTheme } from "@/providers/theme";
@@ -11,8 +10,8 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 px-4 flex items-center justify-between w-full z-40 md:px-6 ${
-        isMobile ? "h-13" : "h-18"
+      className={`fixed top-0 left-0 px-4 flex items-center justify-between w-full backdrop-blur-xl z-40 md:px-6 ${
+        isMobile ? "h-16" : "h-18"
       }`}
     >
       {isMobile ? (

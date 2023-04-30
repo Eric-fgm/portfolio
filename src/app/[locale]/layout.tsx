@@ -1,7 +1,12 @@
-import Navigation from "@/features/navigation";
 import { getDictionary } from "@/helpers/get-dictionary";
 import { Locale, i18n } from "@/helpers/i18n-config";
 import "@/styles/main.scss";
+import dynamic from "next/dynamic";
+
+const Navigation = dynamic(
+  () => import("@/features/navigation/components/Navigation"),
+  { ssr: false }
+);
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -44,8 +49,10 @@ export async function generateMetadata({
 export default async function LocaleLayout({ children }: LocaleLayoutProps) {
   return (
     <div id="app">
+      {/* <div className="relative w-full h-full overflow-x-hidden overflow-y-scroll"> */}
       <Navigation />
       {children}
+      {/* </div> */}
     </div>
   );
 }

@@ -2,7 +2,8 @@ html,
 body,
 #app {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  overflow: hidden;
 }
 
 #app {
@@ -13,5 +14,68 @@ body,
   height: 100%;
   color: #fff;
   background-color: var(--homepage-background);
-  overflow: hidden;
+}
+
+.scroll-y-sortingpage {
+  overflow: hidden scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // &::-webkit-scrollbar {
+  //   background-color: transparent;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background: #303d58;
+  //   border: solid 4px var(--sortingpage-background);
+  //   border-radius: 12px;
+  // }
+}
+
+.scroll-x-sortingpage {
+  overflow: scroll hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // &::-webkit-scrollbar {
+  //   background-color: transparent;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background: #303d58;
+  //   border: solid 4px #192234;
+  //   border-radius: 12px;
+  // }
+}
+
+.will-active {
+  &-border {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 0 0 2px #202d45;
+      border: 2px solid var(--sortingpage-background);
+      border-radius: 16px;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+  }
+}
+
+.active {
+  &-border {
+    &::before {
+      opacity: 1;
+    }
+  }
 }
