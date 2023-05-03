@@ -9,8 +9,9 @@ export default async function Page({ params: { locale } }: PageProps) {
   const t = await getDictionary(locale);
 
   return (
-    <main className="relative flex items-center w-full h-full bg-homepage overflow-auto">
-      <div className="mx-auto px-[4%] py-8 max-w-[1420px] items-end md:py-0 md:flex md:gap-x-12">
+    <main className="relative flex flex-col items-center w-full h-full bg-homepage scroll-y-sortingpage">
+      <div className="flex-1 min-h-[88px]" />
+      <div className="px-[4%] max-w-[1420px] md:flex md:items-end md:gap-x-12">
         <div className="flex flex-col flex-1">
           <h5 className="mb-2 text-sm md:text-base font-medium opacity-60">
             Visualizer & Interactive
@@ -58,6 +59,7 @@ export default async function Page({ params: { locale } }: PageProps) {
           Show more informations
         </div>
       </div>
+      <div className="flex-1 min-h-[24px]" />
     </main>
   );
 }

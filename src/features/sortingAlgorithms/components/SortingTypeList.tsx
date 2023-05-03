@@ -1,35 +1,26 @@
 "use client";
 import { SortingTypeItem } from "@/features/sortingAlgorithms";
-import {
-  SolidBubble,
-  SolidCount,
-  SolidCursor,
-  SolidMerge,
-  SolidQuick,
-} from "@/icons";
+import type { SortTypes } from "@/features/sortingAlgorithms/helpers";
+import { sortSpecification } from "@/features/sortingAlgorithms/helpers";
+import { SortingSettingsContext } from "@/features/sortingAlgorithms/providers/sortingSettings";
 import { useContext } from "react";
-import { SortingSettingsContext } from "@/features/sortingAlgorithms/providers";
-import {
-  sortList,
-  sortSpecification,
-} from "@/features/sortingAlgorithms/helpers";
 
 interface SortingTypeListProps {}
 
 const SortingTypeList: React.FC<SortingTypeListProps> = () => {
-  const { type, handleChangeType } = useContext(SortingSettingsContext);
+  const { type, changeType } = useContext(SortingSettingsContext);
 
   return (
     <div className="relative flex justify-center overflow-hidden">
       <ul className="px-4 py-1 flex gap-4 scroll-x-sortingpage">
-        {sortList.map((id) => (
+        {(Object.keys(sortSpecification) as SortTypes[]).map((sortType) => (
           <SortingTypeItem
-            key={id}
-            icon={sortSpecification[id].icon}
-            type={sortSpecification[id].type}
-            name={sortSpecification[id].name}
-            isActive={type === id}
-            onClick={() => handleChangeType(id)}
+            key={sortType}
+            icon={sortSpecification[sortType].icon}
+            type={sortSpecification[sortType].type}
+            name={sortSpecification[sortType].name}
+            isActive={type === sortType}
+            onClick={() => changeType(sortType)}
           />
         ))}
       </ul>

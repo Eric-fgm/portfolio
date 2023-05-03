@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
-import type { GraphSettingsProps } from "@/features/graphAlgorithms/providers";
 import type { Node, PathProcess } from "@/features/graphAlgorithms/helpers";
 import {
-  checkNeighboursOfNode,
-  START_ROW,
   START_COl,
+  START_ROW,
+  checkNeighboursOfNode,
 } from "@/features/graphAlgorithms/helpers";
+import type { GraphSettingsProps } from "@/features/graphAlgorithms/providers";
+import { useEventListener } from "@/hooks";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 interface GraphPathDrawProps extends GraphSettingsProps {}
 
@@ -66,6 +67,7 @@ const useGraphPathDraw = ({
       )
         return;
 
+      const { nodes } = pathProcess;
       pathProcess.ref = eventTarget;
       const x = eventTarget.dataset.row;
       const y = eventTarget.dataset.col;
@@ -78,7 +80,7 @@ const useGraphPathDraw = ({
         eventTarget.classList.add("wall");
       }
     },
-    [nodes]
+    [pathProcess]
   );
 
   const handleMouseDown = useCallback(() => {
@@ -107,19 +109,8 @@ const useGraphPathDraw = ({
       intervalInstance.current = setInterval(graphAlgorithms[type], speed);
   }, [type, status]);
 
-  useEffect(() => {
-    window.removeEventListener("mouseup", handleMouseUp);
-    window.removeEventListener("touchend", handleMouseUp);
-    window.addEventListener("mouseup", handleMouseUp);
-    window.addEventListener("touchend", handleMouseUp);
-  }, [nodes, handleMouseUp]);
-
-  useEffect(() => {
-    return () => {
-      window.removeEventListener("mouseup", handleMouseUp);
-      window.removeEventListener("touchend", handleMouseUp);
-    };
-  }, []);
+  useEventListener("mouseup", handleMouseUp);
+  useEventListener("touchend", handleMouseUp);
 
   return { onTouchStart: handleMouseDown, onMouseDown: handleMouseDown };
 };

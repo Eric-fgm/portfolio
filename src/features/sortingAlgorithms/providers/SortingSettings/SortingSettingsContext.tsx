@@ -1,35 +1,43 @@
 "use client";
-import { createContext } from "react";
-import type { SortTypes } from "@/features/sortingAlgorithms/helpers";
+import {
+  SortProcess,
+  SortTypes,
+  defaultSortProcess,
+} from "@/features/sortingAlgorithms/helpers";
+import { Dispatch, SetStateAction, createContext } from "react";
 
 export interface SortingSettingsProps {
   type: SortTypes;
+  valueList: { value: number; fillStyle: string }[];
   size: number;
-  seed: number;
   speed: number[];
   status: "stopped" | "started" | "completed";
   isOpened: boolean;
-  handleChangeSeed: () => void;
-  handleChangeSize: (size: number) => void;
-  handleChangeSpeed: (speed: number[]) => void;
-  handleChangeStatus: (status: SortingSettingsProps["status"]) => void;
-  handleChangeType: (status: SortingSettingsProps["type"]) => void;
-  handleToggleSettings: () => void;
+  sortProcess: SortProcess;
+  changeSize: (size: SortingSettingsProps["size"]) => void;
+  changeSpeed: (speed: SortingSettingsProps["speed"]) => void;
+  changeStatus: (status: SortingSettingsProps["status"]) => void;
+  changeType: (status: SortingSettingsProps["type"]) => void;
+  shuffleValueList: () => void;
+  setValueList: Dispatch<SetStateAction<SortingSettingsProps["valueList"]>>;
+  toggleSettings: () => void;
 }
 
 const defaultProps: SortingSettingsProps = {
   type: "bubbleSort",
+  valueList: [],
   size: 350,
   speed: [20],
   status: "stopped",
-  seed: 1,
   isOpened: false,
-  handleChangeSize: () => {},
-  handleChangeSpeed: () => {},
-  handleChangeStatus: () => {},
-  handleChangeType: () => {},
-  handleChangeSeed: () => {},
-  handleToggleSettings: () => {},
+  sortProcess: defaultSortProcess,
+  changeSize: () => {},
+  changeSpeed: () => {},
+  changeStatus: () => {},
+  changeType: () => {},
+  shuffleValueList: () => {},
+  setValueList: () => {},
+  toggleSettings: () => {},
 };
 
 const SortingSettingsContext = createContext(defaultProps);

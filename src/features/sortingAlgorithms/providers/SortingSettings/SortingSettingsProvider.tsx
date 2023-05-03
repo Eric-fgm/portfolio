@@ -1,7 +1,12 @@
 "use client";
-import { SortingSettingsContext } from "@/features/sortingAlgorithms/providers";
-import type { SortingSettingsProps } from "@/features/sortingAlgorithms/providers";
-import { useCallback, useState } from "react";
+import {
+  defaultSortProcess,
+  generateRandomValues,
+  getRandomValue,
+} from "@/features/sortingAlgorithms/helpers";
+import type { SortingSettingsProps } from "@/features/sortingAlgorithms/providers/sortingSettings";
+import { SortingSettingsContext } from "@/features/sortingAlgorithms/providers/sortingSettings";
+import { useCallback, useRef, useState } from "react";
 
 interface SortingSettingsProvider {
   children: React.ReactNode;
@@ -10,56 +15,112 @@ interface SortingSettingsProvider {
 const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
   children,
 }) => {
+  const sortProcess = useRef({ ...defaultSortProcess });
   const [type, setType] = useState<SortingSettingsProps["type"]>("bubbleSort");
-  const [seed, setSeed] = useState<SortingSettingsProps["seed"]>(1);
   const [size, setSize] = useState<SortingSettingsProps["size"]>(350);
+  const [valueList, setValueList] = useState<SortingSettingsProps["valueList"]>(
+    generateRandomValues()
+  );
   const [speed, setSpeed] = useState<SortingSettingsProps["speed"]>([25]);
   const [status, setStatus] =
     useState<SortingSettingsProps["status"]>("stopped");
   const [isOpened, setIsOpened] =
     useState<SortingSettingsProps["isOpened"]>(false);
 
-  const handleChangeSize = useCallback(
-    (size: SortingSettingsProps["size"]) => setSize(size),
-    []
+  const resetSortProcess = useCallback(() => {
+    setValueList((prevValueList) =>
+      prevValueList.map(({ value }) => ({ value, fillStyle: "#fff" }))
+    );
+    sortProcess.current = {
+      ...defaultSortProcess,
+      left: [],
+      right: [],
+      count: [],
+      stack: [],
+    };
+  }, []);
+
+  const changeSize = useCallback(
+    (size: SortingSettingsProps["size"]) => {
+      setSize((prevSize) => {
+        if (prevSize === size) return prevSize;
+        if (prevSize > size)
+          setValueList((prevValueList) => [...prevValueList].slice(0, size));
+        else
+          setValueList((prevValueList) => [
+            ...prevValueList,
+            ...[...Array(size - prevSize)].map(() => ({
+              value: getRandomValue(),
+              fillStyle: "#fff",
+            })),
+          ]);
+        return size;
+      });
+      resetSortProcess();
+    },
+    [resetSortProcess]
   );
-  const handleChangeSpeed = useCallback(
+
+  const changeSpeed = useCallback(
     (speed: SortingSettingsProps["speed"]) => setSpeed(speed),
     []
   );
-  const handleChangeStatus = useCallback(
-    (status: SortingSettingsProps["status"]) => setStatus(status),
-    []
+
+  const changeType = useCallback(
+    (status: SortingSettingsProps["type"]) => {
+      resetSortProcess();
+      setType(status);
+    },
+    [resetSortProcess]
   );
-  const handleChangeType = useCallback(
-    (status: SortingSettingsProps["type"]) => setType(status),
-    []
-  );
-  const handleChangeSeed = useCallback(
-    () => setSeed((prevSeed) => prevSeed + 1),
+
+  const toggleSettings = useCallback(
+    () => setIsOpened((wasOpened) => !wasOpened),
     []
   );
 
-  const handleToggleSettings = useCallback(
-    () => setIsOpened((wasOpened) => !wasOpened),
-    []
+  const shuffleValueList = useCallback(() => {
+    resetSortProcess();
+    setValueList((prevValueList) => {
+      const valueListCopy = [...prevValueList];
+      for (let i = valueListCopy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [valueListCopy[i], valueListCopy[j]] = [
+          valueListCopy[j],
+          valueListCopy[i],
+        ];
+      }
+      return valueListCopy;
+    });
+  }, [resetSortProcess]);
+
+  const changeStatus = useCallback(
+    (status: SortingSettingsProps["status"]) => {
+      setStatus((prevStatus) => {
+        if (prevStatus === "completed") resetSortProcess();
+        return status;
+      });
+    },
+    [resetSortProcess]
   );
 
   return (
     <SortingSettingsContext.Provider
       value={{
-        seed,
         type,
         size,
         speed,
         status,
+        valueList,
         isOpened,
-        handleChangeSize,
-        handleChangeSpeed,
-        handleChangeStatus,
-        handleChangeType,
-        handleChangeSeed,
-        handleToggleSettings,
+        sortProcess: sortProcess.current,
+        changeSize,
+        changeSpeed,
+        changeStatus,
+        changeType,
+        shuffleValueList,
+        setValueList,
+        toggleSettings,
       }}
     >
       {children}

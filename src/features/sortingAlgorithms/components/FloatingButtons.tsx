@@ -2,12 +2,12 @@
 import { Button } from "@/components";
 import { SolidPause, SolidPlay, SolidSorting } from "@/icons";
 import { useContext } from "react";
-import { SortingSettingsContext } from "../providers";
+import { SortingSettingsContext } from "../providers/sortingSettings";
 
 interface FloatingButtonsProps {}
 
 const FloatingButtons: React.FC<FloatingButtonsProps> = () => {
-  const { status, handleChangeStatus, handleToggleSettings } = useContext(
+  const { status, changeStatus, toggleSettings } = useContext(
     SortingSettingsContext
   );
 
@@ -16,20 +16,20 @@ const FloatingButtons: React.FC<FloatingButtonsProps> = () => {
       <Button
         icon={SolidSorting}
         className="p-2 rounded-full"
-        onClick={handleToggleSettings}
+        onClick={toggleSettings}
       />
       {status === "started" ? (
         <Button
           icon={SolidPause}
           className="p-2"
-          onClick={() => handleChangeStatus("stopped")}
+          onClick={() => changeStatus("stopped")}
         />
       ) : (
         <Button
           icon={SolidPlay}
           className="p-2"
           {...(status === "stopped" && {
-            onClick: () => handleChangeStatus("started"),
+            onClick: () => changeStatus("started"),
           })}
         />
       )}

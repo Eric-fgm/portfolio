@@ -5,7 +5,7 @@ import {
   SortingTypeList,
   SortingVisualizer,
 } from "@/features/sortingAlgorithms";
-import { SortingSettingsProvider } from "@/features/sortingAlgorithms/providers";
+import { SortingSettingsProvider } from "@/features/sortingAlgorithms/providers/sortingSettings";
 import { getDictionary } from "@/helpers/get-dictionary";
 import type { Locale } from "@/helpers/i18n-config";
 

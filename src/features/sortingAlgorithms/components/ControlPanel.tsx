@@ -1,10 +1,10 @@
 "use client";
 import { Button, FormField, Input, RangeInput } from "@/components";
 import { Wrapper } from "@/features/sortingAlgorithms";
+import { sortSpecification } from "@/features/sortingAlgorithms/helpers";
+import { SortingSettingsContext } from "@/features/sortingAlgorithms/providers/sortingSettings";
 import { SolidPause, SolidPlay, SolidReset } from "@/icons";
 import { useContext } from "react";
-import { SortingSettingsContext } from "@/features/sortingAlgorithms/providers";
-import { sortSpecification } from "@/features/sortingAlgorithms/helpers";
 
 interface ControlPanelProps {}
 
@@ -15,10 +15,10 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
     size,
     speed,
     status,
-    handleChangeSpeed,
-    handleChangeSize,
-    handleChangeStatus,
-    handleChangeSeed,
+    changeSpeed,
+    changeSize,
+    changeStatus,
+    shuffleValueList,
   } = useContext(SortingSettingsContext);
 
   return (
@@ -35,26 +35,24 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
                 type="number"
                 placeholder="2-500"
                 value={size}
-                onChange={handleChangeSize}
+                onChange={changeSize}
               />
             </FormField>
             <FormField name="Speed">
-              <RangeInput values={speed} onChange={handleChangeSpeed} />
+              <RangeInput values={speed} onChange={changeSpeed} />
             </FormField>
             <div className="flex gap-2 h-9">
               {status === "started" ? (
                 <Button
                   icon={SolidPause}
                   className="px-1.5"
-                  onClick={() => handleChangeStatus("stopped")}
+                  onClick={() => changeStatus("stopped")}
                 />
               ) : (
                 <Button
                   icon={SolidPlay}
                   className="px-1.5"
-                  {...(status === "stopped" && {
-                    onClick: () => handleChangeStatus("started"),
-                  })}
+                  onClick={() => changeStatus("started")}
                 />
               )}
               <Button
@@ -62,7 +60,7 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
                 text="Randomize"
                 className="px-2 flex-1"
                 iconSize={21}
-                onClick={handleChangeSeed}
+                onClick={shuffleValueList}
               />
             </div>
           </div>

@@ -1,250 +1,257 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
-import type { SortingSettingsProps } from "@/features/sortingAlgorithms/providers";
+"use client";
 import {
-  CANVAS_WIDTH,
   CANVAS_HEIGHT,
-  defaultSortProcess,
-  merge,
-  swap,
-  SortProcess,
-  getRandomValue,
+  CANVAS_WIDTH,
   MAX_SORT_VALUE,
+  parseSpeed,
 } from "@/features/sortingAlgorithms/helpers";
+import { useSortingSettings } from "@/features/sortingAlgorithms/providers/sortingSettings";
+import useCanvas from "@/hooks/useCanvas";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
-const useSortingDraw = (
-  canvas: React.RefObject<HTMLCanvasElement>,
-  {
+const useSortingDraw = () => {
+  const {
+    valueList,
     type,
-    size,
-    speed,
     status,
-    seed,
-    handleChangeStatus,
-  }: Omit<SortingSettingsProps, "speed"> & { speed: number }
-) => {
-  const valueList = useRef<{ value: number; fillStyle: string }[]>([]);
+    speed,
+    sortProcess,
+    size,
+    changeStatus,
+    setValueList,
+  } = useSortingSettings();
   const intervalInstance = useRef<ReturnType<typeof setInterval> | null>(null);
-  const sortProcess = useRef<SortProcess>(defaultSortProcess);
 
-  const restart = useCallback(() => {
-    // is there better way? (could not use spreed etc.)
-    sortProcess.current.i = 0;
-    sortProcess.current.j = 0;
-    sortProcess.current.min = 0;
-    sortProcess.current.iteration = 0;
-    sortProcess.current.stack = [];
-    sortProcess.current.count = [];
-    sortProcess.current.currStack = null;
-    status === "completed" && handleChangeStatus("started");
-  }, [status, handleChangeStatus]);
+  const draw = useCallback(
+    (canvas: HTMLCanvasElement) => {
+      const valueListLength = valueList.length;
+      const canvasContext = canvas.getContext("2d");
+      if (!canvasContext) return;
+      canvasContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-  const onChangeSize = useCallback((prevSize: number, currSize: number) => {
-    if (prevSize === currSize) return;
-    if (prevSize > currSize)
-      valueList.current = valueList.current.slice(0, currSize);
-    else
-      for (let i = 0; i < currSize - prevSize; i++) {
-        valueList.current.push({
-          value: getRandomValue(),
-          fillStyle: "#fff",
-        });
+      for (let i = 0; i < valueListLength; i++) {
+        const { value, fillStyle } = valueList[i];
+        canvasContext.fillStyle = fillStyle;
+        canvasContext.beginPath();
+        canvasContext.roundRect(
+          (CANVAS_WIDTH / valueListLength) * i,
+          CANVAS_HEIGHT - CANVAS_HEIGHT * (value / 100),
+          CANVAS_WIDTH / valueListLength - 1,
+          CANVAS_HEIGHT * (value / 100),
+          6
+        );
+        canvasContext.fill();
       }
-  }, []);
+    },
+    [valueList]
+  );
 
-  const draw = useCallback(() => {
-    const canvasContext = canvas.current?.getContext("2d");
-    if (!canvasContext) return;
-    canvasContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    canvasContext.fillStyle = "#fff";
-    canvasContext.font = "12px __Inter_ecc414 ";
-    canvasContext.fillText(
-      `Items: ${size}  |  Speed: ${speed} ms  |  Iterations: ${sortProcess.current.iteration}`,
-      0,
-      12
-    );
-
-    for (let i = 0; i < valueList.current.length; i++) {
-      canvasContext.fillStyle = valueList.current[i]?.fillStyle || "#fff";
-      canvasContext.beginPath();
-      canvasContext.roundRect(
-        (CANVAS_WIDTH / valueList.current.length) * i,
-        CANVAS_HEIGHT - CANVAS_HEIGHT * (valueList.current[i].value / 10),
-        CANVAS_WIDTH / valueList.current.length - 1,
-        CANVAS_HEIGHT * (valueList.current[i].value / 10),
-        6
-      );
-      canvasContext.fill();
-    }
-  }, [size, speed]);
+  const canvas = useCanvas({
+    draw,
+    width: CANVAS_WIDTH,
+    height: CANVAS_HEIGHT,
+  });
 
   const bubbleSort = useCallback(() => {
-    const { i, j } = sortProcess.current;
-    sortProcess.current.iteration++;
+    setValueList((prevValueList) => {
+      const { i, j } = sortProcess;
+      sortProcess.iteration++;
+      const valueListCopy = [...prevValueList];
+      valueListCopy[j].fillStyle = "#fff";
+      if (valueListCopy[j].value > valueListCopy[j + 1].value) {
+        const temp = valueListCopy[j];
+        valueListCopy[j] = valueListCopy[j + 1];
+        valueListCopy[j + 1] = temp;
+      }
 
-    if (valueList.current[j].value > valueList.current[j + 1].value) {
-      const temp = valueList.current[j];
-      valueList.current[j] = valueList.current[j + 1];
-      valueList.current[j + 1] = temp;
-    }
-
-    if (
-      j >= valueList.current.length - 2 &&
-      i >= valueList.current.length - 1
-    ) {
-      handleChangeStatus("completed");
-    } else if (j === valueList.current.length - 2) {
-      sortProcess.current.i = i + 1;
-      sortProcess.current.j = 0;
-    } else {
-      sortProcess.current.j = j + 1;
-    }
-
-    draw();
-  }, [draw, handleChangeStatus]);
+      if (j >= valueListCopy.length - 2 && i >= valueListCopy.length - 1) {
+        changeStatus("completed");
+      } else if (j === valueListCopy.length - 2) {
+        sortProcess.i = i + 1;
+        sortProcess.j = 0;
+      } else {
+        sortProcess.j = j + 1;
+      }
+      if (j < valueListCopy.length - 2)
+        valueListCopy[sortProcess.j].fillStyle = "#c54f6b";
+      return valueListCopy;
+    });
+  }, [sortProcess, changeStatus, setValueList]);
 
   const selectionSort = useCallback(() => {
-    const { i, j, min } = sortProcess.current;
-    sortProcess.current.iteration++;
-
-    if (
-      j >= valueList.current.length - 1 &&
-      i >= valueList.current.length - 1
-    ) {
-      handleChangeStatus("completed");
-    } else if (j === valueList.current.length) {
-      if (min != i) {
-        const temp = valueList.current[i];
-        valueList.current[i] = valueList.current[min];
-        valueList.current[min] = temp;
+    setValueList((prevValueList) => {
+      const valueListCopy = [...prevValueList];
+      const { i, j, min } = sortProcess;
+      sortProcess.iteration++;
+      if (j < valueListCopy.length) valueListCopy[j].fillStyle = "#fff";
+      if (j >= valueListCopy.length - 1 && i >= valueListCopy.length - 1) {
+        changeStatus("completed");
+      } else if (j === valueListCopy.length) {
+        if (min != i) {
+          const temp = valueListCopy[i];
+          valueListCopy[i] = valueListCopy[min];
+          valueListCopy[min] = temp;
+        }
+        sortProcess.i = i + 1;
+        sortProcess.j = i + 2;
+        sortProcess.min = i + 1;
+      } else {
+        if (valueListCopy[j].value < valueListCopy[min].value) {
+          sortProcess.min = j;
+        }
+        sortProcess.j = j + 1;
       }
-      sortProcess.current.i = i + 1;
-      sortProcess.current.j = i + 2;
-      sortProcess.current.min = i + 1;
-    } else {
-      if (valueList.current[j].value < valueList.current[min].value) {
-        sortProcess.current.min = j;
-      }
-      sortProcess.current.j = j + 1;
-    }
-
-    draw();
-  }, [draw, handleChangeStatus]);
+      if (sortProcess.j < valueListCopy.length)
+        valueListCopy[sortProcess.j].fillStyle = "#c54f6b";
+      return valueListCopy;
+    });
+  }, [sortProcess, changeStatus, setValueList]);
 
   const mergeSort = useCallback(() => {
-    const n = valueList.current.length;
-    const { i, j, mi, mj, mk, left, right, flag } = sortProcess.current;
-    sortProcess.current.iteration++;
+    setValueList((prevValueList) => {
+      const valueListCopy = [...prevValueList];
+      const { i, j, mi, mj, mk, left, right, flag } = sortProcess;
+      const n = valueListCopy.length;
+      sortProcess.iteration++;
 
-    if (i >= valueList.current.length && j >= valueList.current.length - 1) {
-      handleChangeStatus("completed");
-    } else if (j >= valueList.current.length - 1) {
-      sortProcess.current.i = 2 * i || 1;
-      sortProcess.current.j = 0;
-    } else {
-      const m = Math.min(j + i - 1, n - 1);
-      const r = Math.min(j + 2 * i - 1, n - 1);
-      const l = j;
-      if (flag) {
-        const n1 = m - l + 1;
-        const n2 = r - m;
-        sortProcess.current.left = Array(n1).fill(0);
-        sortProcess.current.right = Array(n2).fill(0);
-        for (let i = 0; i < n1; i++)
-          sortProcess.current.left[i] = valueList.current[l + i];
-        for (let j = 0; j < n2; j++)
-          sortProcess.current.right[j] = valueList.current[m + 1 + j];
-        sortProcess.current.mi = 0;
-        sortProcess.current.mj = 0;
-        sortProcess.current.mk = l;
-        sortProcess.current.flag = false;
-      } else if (mi < left.length && mj < right.length) {
-        if (left[mi].value <= right[mj].value) {
-          valueList.current[mk] = left[mi];
-          sortProcess.current.mi++;
-        } else {
-          valueList.current[mk] = right[mj];
-          sortProcess.current.mj++;
-        }
-        sortProcess.current.mk++;
-      } else if (mi < left.length) {
-        valueList.current[mk] = left[mi];
-        sortProcess.current.mi++;
-        sortProcess.current.mk++;
-      } else if (mj < right.length) {
-        valueList.current[mk] = right[mj];
-        sortProcess.current.mj++;
-        sortProcess.current.mk++;
+      if (sortProcess.mk < valueListCopy.length)
+        valueListCopy[sortProcess.mk].fillStyle = "#fff";
+
+      if (i >= n && j >= n - 1) {
+        changeStatus("completed");
+      } else if (j >= n - 1) {
+        sortProcess.i = 2 * i || 1;
+        sortProcess.j = 0;
       } else {
-        sortProcess.current.j += 2 * i || 1;
-        sortProcess.current.left = [];
-        sortProcess.current.right = [];
-        sortProcess.current.flag = true;
+        const m = Math.min(j + i - 1, n - 1);
+        const r = Math.min(j + 2 * i - 1, n - 1);
+        const l = j;
+        if (flag) {
+          const n1 = m - l + 1;
+          const n2 = r - m;
+          sortProcess.left = Array(n1).fill(0);
+          sortProcess.right = Array(n2).fill(0);
+          for (let i = 0; i < n1; i++)
+            sortProcess.left[i] = valueListCopy[l + i];
+          for (let j = 0; j < n2; j++)
+            sortProcess.right[j] = valueListCopy[m + 1 + j];
+          sortProcess.mi = 0;
+          sortProcess.mj = 0;
+          sortProcess.mk = l;
+          sortProcess.flag = false;
+        } else if (mi < left.length && mj < right.length) {
+          if (left[mi].value <= right[mj].value) {
+            valueListCopy[mk] = left[mi];
+            sortProcess.mi++;
+          } else {
+            valueListCopy[mk] = right[mj];
+            sortProcess.mj++;
+          }
+          sortProcess.mk++;
+        } else if (mi < left.length) {
+          valueListCopy[mk] = left[mi];
+          sortProcess.mi++;
+          sortProcess.mk++;
+        } else if (mj < right.length) {
+          valueListCopy[mk] = right[mj];
+          sortProcess.mj++;
+          sortProcess.mk++;
+        } else {
+          sortProcess.j += 2 * i || 1;
+          sortProcess.left = [];
+          sortProcess.right = [];
+          sortProcess.flag = true;
+        }
       }
-    }
-
-    draw();
-  }, [draw, handleChangeStatus]);
+      if (sortProcess.mk < valueListCopy.length)
+        valueListCopy[sortProcess.mk].fillStyle = "#c54f6b";
+      return valueListCopy;
+    });
+  }, [sortProcess, changeStatus, setValueList]);
 
   const quickSort = useCallback(() => {
-    const { iteration, stack } = sortProcess.current;
-    if (iteration === 0 && stack.length === 0) {
-      sortProcess.current.currStack = { x: 0, y: valueList.current.length - 1 };
-      sortProcess.current.i = 0;
-      sortProcess.current.j = 0;
-    }
-
-    const { i, j, currStack } = sortProcess.current;
-
-    if (!currStack) {
-      handleChangeStatus("completed");
-    } else if (j >= currStack.y) {
-      swap(valueList.current, i, currStack.y);
-      if (i - 1 > currStack.x) stack.push({ x: currStack.x, y: i - 1 });
-      if (i + 1 < currStack.y) stack.push({ x: i + 1, y: currStack.y });
-      const newStack = sortProcess.current.stack.shift() || null;
-      sortProcess.current.currStack = newStack;
-      sortProcess.current.j = sortProcess.current.i = newStack?.x || 0;
-    } else {
-      let pivot = valueList.current[currStack.y].value;
-      if (valueList.current[j].value <= pivot) {
-        swap(valueList.current, i, j);
-        sortProcess.current.i++;
+    setValueList((prevValueList) => {
+      const valueListCopy = [...prevValueList];
+      const { iteration, stack } = sortProcess;
+      if (iteration === 0 && stack.length === 0) {
+        sortProcess.currStack = { x: 0, y: valueListCopy.length - 1 };
+        sortProcess.i = 0;
+        sortProcess.j = 0;
       }
-      sortProcess.current.j++;
-    }
 
-    sortProcess.current.iteration++;
+      const { i, j, currStack } = sortProcess;
 
-    draw();
-  }, [draw, handleChangeStatus]);
+      if (j < valueListCopy.length) valueListCopy[j].fillStyle = "#fff";
+
+      if (!currStack) {
+        changeStatus("completed");
+      } else if (j >= currStack.y) {
+        [valueListCopy[i], valueListCopy[currStack.y]] = [
+          valueListCopy[currStack.y],
+          valueListCopy[i],
+        ];
+        if (i - 1 > currStack.x) stack.push({ x: currStack.x, y: i - 1 });
+        if (i + 1 < currStack.y) stack.push({ x: i + 1, y: currStack.y });
+        const newStack = sortProcess.stack.shift() || null;
+        sortProcess.currStack = newStack;
+        sortProcess.j = sortProcess.i = newStack?.x || 0;
+      } else {
+        let pivot = valueListCopy[currStack.y].value;
+        if (valueListCopy[j].value <= pivot) {
+          [valueListCopy[i], valueListCopy[j]] = [
+            valueListCopy[j],
+            valueListCopy[i],
+          ];
+          sortProcess.i++;
+        }
+        sortProcess.j++;
+      }
+
+      if (currStack && sortProcess.j < valueListCopy.length)
+        valueListCopy[sortProcess.j].fillStyle = "#c54f6b";
+
+      sortProcess.iteration++;
+      return valueListCopy;
+    });
+  }, [sortProcess, changeStatus, setValueList]);
 
   const countingSort = useCallback(() => {
-    if (sortProcess.current.iteration === 0) {
-      sortProcess.current.i = 1;
-      sortProcess.current.j = 0;
-    }
-
-    const { i, j, count, iteration } = sortProcess.current;
-    const len = valueList.current.length;
-
-    if (iteration <= MAX_SORT_VALUE) count[iteration] = 0;
-    else if (iteration <= len + MAX_SORT_VALUE)
-      count[valueList.current[iteration - MAX_SORT_VALUE - 1].value] += 1;
-    else if (i <= MAX_SORT_VALUE) {
-      if (count[i] > 0) {
-        valueList.current[j] = { value: i, fillStyle: "#fff" };
-        sortProcess.current.j++;
-        sortProcess.current.iteration++;
-        count[i]--;
-      } else {
-        sortProcess.current.i++;
+    setValueList((prevValueList) => {
+      const valueListCopy = [...prevValueList];
+      if (sortProcess.iteration === 0) {
+        sortProcess.i = 10;
+        sortProcess.j = 0;
       }
-    } else handleChangeStatus("completed");
 
-    sortProcess.current.iteration++;
+      const { i, j, count, iteration } = sortProcess;
+      const len = valueListCopy.length;
 
-    draw();
-  }, [draw, handleChangeStatus]);
+      if (iteration <= MAX_SORT_VALUE + 9) count[iteration] = 0;
+      else if (iteration <= len + MAX_SORT_VALUE + 9) {
+        count[valueListCopy[iteration - MAX_SORT_VALUE - 10].value] += 1;
+        valueListCopy[iteration - MAX_SORT_VALUE - 10].fillStyle = "#fff";
+      } else if (i <= MAX_SORT_VALUE + 9) {
+        if (count[i] > 0) {
+          valueListCopy[j] = { value: i, fillStyle: "#fff" };
+          sortProcess.j++;
+          sortProcess.iteration++;
+          count[i]--;
+        } else {
+          sortProcess.i++;
+        }
+      } else changeStatus("completed");
+
+      sortProcess.iteration++;
+      if (
+        sortProcess.iteration > MAX_SORT_VALUE + 9 &&
+        sortProcess.iteration <= len + MAX_SORT_VALUE + 9
+      ) {
+        valueListCopy[sortProcess.iteration - MAX_SORT_VALUE - 10].fillStyle =
+          "#c54f6b";
+      }
+      return valueListCopy;
+    });
+  }, [sortProcess, changeStatus, setValueList]);
 
   const sortingFunctions = useMemo(
     () => ({
@@ -258,26 +265,32 @@ const useSortingDraw = (
   );
 
   useEffect(() => {
-    for (let i = 0; i < valueList.current.length; i++)
-      valueList.current[i].value = getRandomValue();
-  }, [seed]);
-
-  useEffect(() => {
-    if (size !== valueList.current.length)
-      onChangeSize(valueList.current.length, size);
-  }, [size]);
-
-  useEffect(() => {
-    draw();
     intervalInstance.current && clearInterval(intervalInstance.current);
     if (status === "started")
-      intervalInstance.current = setInterval(sortingFunctions[type], speed);
-  }, [speed, type, status]);
+      intervalInstance.current = setInterval(
+        sortingFunctions[type],
+        parseSpeed(speed)
+      );
 
-  useEffect(() => {
-    restart();
-    draw();
-  }, [seed, size, type]);
+    return () => {
+      intervalInstance.current && clearInterval(intervalInstance.current);
+    };
+  }, [type, status, speed, sortingFunctions]);
+
+  return (
+    <>
+      <div className="sticky -mt-1 top-0 left-0 text-tiny">
+        <div className="absolute flex items-center whitespace-nowrap">
+          <span>Size: {size}</span>
+          <span className="mx-1.5 inline-block h-3 w-px bg-[#fff] opacity-30"></span>
+          <span>Speed: {speed} ms</span>
+          <span className="mx-1.5 inline-block h-3 w-px bg-[#fff] opacity-30"></span>
+          <span>Iterations: {sortProcess.iteration}</span>
+        </div>
+      </div>
+      {canvas}
+    </>
+  );
 };
 
 export default useSortingDraw;
