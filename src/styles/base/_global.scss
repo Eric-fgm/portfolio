@@ -16,12 +16,14 @@ body,
   background-color: var(--homepage-background);
 }
 
-.scroll-y-sortingpage {
-  overflow: hidden scroll;
-
+.no-scrollbar {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.scroll-y-sortingpage {
+  overflow: hidden scroll;
 
   // &::-webkit-scrollbar {
   //   background-color: transparent;
@@ -52,41 +54,99 @@ body,
   // }
 }
 
-rect.path {
+.scale-animate {
   animation: appear 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  animation-fill-mode: forwards;
   transform-box: fill-box;
   transform-origin: center;
-  fill: #6378a1;
 }
 
-rect.end {
-  animation: appearEnd 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  transform-box: fill-box;
-  transform-origin: center;
-  fill: #d07575;
+.animate-navigation .animate-child {
+  transition-duration: 1.25s;
+  transform: translateY(-25px) scale(0.75);
+  opacity: 0;
 }
 
-rect.wall {
-  animation: appear 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  transform-box: fill-box;
-  transform-origin: center;
-  fill: #394969;
+.animating-navigation {
+  & .animate-child {
+    transition-duration: 400ms;
+    transform: translateY(0) scale(1);
+    opacity: 1;
+
+    &[data-delay="50"] {
+      transition-delay: 50ms;
+    }
+
+    &[data-delay="100"] {
+      transition-delay: 100ms;
+    }
+
+    &[data-delay="150"] {
+      transition-delay: 150ms;
+    }
+
+    &[data-delay="200"] {
+      transition-delay: 200ms;
+    }
+    &[data-delay="250"] {
+      transition-delay: 250ms;
+    }
+  }
+}
+
+.mobile-navigation {
+  transition: height 0.45s cubic-bezier(0.4, 0, 0.6, 1), background 0.3s ease;
+
+  &.primary {
+    background-color: var(--homepage-background);
+  }
+
+  &.darkBlue {
+    background-color: var(--sortingpage-background);
+  }
+
+  &.lightBlue {
+    background-color: var(--graphpage-background);
+  }
+}
+
+.translate-animation {
+  animation: translate-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-animation {
+  animation: fade-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes translate-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes appear {
   from {
+    opacity: 0;
     transform: scale(0.3);
   }
   to {
-    transform: scale(1);
-  }
-}
-
-@keyframes appearEnd {
-  from {
-    transform: scale(0.4);
-  }
-  to {
+    opacity: 1;
     transform: scale(1);
   }
 }

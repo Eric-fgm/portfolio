@@ -1,38 +1,29 @@
 "use client";
-import { createContext } from "react";
-import type {
-  GraphAlgorithmTypes,
-  Node,
-} from "@/features/graphAlgorithms/helpers";
+import { Dispatch, SetStateAction, createContext } from "react";
+import { UseGraphAlgorithmsProps } from "@/features/graphAlgorithms/hooks";
+import type { GraphPathNode } from "../../helpers";
 
-export interface GraphSettingsProps {
-  graph: SVGSVGElement | null;
-  nodes: Node[][];
-  status: "started" | "stopped" | "completed";
-  type: GraphAlgorithmTypes;
-  speed: number;
-  initGraph: (graph: SVGSVGElement) => void;
-  setStatus: (point: GraphSettingsProps["status"]) => void;
-  setSpeed: (point: GraphSettingsProps["speed"]) => void;
-  setType: (point: GraphSettingsProps["type"]) => void;
-  generateMaze: () => void;
-  clearWall: () => void;
-  reset: () => void;
+export interface GraphSettingsProps extends UseGraphAlgorithmsProps {
+  isOpened: boolean;
+  changeStatus: (point: GraphSettingsProps["status"]) => void;
+  changeType: (point: GraphSettingsProps["type"]) => void;
+  setDisabled: Dispatch<SetStateAction<UseGraphAlgorithmsProps["disabled"]>>;
+  clearDisabled: () => void;
+  generateDisabled: () => void;
+  toggleSettings: () => void;
 }
 
 export const defaultProps: GraphSettingsProps = {
-  graph: null,
+  isOpened: false,
   status: "stopped",
-  speed: 10,
-  nodes: [],
-  type: "bfs",
-  initGraph: () => {},
-  setStatus: () => {},
-  setSpeed: () => {},
-  setType: () => {},
-  generateMaze: () => {},
-  clearWall: () => {},
-  reset: () => {},
+  type: "depthFirstSearch",
+  disabled: {},
+  changeStatus: () => {},
+  changeType: () => {},
+  setDisabled: () => {},
+  clearDisabled: () => {},
+  generateDisabled: () => {},
+  toggleSettings: () => {},
 };
 
 const GraphSettingsContext = createContext(defaultProps);

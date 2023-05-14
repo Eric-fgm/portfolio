@@ -2,13 +2,16 @@
 import { Button } from "@/components";
 import { SolidBubble, SolidPause, SolidPlay, SolidReset } from "@/icons";
 import { useContext } from "react";
-import { GraphSettingsContext } from "@/features/graphAlgorithms/providers";
+import { GraphSettingsContext } from "@/features/graphAlgorithms/providers/graphSettings";
+import { useTranslate } from "@/features/language/providers/translate";
 
 interface TopbarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const Topbar: React.FC<TopbarProps> = ({ className = "", ...props }) => {
-  const { status, reset, clearWall, generateMaze, setStatus } =
+  const { status, changeStatus, clearDisabled, generateDisabled } =
     useContext(GraphSettingsContext);
+  const t = useTranslate("graphPage");
+
   return (
     <div
       className={`pl-1 relative flex justify-between h-16 bg-graphpage-secondary rounded-2xl overflow-hidden ${className}`}
@@ -30,17 +33,17 @@ const Topbar: React.FC<TopbarProps> = ({ className = "", ...props }) => {
         /> */}
         <Button
           icon={SolidBubble}
-          text="Generate Maze"
+          text={t.generateMaze}
           theme="lightBlue"
           className="pl-2 pr-3.5 py-1.5 flex-shrink-0"
-          onClick={generateMaze}
+          onClick={generateDisabled}
         />
         <Button
           icon={SolidBubble}
-          text="Clear Wall"
+          text={t.clearWall}
           theme="lightBlue"
           className="pl-2 pr-3.5 py-1.5 flex-shrink-0"
-          onClick={clearWall}
+          onClick={clearDisabled}
         />
       </div>
       <div className="pl-1 pr-4 flex items-center gap-2 shadow-end-over-graph">
@@ -49,23 +52,21 @@ const Topbar: React.FC<TopbarProps> = ({ className = "", ...props }) => {
             icon={SolidPause}
             theme="lightBlue"
             className="p-1.5"
-            onClick={() => setStatus("stopped")}
+            onClick={() => changeStatus("stopped")}
           />
         ) : (
           <Button
             icon={SolidPlay}
             theme="lightBlue"
             className="p-1.5"
-            {...(status === "stopped" && {
-              onClick: () => setStatus("started"),
-            })}
+            onClick={() => changeStatus("started")}
           />
         )}
         <Button
           icon={SolidReset}
           theme="lightBlue"
           className="p-1.5"
-          onClick={reset}
+          onClick={() => changeStatus("restart")}
         />
       </div>
     </div>

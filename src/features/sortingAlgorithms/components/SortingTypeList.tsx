@@ -1,26 +1,27 @@
 "use client";
+import { useTranslate } from "@/features/language/providers/translate";
 import { SortingTypeItem } from "@/features/sortingAlgorithms";
 import type { SortTypes } from "@/features/sortingAlgorithms/helpers";
-import { sortSpecification } from "@/features/sortingAlgorithms/helpers";
-import { SortingSettingsContext } from "@/features/sortingAlgorithms/providers/sortingSettings";
-import { useContext } from "react";
+import { sortingAlgorithms } from "@/features/sortingAlgorithms/helpers";
+import { useSortingSettings } from "@/features/sortingAlgorithms/providers/sortingSettings";
 
 interface SortingTypeListProps {}
 
 const SortingTypeList: React.FC<SortingTypeListProps> = () => {
-  const { type, changeType } = useContext(SortingSettingsContext);
+  const t = useTranslate("sortingPage");
+  const { type, changeType } = useSortingSettings();
 
   return (
-    <div className="relative flex justify-center overflow-hidden">
-      <ul className="px-4 py-1 flex gap-4 scroll-x-sortingpage">
-        {(Object.keys(sortSpecification) as SortTypes[]).map((sortType) => (
+    <div className="relative flex justify-center">
+      <ul className="-mx-4 px-4 py-1 flex gap-4 scroll-x-sortingpage">
+        {sortingAlgorithms.map(({ key, icon, name }) => (
           <SortingTypeItem
-            key={sortType}
-            icon={sortSpecification[sortType].icon}
-            type={sortSpecification[sortType].type}
-            name={sortSpecification[sortType].name}
-            isActive={type === sortType}
-            onClick={() => changeType(sortType)}
+            key={key}
+            icon={icon}
+            name={name}
+            metadata={t.algorithms[key].metadata}
+            isActive={type === key}
+            onClick={() => changeType(key)}
           />
         ))}
       </ul>

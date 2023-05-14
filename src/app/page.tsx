@@ -1,26 +1,25 @@
-import { getDictionary } from "@/helpers/get-dictionary";
-import type { Locale } from "@/helpers/i18n-config";
+import { getDictionary } from "@/features/language";
+import type { Locale } from "@/features/language";
 
 interface PageProps {
   params: { locale: Locale };
 }
 
 export default async function Page({ params: { locale } }: PageProps) {
-  const t = await getDictionary(locale);
+  const t = (await getDictionary(locale))["home"];
 
   return (
-    <main className="relative flex flex-col items-center w-full h-full bg-homepage scroll-y-sortingpage">
+    <main className="relative flex flex-col items-center w-full h-full bg-homepage no-scrollbar overflow-auto page-animation">
       <div className="flex-1 min-h-[88px]" />
       <div className="px-[4%] max-w-[1420px] md:flex md:items-end md:gap-x-12">
         <div className="flex flex-col flex-1">
           <h5 className="mb-2 text-sm md:text-base font-medium opacity-60">
-            Visualizer & Interactive
+            {t.subtitle}
           </h5>
-          <h1 className="text-[44px] leading-[1.1] md:leading-[1.125] lg:leading-[1.1] font-semibold sm:text-6xl md:text-[68px] lg:text-[86px]">
-            Web Developer
-            <br />
-            Portfolio
-          </h1>
+          <h1
+            className="text-[44px] leading-[1.1] md:leading-[1.125] lg:leading-[1.1] font-semibold sm:text-6xl md:text-[68px] lg:text-[86px]"
+            dangerouslySetInnerHTML={{ __html: t.title }}
+          />
           <div className="mt-4 max-w-[340px] text-rg md:mt-16 xl:mt-24">
             <p className="leading-[22px]">
               Lorem ipsum dolor sit amet consectetur. Nunc sem cursus

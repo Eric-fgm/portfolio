@@ -1,1 +1,2 @@
-export { default as useGraphPathDraw } from "@/features/graphAlgorithms/hooks/useGraphPathDraw";
+export { default as useGraphAlgorithms } from "@/features/graphAlgorithms/hooks/useGraphAlgorithms";
+export type { UseGraphAlgorithmsProps } from "@/features/graphAlgorithms/hooks/useGraphAlgorithms";

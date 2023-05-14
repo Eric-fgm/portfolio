@@ -10,9 +10,12 @@ const Header: React.FC<HeaderProps> = ({
   ...props
 }) => {
   return (
-    <header className={`text-center ${className}`} {...props}>
+    <header
+      className={`flex flex-col items-center text-center ${className}`}
+      {...props}
+    >
       <h4 className="text-lg text-muted font-medium">{subhead}</h4>
-      <h1 className="mt-2 text-6xl text-white font-semibold">{headline}</h1>
+      <h1 className="mt-1 text-6xl text-white font-semibold">{headline}</h1>
     </header>
   );
 };

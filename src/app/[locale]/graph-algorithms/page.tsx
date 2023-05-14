@@ -1,12 +1,13 @@
-import { Header } from "@/components";
+import { Container, Header } from "@/components";
 import {
-  GraphAlgorithmsVisualizer,
+  FloatingButtons,
+  GraphVisualizer,
   Sidebar,
   Topbar,
 } from "@/features/graphAlgorithms";
-import { GraphSettingsProvider } from "@/features/graphAlgorithms/providers";
-import { getDictionary } from "@/helpers/get-dictionary";
-import type { Locale } from "@/helpers/i18n-config";
+import { GraphSettingsProvider } from "@/features/graphAlgorithms/providers/graphSettings";
+import { getDictionary } from "@/features/language";
+import type { Locale } from "@/features/language";
 
 interface graphpageProps {
   params: { locale: Locale };
@@ -15,24 +16,21 @@ interface graphpageProps {
 export default async function graphpage({
   params: { locale },
 }: graphpageProps) {
-  const t = await getDictionary(locale);
+  const t = (await getDictionary(locale))["graphPage"];
 
   return (
     <GraphSettingsProvider>
-      <main className="relative pt-18 pb-4 h-full bg-graphpage scroll-y-sortingpage">
-        <Header
-          headline="Graphs Algorithms"
-          subhead="Visuzalizer & Interactive"
-          className="py-8"
-        />
-        <div className="mx-auto px-4 pt-5 flex gap-4 max-w-[1214px] xl:px-0">
+      <Container className="bg-graphpage">
+        <Header headline={t.title} subhead={t.subtitle} className="py-8" />
+        <div className="pt-4 flex gap-4">
           <Sidebar />
           <div className="mx-auto flex flex-col flex-1 gap-4 max-w-[950px] overflow-hidden">
             <Topbar />
-            <GraphAlgorithmsVisualizer />
+            <FloatingButtons />
+            <GraphVisualizer />
           </div>
         </div>
-      </main>
+      </Container>
     </GraphSettingsProvider>
   );
 }

@@ -1,22 +1,25 @@
 "use client";
-import GraphsAlgorithmsItem from "./GraphAlgorithmsItem";
-import { graphAlgorithms } from "../helpers";
-import { useContext } from "react";
-import { GraphSettingsContext } from "../providers";
+import { GraphAlgorithmsItem } from "@/features/graphAlgorithms";
+import { graphAlgorithms } from "@/features/graphAlgorithms/helpers";
+import { useGraphSettings } from "@/features/graphAlgorithms/providers/graphSettings";
+import { useTranslate } from "@/features/language/providers/translate";
 
 interface GraphAlgorithmsListProps {}
 
 const GraphAlgorithmsList: React.FC<GraphAlgorithmsListProps> = () => {
-  const { type, setType } = useContext(GraphSettingsContext);
+  const { type, changeType } = useGraphSettings();
+  const t = useTranslate("graphPage");
 
   return (
     <div className="flex flex-col gap-4">
-      {graphAlgorithms.map((props) => (
-        <GraphsAlgorithmsItem
-          key={props.type}
-          isActive={props.type === type}
-          onClick={() => setType(props.type)}
-          {...props}
+      {graphAlgorithms.map(({ key, icon, name }) => (
+        <GraphAlgorithmsItem
+          key={key}
+          icon={icon}
+          name={name}
+          caption={t.algorithms[key].caption}
+          isActive={key === type}
+          onClick={() => changeType(key)}
         />
       ))}
     </div>

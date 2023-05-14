@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Osobiste Portfolio (Polska)"
+  },
+  "navigation": {
+    "sorting": "Sortowanie",
+    "graphs": "Grafy",
+    "dynamic": "Dynamiczne",
+    "physics": "Fizyka",
+    "caseStudies": "Projekty"
+  },
+  "home": {
+    "title": "Web Developer<br/>Portfolio",
+    "subtitle": "Wizualizacja & Interakcja"
+  },
+  "sortingPage": {
+    "title": "Algorytmy Sortujące",
+    "subtitle": "Wizualizacja",
+    "algorithms": {
+      "bubbleSort": {
+        "metadata": {
+          "name": "WOLNY",
+          "className": "text-red"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(n<sup>2</sup>)<br/>Space - O(1)</p>"
+      },
+      "selectionSort": {
+        "metadata": {
+          "name": "WOLNY",
+          "className": "text-red"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(n<sup>2</sup>)<br/>Space - O(1)</p>"
+      },
+      "mergeSort": {
+        "metadata": {
+          "name": "SZYBKI",
+          "className": "text-green"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(nlogn)<br/>Space - O(n)</p>"
+      },
+      "quickSort": {
+        "metadata": {
+          "name": "SZYBKI",
+          "className": "text-green"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(nlogn)<br/>Space - O(n)</p>"
+      },
+      "countingSort": {
+        "metadata": {
+          "name": "SPECJALNY",
+          "className": "text-yellow"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(n)<br/>Space - O(n)</p>"
+      }
+    },
+    "settings": {
+      "title": "USTAWIENIA",
+      "size": "Wymiar",
+      "speed": "Tempo",
+      "iteration": "Iteracja",
+      "restart": "Restart"
+    },
+    "description": {
+      "title": "OPIS",
+      "content": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Złożoność Obliczeniowa - O(n<sup>2</sup>)<br/>Złożoność Pamięciowa - O(1)</p>"
+    }
+  },
+  "graphPage": {
+    "title": "Algorytmy Grafowe",
+    "subtitle": "Wizualizacja & Interakcja",
+    "generateMaze": "Generuj Labirynt",
+    "clearWall": "Usuń Ściane",
+    "algorithms": {
+      "breadthFirstSearch": {
+        "caption": "Nie Ważony & Najkrótsza Ścieżka"
+      },
+      "depthFirstSearch": {
+        "caption": "Nie Ważony & Brak Najkrótszej Ścieżki"
+      }
+    }
+  }
+}

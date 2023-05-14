@@ -1,1 +1,2 @@
-export { default as useSortingDraw } from "@/features/sortingAlgorithms/hooks/useSortingDraw";
+export { default as useSortingAlgorithms } from "@/features/sortingAlgorithms/hooks/useSortingAlgorithms";
+export type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hooks/useSortingAlgorithms";

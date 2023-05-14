@@ -1,10 +1,9 @@
 "use client";
 import { Button, FormField, Input, RangeInput } from "@/components";
+import { useTranslate } from "@/features/language/providers/translate";
 import { Wrapper } from "@/features/sortingAlgorithms";
-import { sortSpecification } from "@/features/sortingAlgorithms/helpers";
-import { SortingSettingsContext } from "@/features/sortingAlgorithms/providers/sortingSettings";
+import { useSortingSettings } from "@/features/sortingAlgorithms/providers/sortingSettings";
 import { SolidPause, SolidPlay, SolidReset } from "@/icons";
-import { useContext } from "react";
 
 interface ControlPanelProps {}
 
@@ -18,19 +17,20 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
     changeSpeed,
     changeSize,
     changeStatus,
-    shuffleValueList,
-  } = useContext(SortingSettingsContext);
+  } = useSortingSettings();
+
+  const t = useTranslate("sortingPage");
 
   return (
     <div
-      className={`fixed pl-6 left-0 bottom-[68px] transition-transform z-50 xl:static xl:pl-0 xl:transition-none xl:z-10 ${
+      className={`fixed pl-6 left-0 bottom-[76px] transition-transform z-30 xl:static xl:pl-0 xl:transition-none ${
         isOpened ? "" : "-translate-x-full xl:translate-x-0"
       }`}
     >
       <div className="flex flex-col gap-4 w-56">
-        <Wrapper title="SETTINGS" className="shadow-2xl xl:shadow-none">
+        <Wrapper title={t.settings.title} className="shadow-2xl xl:shadow-none">
           <div className="flex flex-col gap-3">
-            <FormField name="Size">
+            <FormField name={t.settings.size}>
               <Input
                 type="number"
                 placeholder="2-500"
@@ -38,7 +38,7 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
                 onChange={changeSize}
               />
             </FormField>
-            <FormField name="Speed">
+            <FormField name={t.settings.speed}>
               <RangeInput values={speed} onChange={changeSpeed} />
             </FormField>
             <div className="flex gap-2 h-9">
@@ -57,20 +57,20 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
               )}
               <Button
                 icon={SolidReset}
-                text="Randomize"
+                text={t.settings.restart}
                 className="px-2 flex-1"
                 iconSize={21}
-                onClick={shuffleValueList}
+                onClick={() => changeStatus("restart")}
               />
             </div>
           </div>
         </Wrapper>
         <Wrapper
-          title="DESCRIPTION"
+          title={t.description.title}
           className="text-xs shadow-2xl xl:shadow-none"
         >
           <div
-            dangerouslySetInnerHTML={{ __html: sortSpecification[type].desc }}
+            dangerouslySetInnerHTML={{ __html: t.algorithms[type].description }}
           />
         </Wrapper>
       </div>

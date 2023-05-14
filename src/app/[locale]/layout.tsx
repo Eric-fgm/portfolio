@@ -1,7 +1,9 @@
-import { getDictionary } from "@/helpers/get-dictionary";
-import { Locale, i18n } from "@/helpers/i18n-config";
+import { config, getDictionary } from "@/features/language";
+import type { Locale } from "@/features/language";
+import { TranslateProvider } from "@/features/language/providers/translate";
 import "@/styles/main.scss";
 import dynamic from "next/dynamic";
+// import { Navigation } from "@/features/navigation";
 
 const Navigation = dynamic(
   () => import("@/features/navigation/components/Navigation"),
@@ -14,7 +16,7 @@ interface LocaleLayoutProps {
 }
 
 export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
+  return config.locales.map((locale) => ({ lang: locale }));
 }
 
 export async function generateMetadata({
@@ -25,34 +27,22 @@ export async function generateMetadata({
   const t = await getDictionary(locale);
 
   return {
-    title: t["meta.title"],
-    // hrefs: [{ rel: "preconnect", href: "https://fonts.googleapis.com" }],
-    preconnects: [{ href: "https://fonts.googleapis.com" }],
-    // link: [
-    //   {
-    //     rel: "preconnect",
-    //     href: "https://fonts.googleapis.com",
-    //   },
-    //   {
-    //     rel: "preconnect",
-    //     href: "https://fonts.gstatic.com",
-    //     crossorigin: true,
-    //   },
-    //   {
-    //     rel: "stylesheet",
-    //     href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
-    //   },
-    // ],
+    title: t.meta.title,
   };
 }
 
-export default async function LocaleLayout({ children }: LocaleLayoutProps) {
+export default async function LocaleLayout({
+  children,
+  params: { locale },
+}: LocaleLayoutProps) {
+  const t = await getDictionary(locale);
+
   return (
-    <div id="app">
-      {/* <div className="relative w-full h-full overflow-x-hidden overflow-y-scroll"> */}
-      <Navigation />
-      {children}
-      {/* </div> */}
-    </div>
+    <TranslateProvider dictionares={t}>
+      <div id="app">
+        <Navigation />
+        {children}
+      </div>
+    </TranslateProvider>
   );
 }

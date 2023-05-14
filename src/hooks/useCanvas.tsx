@@ -7,7 +7,7 @@ interface CanvasProps extends React.CanvasHTMLAttributes<HTMLCanvasElement> {
   height: number;
 }
 
-const useCanvas = ({ draw, ...restProps }: CanvasProps) => {
+const useCanvas = ({ draw, className = "", ...restProps }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>();
 
   useMemo(() => canvasRef.current && draw(canvasRef.current), [draw]);
@@ -20,7 +20,16 @@ const useCanvas = ({ draw, ...restProps }: CanvasProps) => {
     draw(canvas);
   }, []);
 
-  return <canvas ref={onCanvasRender} {...restProps}></canvas>;
+  return {
+    canvas: (
+      <canvas
+        ref={onCanvasRender}
+        className={`${className} select-none`}
+        {...restProps}
+      ></canvas>
+    ),
+    reference: canvasRef,
+  };
 };
 
 export default useCanvas;

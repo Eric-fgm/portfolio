@@ -1,6 +1,7 @@
 "use client";
+import { useLocale } from "@/features/language/hooks";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
-import { useParams, useSelectedLayoutSegment } from "next/navigation";
+import { useSelectedLayoutSegment } from "next/navigation";
 
 interface LinkProps extends NextLinkProps {
   children: React.ReactNode;
@@ -17,11 +18,11 @@ const Link: React.FC<LinkProps> = ({
   unActiveClassName = "",
   ...props
 }) => {
-  const { locale } = useParams();
+  const locale = useLocale();
   const pathname = useSelectedLayoutSegment();
 
   const getLocalizedHref = (originalHref: string) => {
-    return originalHref.replace(/^\//, "/" + locale + "/");
+    return originalHref.replace(/^\//, "/" + locale.code + "/");
   };
 
   const localizedHref =

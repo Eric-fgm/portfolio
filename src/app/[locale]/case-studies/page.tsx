@@ -1,5 +1,5 @@
-import { getDictionary } from "@/helpers/get-dictionary";
-import type { Locale } from "@/helpers/i18n-config";
+import { getDictionary } from "@/features/language";
+import type { Locale } from "@/features/language";
 
 interface CaseStudiesPageProps {
   params: { locale: Locale };

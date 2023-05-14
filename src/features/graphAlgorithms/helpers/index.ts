@@ -1,23 +1,11 @@
 import { SolidGraph } from "@/icons";
 
-export interface Node {
+export interface GraphPathNode {
   x: number;
   y: number;
-  ref: SVGAElement;
-  wall: boolean;
-  visited: boolean;
-  parent: Node | null;
 }
 
-export interface PathProcess {
-  nodes: Node[][];
-  queue: Node[];
-  top: number;
-  latestTap: number;
-  ref: HTMLElement | null;
-}
-
-export type GraphAlgorithmTypes = (typeof graphAlgorithms)[number]["type"];
+export type GraphAlgorithmTypes = (typeof graphAlgorithms)[number]["key"];
 
 export const graphAlgorithms = [
   // {
@@ -27,16 +15,14 @@ export const graphAlgorithms = [
   //   caption: "Weight & Short Path",
   // },
   {
+    key: "depthFirstSearch",
     icon: SolidGraph,
     name: "A* Search",
-    type: "dfs",
-    caption: "Weight & Short Path",
   },
   {
+    key: "breadthFirstSearch",
     icon: SolidGraph,
     name: "Best-first Search",
-    type: "bfs",
-    caption: "Weight & Not Short Path",
   },
   // {
   //   icon: SolidGraph,
@@ -485,72 +471,3 @@ export const END_ROW = START_ROW;
 export const END_COL = 33;
 export const ROWS_NUM = 24;
 export const COLS_NUM = 38;
-
-export const checkNeighboursOfNode = (node: Node, process: PathProcess) => {
-  const FIELDS = [
-    [0, -1],
-    [-1, 0],
-    [0, 1],
-    [1, 0],
-  ];
-  const { nodes, queue } = process;
-
-  for (let i = 0; i < FIELDS.length; i++) {
-    const [rowDiff, colDiff] = FIELDS[i];
-    const currRow = node.x + rowDiff;
-    const currCol = node.y + colDiff;
-    if (currRow === END_ROW && currCol === END_COL) {
-      let index = 0;
-      let processingNode = nodes[currRow][currCol];
-      processingNode.parent = node;
-      const endingPath = [];
-      while (processingNode.parent) {
-        const { ref, parent } = processingNode;
-        ref.classList.add("end");
-        ref.style.transitionDelay = index * 50 + "ms";
-        ref.style.animationDelay = index * 50 + "ms";
-        endingPath.push(parent);
-        processingNode = parent;
-        index++;
-      }
-      return true;
-    }
-    if (
-      currRow >= 0 &&
-      currRow < ROWS_NUM &&
-      currCol < COLS_NUM &&
-      currCol >= 0 &&
-      !nodes[currRow][currCol].visited &&
-      !nodes[currRow][currCol].wall
-    ) {
-      const currNode = nodes[currRow][currCol];
-      queue.push(currNode);
-      currNode.parent = node;
-      currNode.visited = true;
-    }
-  }
-  return false;
-};
-
-export const getNodes = (graph: SVGSVGElement) => {
-  const matrix: Node[][] = [];
-  for (let x = 0; x < ROWS_NUM; x++) {
-    const row = [];
-    for (let y = 0; y < COLS_NUM; y++) {
-      row.push({
-        x,
-        y,
-        ref: graph.childNodes[x * COLS_NUM + y] as SVGAElement,
-        wall: false,
-        visited: false,
-        parent: null,
-      });
-    }
-    matrix.push(row);
-  }
-  matrix[11][4].ref.classList.add("path");
-  matrix[11][33].ref.classList.add("path");
-  matrix[11][4].visited = true;
-  matrix[11][33].visited = true;
-  return matrix;
-};

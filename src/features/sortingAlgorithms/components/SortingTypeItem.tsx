@@ -1,22 +1,19 @@
-import { sortingTypeMap } from "@/helpers/mapping";
-import { SortSpecification } from "@/features/sortingAlgorithms/helpers";
-
-interface SortingTypeItemProps
-  extends React.HTMLAttributes<HTMLLIElement>,
-    Omit<SortSpecification, "desc"> {
+interface SortingTypeItemProps extends React.HTMLAttributes<HTMLLIElement> {
+  name: string;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  metadata: { name: string; className?: string };
   iconClassName?: string;
   isActive: boolean;
 }
 
 const SortingTypeItem: React.FC<SortingTypeItemProps> = ({
-  type = 1,
   name = "",
   icon: Icon,
+  metadata,
   iconClassName = "",
   isActive,
   ...props
 }) => {
-  const { speed, className } = sortingTypeMap[type];
   return (
     <li
       className={`flex-shrink-0 bg-sortingpage-secondary rounded-2xl cursor-pointer ${
@@ -30,8 +27,12 @@ const SortingTypeItem: React.FC<SortingTypeItemProps> = ({
       >
         <Icon className={`text-muted ${iconClassName}`} />
         <div>
-          <h5 className={`text-left text-[10px] font-semibold ${className}`}>
-            {speed}
+          <h5
+            className={`text-left text-[10px] font-semibold ${
+              metadata.className ?? ""
+            }`}
+          >
+            {metadata.name}
           </h5>
           <h4 className="text-sm font-medium">{name}</h4>
         </div>

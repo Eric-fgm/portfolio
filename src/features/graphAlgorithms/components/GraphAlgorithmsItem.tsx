@@ -1,5 +1,5 @@
 interface GraphAlgorithmsItemProps
-  extends Omit<React.HTMLAttributes<HTMLButtonElement>, "type"> {
+  extends React.HTMLAttributes<HTMLButtonElement> {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
   name: string;
   caption: string;
@@ -21,10 +21,12 @@ const GraphAlgorithmsItem: React.FC<GraphAlgorithmsItemProps> = ({
       }`}
       {...props}
     >
-      <Icon className="text-muted-graph" />
-      <div className="text-left">
+      <Icon className="flex-shrink-0 text-muted-graph" />
+      <div className="text-left overflow-hidden">
         <h4 className="text-md font-medium">{name}</h4>
-        <h5 className="text-xs text-muted-graph font-semibold">{caption}</h5>
+        <h5 className="text-xs text-muted-graph font-semibold truncate">
+          {caption}
+        </h5>
       </div>
     </button>
   );
