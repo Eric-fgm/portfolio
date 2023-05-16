@@ -1,23 +1,24 @@
 "use client";
-import { createContext } from "react";
+import { Dispatch, SetStateAction, createContext } from "react";
 import type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hooks";
+import { generateRandomValues } from "../../helpers";
 
 export interface SortingSettingsProps extends UseSortingAlgorithmsProps {
   isOpened: boolean;
-  changeSize: (size: SortingSettingsProps["size"]) => void;
+  setInitialList: Dispatch<SetStateAction<SortingSettingsProps["initialList"]>>;
   changeSpeed: (speed: SortingSettingsProps["speed"]) => void;
   changeStatus: (status: SortingSettingsProps["status"]) => void;
-  changeType: (status: SortingSettingsProps["type"]) => void;
+  changeType: (type: SortingSettingsProps["type"]) => void;
   toggleSettings: () => void;
 }
 
 export const defaultProps: SortingSettingsProps = {
+  initialList: generateRandomValues(350),
   type: "bubbleSort",
-  size: 350,
   speed: [20],
   status: "stopped",
   isOpened: false,
-  changeSize: () => {},
+  setInitialList: () => {},
   changeSpeed: () => {},
   changeStatus: () => {},
   changeType: () => {},

@@ -1422,6 +1422,606 @@ export const generateRandomValues = (limit: number) =>
       value: 91,
       fillStyle: "#fff",
     },
+    {
+      value: 36,
+      fillStyle: "#fff",
+    },
+    {
+      value: 36,
+      fillStyle: "#fff",
+    },
+    {
+      value: 46,
+      fillStyle: "#fff",
+    },
+    {
+      value: 10,
+      fillStyle: "#fff",
+    },
+    {
+      value: 28,
+      fillStyle: "#fff",
+    },
+    {
+      value: 86,
+      fillStyle: "#fff",
+    },
+    {
+      value: 88,
+      fillStyle: "#fff",
+    },
+    {
+      value: 41,
+      fillStyle: "#fff",
+    },
+    {
+      value: 76,
+      fillStyle: "#fff",
+    },
+    {
+      value: 72,
+      fillStyle: "#fff",
+    },
+    {
+      value: 48,
+      fillStyle: "#fff",
+    },
+    {
+      value: 96,
+      fillStyle: "#fff",
+    },
+    {
+      value: 90,
+      fillStyle: "#fff",
+    },
+    {
+      value: 53,
+      fillStyle: "#fff",
+    },
+    {
+      value: 91,
+      fillStyle: "#fff",
+    },
+    {
+      value: 83,
+      fillStyle: "#fff",
+    },
+    {
+      value: 63,
+      fillStyle: "#fff",
+    },
+    {
+      value: 93,
+      fillStyle: "#fff",
+    },
+    {
+      value: 94,
+      fillStyle: "#fff",
+    },
+    {
+      value: 25,
+      fillStyle: "#fff",
+    },
+    {
+      value: 25,
+      fillStyle: "#fff",
+    },
+    {
+      value: 54,
+      fillStyle: "#fff",
+    },
+    {
+      value: 45,
+      fillStyle: "#fff",
+    },
+    {
+      value: 72,
+      fillStyle: "#fff",
+    },
+    {
+      value: 59,
+      fillStyle: "#fff",
+    },
+    {
+      value: 85,
+      fillStyle: "#fff",
+    },
+    {
+      value: 28,
+      fillStyle: "#fff",
+    },
+    {
+      value: 51,
+      fillStyle: "#fff",
+    },
+    {
+      value: 12,
+      fillStyle: "#fff",
+    },
+    {
+      value: 79,
+      fillStyle: "#fff",
+    },
+    {
+      value: 80,
+      fillStyle: "#fff",
+    },
+    {
+      value: 12,
+      fillStyle: "#fff",
+    },
+    {
+      value: 67,
+      fillStyle: "#fff",
+    },
+    {
+      value: 10,
+      fillStyle: "#fff",
+    },
+    {
+      value: 21,
+      fillStyle: "#fff",
+    },
+    {
+      value: 35,
+      fillStyle: "#fff",
+    },
+    {
+      value: 47,
+      fillStyle: "#fff",
+    },
+    {
+      value: 96,
+      fillStyle: "#fff",
+    },
+    {
+      value: 29,
+      fillStyle: "#fff",
+    },
+    {
+      value: 36,
+      fillStyle: "#fff",
+    },
+    {
+      value: 28,
+      fillStyle: "#fff",
+    },
+    {
+      value: 66,
+      fillStyle: "#fff",
+    },
+    {
+      value: 89,
+      fillStyle: "#fff",
+    },
+    {
+      value: 36,
+      fillStyle: "#fff",
+    },
+    {
+      value: 46,
+      fillStyle: "#fff",
+    },
+    {
+      value: 96,
+      fillStyle: "#fff",
+    },
+    {
+      value: 10,
+      fillStyle: "#fff",
+    },
+    {
+      value: 33,
+      fillStyle: "#fff",
+    },
+    {
+      value: 21,
+      fillStyle: "#fff",
+    },
+    {
+      value: 61,
+      fillStyle: "#fff",
+    },
+    {
+      value: 35,
+      fillStyle: "#fff",
+    },
+    {
+      value: 96,
+      fillStyle: "#fff",
+    },
+    {
+      value: 19,
+      fillStyle: "#fff",
+    },
+    {
+      value: 54,
+      fillStyle: "#fff",
+    },
+    {
+      value: 11,
+      fillStyle: "#fff",
+    },
+    {
+      value: 41,
+      fillStyle: "#fff",
+    },
+    {
+      value: 96,
+      fillStyle: "#fff",
+    },
+    {
+      value: 28,
+      fillStyle: "#fff",
+    },
+    {
+      value: 93,
+      fillStyle: "#fff",
+    },
+    {
+      value: 22,
+      fillStyle: "#fff",
+    },
+    {
+      value: 66,
+      fillStyle: "#fff",
+    },
+    {
+      value: 69,
+      fillStyle: "#fff",
+    },
+    {
+      value: 85,
+      fillStyle: "#fff",
+    },
+    {
+      value: 63,
+      fillStyle: "#fff",
+    },
+    {
+      value: 98,
+      fillStyle: "#fff",
+    },
+    {
+      value: 25,
+      fillStyle: "#fff",
+    },
+    {
+      value: 89,
+      fillStyle: "#fff",
+    },
+    {
+      value: 31,
+      fillStyle: "#fff",
+    },
+    {
+      value: 79,
+      fillStyle: "#fff",
+    },
+    {
+      value: 28,
+      fillStyle: "#fff",
+    },
+    {
+      value: 54,
+      fillStyle: "#fff",
+    },
+    {
+      value: 37,
+      fillStyle: "#fff",
+    },
+    {
+      value: 35,
+      fillStyle: "#fff",
+    },
+    {
+      value: 19,
+      fillStyle: "#fff",
+    },
+    {
+      value: 48,
+      fillStyle: "#fff",
+    },
+    {
+      value: 30,
+      fillStyle: "#fff",
+    },
+    {
+      value: 84,
+      fillStyle: "#fff",
+    },
+    {
+      value: 79,
+      fillStyle: "#fff",
+    },
+    {
+      value: 92,
+      fillStyle: "#fff",
+    },
+    {
+      value: 99,
+      fillStyle: "#fff",
+    },
+    {
+      value: 88,
+      fillStyle: "#fff",
+    },
+    {
+      value: 82,
+      fillStyle: "#fff",
+    },
+    {
+      value: 48,
+      fillStyle: "#fff",
+    },
+    {
+      value: 37,
+      fillStyle: "#fff",
+    },
+    {
+      value: 66,
+      fillStyle: "#fff",
+    },
+    {
+      value: 97,
+      fillStyle: "#fff",
+    },
+    {
+      value: 33,
+      fillStyle: "#fff",
+    },
+    {
+      value: 39,
+      fillStyle: "#fff",
+    },
+    {
+      value: 15,
+      fillStyle: "#fff",
+    },
+    {
+      value: 45,
+      fillStyle: "#fff",
+    },
+    {
+      value: 28,
+      fillStyle: "#fff",
+    },
+    {
+      value: 68,
+      fillStyle: "#fff",
+    },
+    {
+      value: 70,
+      fillStyle: "#fff",
+    },
+    {
+      value: 97,
+      fillStyle: "#fff",
+    },
+    {
+      value: 11,
+      fillStyle: "#fff",
+    },
+    {
+      value: 53,
+      fillStyle: "#fff",
+    },
+    {
+      value: 92,
+      fillStyle: "#fff",
+    },
+    {
+      value: 74,
+      fillStyle: "#fff",
+    },
+    {
+      value: 98,
+      fillStyle: "#fff",
+    },
+    {
+      value: 91,
+      fillStyle: "#fff",
+    },
+    {
+      value: 36,
+      fillStyle: "#fff",
+    },
+    {
+      value: 36,
+      fillStyle: "#fff",
+    },
+    {
+      value: 46,
+      fillStyle: "#fff",
+    },
+    {
+      value: 10,
+      fillStyle: "#fff",
+    },
+    {
+      value: 28,
+      fillStyle: "#fff",
+    },
+    {
+      value: 86,
+      fillStyle: "#fff",
+    },
+    {
+      value: 88,
+      fillStyle: "#fff",
+    },
+    {
+      value: 41,
+      fillStyle: "#fff",
+    },
+    {
+      value: 76,
+      fillStyle: "#fff",
+    },
+    {
+      value: 72,
+      fillStyle: "#fff",
+    },
+    {
+      value: 48,
+      fillStyle: "#fff",
+    },
+    {
+      value: 96,
+      fillStyle: "#fff",
+    },
+    {
+      value: 90,
+      fillStyle: "#fff",
+    },
+    {
+      value: 53,
+      fillStyle: "#fff",
+    },
+    {
+      value: 91,
+      fillStyle: "#fff",
+    },
+    {
+      value: 83,
+      fillStyle: "#fff",
+    },
+    {
+      value: 63,
+      fillStyle: "#fff",
+    },
+    {
+      value: 93,
+      fillStyle: "#fff",
+    },
+    {
+      value: 94,
+      fillStyle: "#fff",
+    },
+    {
+      value: 25,
+      fillStyle: "#fff",
+    },
+    {
+      value: 25,
+      fillStyle: "#fff",
+    },
+    {
+      value: 54,
+      fillStyle: "#fff",
+    },
+    {
+      value: 45,
+      fillStyle: "#fff",
+    },
+    {
+      value: 72,
+      fillStyle: "#fff",
+    },
+    {
+      value: 59,
+      fillStyle: "#fff",
+    },
+    {
+      value: 85,
+      fillStyle: "#fff",
+    },
+    {
+      value: 28,
+      fillStyle: "#fff",
+    },
+    {
+      value: 51,
+      fillStyle: "#fff",
+    },
+    {
+      value: 12,
+      fillStyle: "#fff",
+    },
+    {
+      value: 79,
+      fillStyle: "#fff",
+    },
+    {
+      value: 88,
+      fillStyle: "#fff",
+    },
+    {
+      value: 41,
+      fillStyle: "#fff",
+    },
+    {
+      value: 76,
+      fillStyle: "#fff",
+    },
+    {
+      value: 72,
+      fillStyle: "#fff",
+    },
+    {
+      value: 48,
+      fillStyle: "#fff",
+    },
+    {
+      value: 96,
+      fillStyle: "#fff",
+    },
+    {
+      value: 90,
+      fillStyle: "#fff",
+    },
+    {
+      value: 53,
+      fillStyle: "#fff",
+    },
+    {
+      value: 91,
+      fillStyle: "#fff",
+    },
+    {
+      value: 83,
+      fillStyle: "#fff",
+    },
+    {
+      value: 63,
+      fillStyle: "#fff",
+    },
+    {
+      value: 93,
+      fillStyle: "#fff",
+    },
+    {
+      value: 94,
+      fillStyle: "#fff",
+    },
+    {
+      value: 25,
+      fillStyle: "#fff",
+    },
+    {
+      value: 25,
+      fillStyle: "#fff",
+    },
+    {
+      value: 54,
+      fillStyle: "#fff",
+    },
+    {
+      value: 45,
+      fillStyle: "#fff",
+    },
+    {
+      value: 72,
+      fillStyle: "#fff",
+    },
+    {
+      value: 59,
+      fillStyle: "#fff",
+    },
+    {
+      value: 85,
+      fillStyle: "#fff",
+    },
   ].slice(0, limit);
 
 export const parseSpeed = (speed: number[]) =>

@@ -7,20 +7,21 @@ import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
 } from "@/features/sortingAlgorithms/helpers";
-import useCanvas from "@/hooks/useCanvas";
+import { useCanvas } from "@/hooks";
 import { useTranslate } from "@/features/language/providers/translate";
 
 interface SortingVisualizerProps {}
 
 const SortingVisualizer: React.FC<SortingVisualizerProps> = () => {
   const t = useTranslate("sortingPage");
-  const { status, type, size, speed, changeStatus } = useSortingSettings();
+  const { initialList, status, type, speed, changeStatus } =
+    useSortingSettings();
   const { valueList, iteration } = useSortingAlgorithms({
+    initialList,
     status,
     type,
-    size,
     speed,
-    changeStatus,
+    onSuccess: () => changeStatus("completed"),
   });
 
   const draw = useCallback(
@@ -60,7 +61,7 @@ const SortingVisualizer: React.FC<SortingVisualizerProps> = () => {
           <div className="sticky -mt-1 top-0 left-0 text-tiny">
             <div className="absolute flex items-center whitespace-nowrap">
               <span>
-                {t.settings.size}: {size}
+                {t.settings.size}: {initialList.length}
               </span>
               <span className="mx-1.5 inline-block h-3 w-px bg-[#fff] opacity-30"></span>
               <span>

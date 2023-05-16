@@ -1,4 +1,4 @@
-interface SortingTypeItemProps extends React.HTMLAttributes<HTMLLIElement> {
+interface SortingAlgorithmItemProps extends React.ComponentProps<"li"> {
   name: string;
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
   metadata: { name: string; className?: string };
@@ -6,7 +6,7 @@ interface SortingTypeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   isActive: boolean;
 }
 
-const SortingTypeItem: React.FC<SortingTypeItemProps> = ({
+const SortingAlgorithmItem: React.FC<SortingAlgorithmItemProps> = ({
   name = "",
   icon: Icon,
   metadata,
@@ -41,4 +41,4 @@ const SortingTypeItem: React.FC<SortingTypeItemProps> = ({
   );
 };
 
-export default SortingTypeItem;
+export default SortingAlgorithmItem;

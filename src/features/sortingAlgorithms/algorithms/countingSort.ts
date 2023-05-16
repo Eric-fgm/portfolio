@@ -1,11 +1,11 @@
-import {
-  generateRandomValues,
-  MAX_VALUE,
-} from "@/features/sortingAlgorithms/helpers";
+import { MAX_VALUE } from "@/features/sortingAlgorithms/helpers";
+import type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hooks";
 
-export default function* countingSort(size: number) {
+export default function* countingSort(
+  initialList: UseSortingAlgorithmsProps["initialList"]
+) {
   let iteration = 0;
-  const list = generateRandomValues(size);
+  const list = [...initialList];
   const length = list.length;
   const output = [...list];
   yield { list, iteration };

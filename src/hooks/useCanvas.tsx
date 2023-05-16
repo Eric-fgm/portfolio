@@ -1,7 +1,7 @@
-import { initCanvas } from "@/helpers/canvas";
 import { useCallback, useMemo, useRef } from "react";
+import { initCanvas } from "@/helpers/canvas";
 
-interface CanvasProps extends React.CanvasHTMLAttributes<HTMLCanvasElement> {
+interface CanvasProps extends React.ComponentProps<"canvas"> {
   draw: (canvas: HTMLCanvasElement) => void;
   width: number;
   height: number;

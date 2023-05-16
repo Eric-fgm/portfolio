@@ -2,61 +2,48 @@
 import type { SortTypes } from "@/features/sortingAlgorithms/helpers";
 import { parseSpeed } from "@/features/sortingAlgorithms/helpers";
 import sortingAlgorithms from "@/features/sortingAlgorithms/algorithms";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export interface UseSortingAlgorithmsProps {
-  status: "stopped" | "started" | "completed" | "restart";
+  initialList: { value: number; fillStyle: string }[];
+  status: "stopped" | "started" | "completed";
   type: SortTypes;
-  size: number;
   speed: number[];
-  changeStatus: (status: UseSortingAlgorithmsProps["status"]) => void;
+}
+
+interface UseSortingAlgorithmsCallbacks {
+  onSuccess: () => void;
 }
 
 const useSortingAlgorithms = ({
+  initialList = [],
   status,
   type,
-  size,
   speed,
-  changeStatus,
-}: UseSortingAlgorithmsProps) => {
-  const [valueList, setValueList] = useState<
-    { value: number; fillStyle: string }[]
-  >([]);
-  const [iteration, setIteration] = useState<number>(0);
-  const [algorithm, setAlgorithm] = useState(sortingAlgorithms[type](size));
+  onSuccess = () => {},
+}: UseSortingAlgorithmsProps & UseSortingAlgorithmsCallbacks) => {
+  const [valueList, setValueList] = useState(initialList);
+  const [iteration, setIteration] = useState(0);
 
-  const restart = useCallback(
-    (
-      type: UseSortingAlgorithmsProps["type"],
-      size: UseSortingAlgorithmsProps["size"]
-    ) => {
-      const algorithm = sortingAlgorithms[type](size);
-      const { value, done } = algorithm.next();
-      if (!done) {
-        setIteration(value.iteration);
-        setValueList([...value.list]);
-      }
-      setAlgorithm(algorithm);
-    },
-    []
-  );
-
-  useEffect(() => {
-    restart(type, size);
-  }, [type, size, restart]);
-
-  useEffect(() => {
-    if (status === "restart") restart(type, size);
-  }, [status, type, size, restart]);
+  const algorithm = useMemo(() => {
+    let instance = sortingAlgorithms[type](initialList);
+    setValueList(initialList);
+    setIteration(0);
+    return () => ({
+      instance,
+      reset: () => (instance = sortingAlgorithms[type](initialList)),
+    });
+  }, [type, initialList]);
 
   useEffect(() => {
     let intervalInstance: ReturnType<typeof setInterval> | null = null;
     if (status === "started") {
       intervalInstance = setInterval(() => {
-        const { value, done } = algorithm.next();
+        const { value, done } = algorithm().instance.next();
         if (done) {
-          changeStatus("completed");
-          setAlgorithm(sortingAlgorithms[type](size));
+          intervalInstance && clearInterval(intervalInstance);
+          algorithm().reset();
+          onSuccess();
         } else {
           setIteration(value.iteration);
           setValueList([...value.list]);
@@ -66,7 +53,7 @@ const useSortingAlgorithms = ({
     return () => {
       intervalInstance && clearInterval(intervalInstance);
     };
-  }, [size, type, status, speed, algorithm, changeStatus, restart]);
+  }, [status, speed, algorithm, onSuccess]);
 
   return { valueList, iteration };
 };

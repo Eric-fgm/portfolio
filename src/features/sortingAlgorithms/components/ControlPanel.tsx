@@ -4,22 +4,22 @@ import { useTranslate } from "@/features/language/providers/translate";
 import { Wrapper } from "@/features/sortingAlgorithms";
 import { useSortingSettings } from "@/features/sortingAlgorithms/providers/sortingSettings";
 import { SolidPause, SolidPlay, SolidReset } from "@/icons";
+import { generateRandomValues } from "@/features/sortingAlgorithms/helpers";
 
 interface ControlPanelProps {}
 
 const ControlPanel: React.FC<ControlPanelProps> = () => {
+  const t = useTranslate("sortingPage");
   const {
+    initialList,
     isOpened,
     type,
-    size,
     speed,
     status,
     changeSpeed,
-    changeSize,
     changeStatus,
+    setInitialList,
   } = useSortingSettings();
-
-  const t = useTranslate("sortingPage");
 
   return (
     <div
@@ -34,8 +34,10 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
               <Input
                 type="number"
                 placeholder="2-500"
-                value={size}
-                onChange={changeSize}
+                value={initialList.length}
+                onChange={(value) =>
+                  setInitialList(generateRandomValues(value))
+                }
               />
             </FormField>
             <FormField name={t.settings.speed}>
@@ -60,7 +62,9 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
                 text={t.settings.restart}
                 className="px-2 flex-1"
                 iconSize={21}
-                onClick={() => changeStatus("restart")}
+                onClick={() =>
+                  setInitialList(generateRandomValues(initialList.length))
+                }
               />
             </div>
           </div>

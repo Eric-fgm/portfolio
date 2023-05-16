@@ -1,24 +1,25 @@
-import { generateRandomValues } from "@/features/sortingAlgorithms/helpers";
-
-interface S {
-  value: number;
-  fillStyle: string;
-}
+import type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hooks";
 
 let iteration = 0;
 
-export default function* mergeSort(size: number) {
+export default function* mergeSort(
+  initialList: UseSortingAlgorithmsProps["initialList"]
+) {
   iteration = 0;
-  const list = generateRandomValues(size);
+  const list = [...initialList];
   yield { list, iteration: 0 };
   yield* mergeSortRange(list, 0, list.length - 1);
 }
 
 function* mergeSortRange(
-  list: S[],
+  list: UseSortingAlgorithmsProps["initialList"],
   l: number,
   r: number
-): Generator<{ list: S[]; iteration: number }, void, any> {
+): Generator<
+  { list: UseSortingAlgorithmsProps["initialList"]; iteration: number },
+  void,
+  any
+> {
   if (l < r) {
     let m = Math.floor(l + (r - l) / 2);
     yield* mergeSortRange(list, l, m);
@@ -28,7 +29,12 @@ function* mergeSortRange(
   yield { list, iteration };
 }
 
-function* merge(list: S[], l: number, m: number, r: number) {
+function* merge(
+  list: UseSortingAlgorithmsProps["initialList"],
+  l: number,
+  m: number,
+  r: number
+) {
   let res = list.slice(l, r + 1);
   let i1 = l;
   let i2 = m + 1;

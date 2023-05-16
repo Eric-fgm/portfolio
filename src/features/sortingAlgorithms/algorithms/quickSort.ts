@@ -1,24 +1,25 @@
-import { generateRandomValues } from "@/features/sortingAlgorithms/helpers";
-
-interface S {
-  value: number;
-  fillStyle: string;
-}
+import type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hooks";
 
 let iteration = 0;
 
-export default function* quickSort(size: number) {
+export default function* quickSort(
+  initialList: UseSortingAlgorithmsProps["initialList"]
+) {
   iteration = 0;
-  const list = generateRandomValues(size);
+  const list = [...initialList];
   yield { list, iteration: 0 };
   yield* quickSortRange(list, 0, list.length - 1);
 }
 
 function* quickSortRange(
-  list: S[],
+  list: UseSortingAlgorithmsProps["initialList"],
   l: number,
   r: number
-): Generator<{ list: S[]; iteration: number }, void, any> {
+): Generator<
+  { list: UseSortingAlgorithmsProps["initialList"]; iteration: number },
+  void,
+  any
+> {
   if (l < r) {
     const p = yield* partition(list, l, r);
     yield* quickSortRange(list, l, p - 1);
@@ -27,7 +28,11 @@ function* quickSortRange(
   yield { list, iteration };
 }
 
-function* partition(list: S[], l: number, r: number) {
+function* partition(
+  list: UseSortingAlgorithmsProps["initialList"],
+  l: number,
+  r: number
+) {
   let i = l;
   let pivot = list[r].value;
 

@@ -4,7 +4,7 @@ import {
   SortingSettingsContext,
   defaultProps,
 } from "@/features/sortingAlgorithms/providers/sortingSettings";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 interface SortingSettingsProvider {
   children: React.ReactNode;
@@ -13,11 +13,11 @@ interface SortingSettingsProvider {
 const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
   children,
 }) => {
+  const [initialList, setInitialList] = useState<
+    SortingSettingsProps["initialList"]
+  >(defaultProps.initialList);
   const [type, setType] = useState<SortingSettingsProps["type"]>(
     defaultProps.type
-  );
-  const [size, setSize] = useState<SortingSettingsProps["size"]>(
-    defaultProps.size
   );
   const [speed, setSpeed] = useState<SortingSettingsProps["speed"]>(
     defaultProps.speed
@@ -27,11 +27,6 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
   );
   const [isOpened, setIsOpened] = useState<SortingSettingsProps["isOpened"]>(
     defaultProps.isOpened
-  );
-
-  const changeSize = useCallback(
-    (size: SortingSettingsProps["size"]) => setSize(size),
-    []
   );
 
   const changeSpeed = useCallback(
@@ -57,12 +52,12 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
   return (
     <SortingSettingsContext.Provider
       value={{
+        initialList,
         type,
-        size,
         speed,
         status,
         isOpened,
-        changeSize,
+        setInitialList,
         changeSpeed,
         changeStatus,
         changeType,

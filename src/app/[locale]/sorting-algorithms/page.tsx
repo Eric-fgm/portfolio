@@ -2,7 +2,7 @@ import { Container, Header } from "@/components";
 import {
   ControlPanel,
   FloatingButtons,
-  SortingTypeList,
+  SortingAlgorithmList,
   SortingVisualizer,
 } from "@/features/sortingAlgorithms";
 import { SortingSettingsProvider } from "@/features/sortingAlgorithms/providers/sortingSettings";
@@ -22,7 +22,7 @@ export default async function SortingPage({
     <SortingSettingsProvider>
       <Container className="bg-sortingpage">
         <Header subhead={t.subtitle} headline={t.title} className="py-8" />
-        <SortingTypeList />
+        <SortingAlgorithmList />
         <div className="pt-4 flex gap-4 lg:pt-12">
           <ControlPanel />
           <FloatingButtons />
