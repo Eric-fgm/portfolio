@@ -1,7 +1,6 @@
 import { config, getDictionary } from "@/features/language";
 import type { Locale } from "@/features/language";
 import { TranslateProvider } from "@/features/language/providers/translate";
-import "@/styles/main.scss";
 // import { Navigation } from "@/features/navigation";
 import dynamic from "next/dynamic";
 
