@@ -1,20 +1,23 @@
 "use client";
 import {
-  UseGraphAlgorithmsProps,
-  useGraphAlgorithms,
-} from "@/features/graphAlgorithms/hooks";
-import { useGraphSettings } from "@/features/graphAlgorithms/providers/graphSettings";
-import React, { useCallback, useRef } from "react";
-import {
   COLS_NUM,
   GraphPathNode,
   ROWS_NUM,
 } from "@/features/graphAlgorithms/helpers";
+import {
+  UseGraphAlgorithmsProps,
+  useGraphAlgorithms,
+} from "@/features/graphAlgorithms/hooks";
+import { useGraphSettings } from "@/features/graphAlgorithms/providers/graphSettings";
 import { useEventListener } from "@/hooks";
+import React, { useCallback, useRef } from "react";
 
-interface GraphVisualizerProps {}
+interface GraphVisualizerProps extends React.ComponentProps<"div"> {}
 
-const GraphVisualizer: React.FC<GraphVisualizerProps> = () => {
+const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
+  className = "",
+  ...props
+}) => {
   const mouseEntity = useRef({
     lastTimestamp: 0,
     lastVertex: null as null | { x: number; y: number },
@@ -77,13 +80,16 @@ const GraphVisualizer: React.FC<GraphVisualizerProps> = () => {
   useEventListener("touchend", handleMouseUp);
 
   return (
-    <div className="h-[600px] rounded-2xl no-scrollbar overflow-auto">
-      <div className="relative flex min-w-[950px]">
+    <div
+      className={`relative h-[600px] rounded-2xl no-scrollbar overflow-auto ${className}`}
+      {...props}
+    >
+      <div className="flex min-w-[950px]">
         <Board />
         <svg
           width={950}
           height={600}
-          className="bg-graphpage-secondary"
+          className="bg-graphpage-secondary rounded-2xl"
           {...(status !== "started" && {
             onMouseDown: handleMouseDown,
             onTouchStart: handleMouseUp,

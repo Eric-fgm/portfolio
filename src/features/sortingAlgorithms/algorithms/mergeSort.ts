@@ -52,7 +52,10 @@ function* merge(
       list[i] = v2;
       ++i2;
     }
-    list[i].fillStyle = "#c54f6b";
+    list[i] = {
+      ...list[i],
+      fillStyle: "#c54f6b",
+    };
     yield { list, iteration };
     list[i].fillStyle = "#fff";
     i++;
@@ -61,7 +64,10 @@ function* merge(
   while (i1 <= m) {
     iteration += 1;
     list[i] = res[i1++ - l];
-    list[i].fillStyle = "#c54f6b";
+    list[i] = {
+      ...list[i],
+      fillStyle: "#c54f6b",
+    };
     yield { list, iteration };
     list[i].fillStyle = "#fff";
     i++;
@@ -70,7 +76,10 @@ function* merge(
   while (i2 <= m) {
     iteration += 1;
     list[i] = res[i2++ - l];
-    list[i].fillStyle = "#c54f6b";
+    list[i] = {
+      ...list[i],
+      fillStyle: "#c54f6b",
+    };
     yield { list, iteration };
     list[i].fillStyle = "#fff";
     i++;

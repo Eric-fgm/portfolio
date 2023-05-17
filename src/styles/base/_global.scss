@@ -16,6 +16,16 @@ body,
   background-color: var(--homepage-background);
 }
 
+.shadow-right-graph {
+  background: -webkit-gradient(-90deg,transparent 0,var(--graphpage-secondary-background) 9px);
+  background: linear-gradient(-90deg,transparent 0,var(--graphpage-secondary-background) 9px);
+}
+
+.shadow-left-graph {
+  background: -webkit-gradient(90deg,transparent 0,var(--graphpage-secondary-background) 9px);
+  background: linear-gradient(90deg,transparent 0,var(--graphpage-secondary-background) 9px);
+}
+
 .no-scrollbar {
   &::-webkit-scrollbar {
     display: none;
@@ -95,7 +105,7 @@ body,
 }
 
 .mobile-navigation {
-  transition: height 0.45s cubic-bezier(0.4, 0, 0.6, 1), background 0.3s ease;
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.6, 1), background 0.2s ease;
 
   &.primary {
     background-color: var(--homepage-background);
@@ -110,18 +120,54 @@ body,
   }
 }
 
-.translate-animation {
-  animation: translate-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+.slide-left-in {
+  opacity: 0;
+  animation: slide-left-in 1s cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
 }
 
-.page-animation {
-  animation: fade-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+.slide-top-in {
+  opacity: 0;
+  animation: slide-top-in 1s cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
+  &-xl {
+    @media (min-width: 1280px) {
+      opacity: 0;
+      animation: slide-top-in 1s cubic-bezier(0.16, 1, 0.3, 1);
+      animation-fill-mode: forwards;
+    }
+  }
 }
 
-@keyframes fade-in {
+.slide-bottom-in {
+  opacity: 0;
+  animation: slide-bottom-in 1s cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+@keyframes slide-left-in {
   from {
     opacity: 0;
     transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-top-in {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
@@ -129,7 +175,7 @@ body,
   }
 }
 
-@keyframes translate-in {
+@keyframes slide-bottom-in {
   from {
     opacity: 0;
     transform: translateY(30px);

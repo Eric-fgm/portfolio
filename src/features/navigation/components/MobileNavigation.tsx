@@ -1,7 +1,8 @@
+"use client";
 import { Logo } from "@/components";
 import { LanguageSwitcher } from "@/features/language";
-import { SolidMenu } from "@/icons";
 import { NavLinkList } from "@/features/navigation";
+import { SolidMenu } from "@/icons";
 import { useTheme } from "@/providers/theme";
 
 interface MobileNavigationProps {}

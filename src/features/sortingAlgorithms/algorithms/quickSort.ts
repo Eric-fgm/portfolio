@@ -42,7 +42,10 @@ function* partition(
       [list[j], list[i]] = [list[i], list[j]];
       ++i;
     }
-    list[j].fillStyle = "#c54f6b";
+    list[j] = {
+      ...list[j],
+      fillStyle: "#c54f6b",
+    };
     yield { list, iteration };
     list[j].fillStyle = "#fff";
   }

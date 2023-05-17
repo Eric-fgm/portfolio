@@ -1,14 +1,20 @@
 "use client";
 import { Button } from "@/components";
-import { SolidPause, SolidPlay, SolidSorting } from "@/icons";
 import { useSortingSettings } from "@/features/sortingAlgorithms/providers/sortingSettings";
+import { SolidPause, SolidPlay, SolidSorting } from "@/icons";
 
-interface FloatingButtonsProps {}
+interface FloatingButtonsProps extends React.ComponentProps<"div"> {}
 
-const FloatingButtons: React.FC<FloatingButtonsProps> = () => {
+const FloatingButtons: React.FC<FloatingButtonsProps> = ({
+  className = "",
+  ...props
+}) => {
   const { status, changeStatus, toggleSettings } = useSortingSettings();
   return (
-    <div className="fixed left-6 bottom-5 flex gap-2 translate-animation z-30 xl:hidden">
+    <div
+      className={`fixed left-6 bottom-5 flex gap-2 slide-bottom-in z-30 xl:hidden ${className}`}
+      {...props}
+    >
       <Button
         icon={SolidSorting}
         className="p-3"

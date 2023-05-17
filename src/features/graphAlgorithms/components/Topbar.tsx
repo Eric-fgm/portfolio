@@ -1,9 +1,9 @@
 "use client";
 import { Button } from "@/components";
-import { SolidBubble, SolidPause, SolidPlay, SolidReset } from "@/icons";
-import { useContext } from "react";
 import { GraphSettingsContext } from "@/features/graphAlgorithms/providers/graphSettings";
 import { useTranslate } from "@/features/language/providers/translate";
+import { SolidBubble, SolidPause, SolidPlay, SolidReset } from "@/icons";
+import { useContext } from "react";
 
 interface TopbarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -14,17 +14,17 @@ const Topbar: React.FC<TopbarProps> = ({ className = "", ...props }) => {
 
   return (
     <div
-      className={`pl-1 relative flex justify-between h-16 bg-graphpage-secondary rounded-2xl overflow-hidden ${className}`}
+      className={`relative flex items-center h-16 bg-graphpage-secondary rounded-2xl ${className}`}
       {...props}
     >
-      <div className="absolute left-0 w-1 h-full bg-graphpage-secondary shadow-start-over-graph z-10" />
-      <div className="px-3 flex items-center gap-2 scroll-x-sortingpage">
+      <div className="absolute left-0 w-4 h-9 shadow-right-graph z-10" />
+      <div className="px-4 flex items-center gap-2 scroll-x-sortingpage">
         {/* <Button
           icon={SolidBubble}
           text="Entry Location"
           theme="lightBlue"
           className="pl-2 pr-3.5 py-1.5 flex-shrink-0"
-        />
+        />`
         <Button
           icon={SolidBubble}
           text="End Location"
@@ -46,7 +46,8 @@ const Topbar: React.FC<TopbarProps> = ({ className = "", ...props }) => {
           onClick={clearDisabled}
         />
       </div>
-      <div className="pl-1 pr-4 flex items-center gap-2 shadow-end-over-graph">
+      <div className="relative ml-auto pr-4 flex items-center gap-2">
+        <div className="absolute -left-4 top-0 w-4 h-9 shadow-left-graph z-10" />
         {status === "started" ? (
           <Button
             icon={SolidPause}

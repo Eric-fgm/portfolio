@@ -1,15 +1,21 @@
 "use client";
 import { Button } from "@/components";
-import { SolidPause, SolidPlay, SolidReset, SolidSorting } from "@/icons";
 import { useGraphSettings } from "@/features/graphAlgorithms/providers/graphSettings";
+import { SolidPause, SolidPlay, SolidReset, SolidSorting } from "@/icons";
 
-interface FloatingButtonsProps {}
+interface FloatingButtonsProps extends React.ComponentProps<"div"> {}
 
-const FloatingButtons: React.FC<FloatingButtonsProps> = () => {
+const FloatingButtons: React.FC<FloatingButtonsProps> = ({
+  className = "",
+  ...props
+}) => {
   const { status, changeStatus, toggleSettings } = useGraphSettings();
 
   return (
-    <div className="fixed left-6 bottom-5 flex gap-2 translate-animation z-30 xl:hidden">
+    <div
+      className={`fixed left-6 bottom-5 flex gap-2 slide-bottom-in z-30 xl:hidden ${className}`}
+      {...props}
+    >
       <Button
         icon={SolidSorting}
         className="p-3"

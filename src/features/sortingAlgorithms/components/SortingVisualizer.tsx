@@ -1,18 +1,21 @@
 "use client";
+import { useTranslate } from "@/features/language/providers/translate";
 import { Wrapper } from "@/features/sortingAlgorithms";
-import { useSortingAlgorithms } from "@/features/sortingAlgorithms/hooks";
-import { useSortingSettings } from "@/features/sortingAlgorithms/providers/sortingSettings";
-import { useCallback } from "react";
 import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
 } from "@/features/sortingAlgorithms/helpers";
+import { useSortingAlgorithms } from "@/features/sortingAlgorithms/hooks";
+import { useSortingSettings } from "@/features/sortingAlgorithms/providers/sortingSettings";
 import { useCanvas } from "@/hooks";
-import { useTranslate } from "@/features/language/providers/translate";
+import { useCallback } from "react";
 
-interface SortingVisualizerProps {}
+interface SortingVisualizerProps extends React.ComponentProps<"div"> {}
 
-const SortingVisualizer: React.FC<SortingVisualizerProps> = () => {
+const SortingVisualizer: React.FC<SortingVisualizerProps> = ({
+  className = "",
+  ...props
+}) => {
   const t = useTranslate("sortingPage");
   const { initialList, status, type, speed, changeStatus } =
     useSortingSettings();
@@ -55,7 +58,7 @@ const SortingVisualizer: React.FC<SortingVisualizerProps> = () => {
   });
 
   return (
-    <div className="mx-auto overflow-hidden lg:px-0">
+    <div className={`mx-auto overflow-hidden lg:px-0 ${className}`} {...props}>
       <Wrapper className="relative mx-auto max-w-[980px] h-[575px] scroll-x-sortingpage">
         <div className="flex justify-center min-w-[948px] h-full">
           <div className="sticky -mt-1 top-0 left-0 text-tiny">

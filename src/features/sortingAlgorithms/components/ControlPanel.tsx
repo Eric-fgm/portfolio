@@ -2,13 +2,16 @@
 import { Button, FormField, Input, RangeInput } from "@/components";
 import { useTranslate } from "@/features/language/providers/translate";
 import { Wrapper } from "@/features/sortingAlgorithms";
+import { generateRandomValues } from "@/features/sortingAlgorithms/helpers";
 import { useSortingSettings } from "@/features/sortingAlgorithms/providers/sortingSettings";
 import { SolidPause, SolidPlay, SolidReset } from "@/icons";
-import { generateRandomValues } from "@/features/sortingAlgorithms/helpers";
 
-interface ControlPanelProps {}
+interface ControlPanelProps extends React.ComponentProps<"div"> {}
 
-const ControlPanel: React.FC<ControlPanelProps> = () => {
+const ControlPanel: React.FC<ControlPanelProps> = ({
+  className = "",
+  ...props
+}) => {
   const t = useTranslate("sortingPage");
   const {
     initialList,
@@ -25,7 +28,8 @@ const ControlPanel: React.FC<ControlPanelProps> = () => {
     <div
       className={`fixed pl-6 left-0 bottom-[76px] transition-transform z-30 xl:static xl:pl-0 xl:transition-none ${
         isOpened ? "" : "-translate-x-full xl:translate-x-0"
-      }`}
+      } ${className}`}
+      {...props}
     >
       <div className="flex flex-col gap-4 w-56">
         <Wrapper title={t.settings.title} className="shadow-2xl xl:shadow-none">
