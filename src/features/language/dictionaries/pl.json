@@ -76,6 +76,15 @@
       },
       "depthFirstSearch": {
         "caption": "Nie Ważony & Brak Najkrótszej Ścieżki"
+      },
+      "aStar": {
+        "caption": "Nie Ważony & Najkrótsza Ścieżka"
+      },
+      "greedyBestFirstSearch": {
+        "caption": "Nie Ważony & Najkrótsza Ścieżka"
+      },
+      "dijkstra": {
+        "caption": "Ważony & Najkrótsza Ścieżka"
       }
     }
   }

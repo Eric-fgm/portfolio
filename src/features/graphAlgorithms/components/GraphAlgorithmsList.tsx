@@ -7,7 +7,7 @@ import { useTranslate } from "@/features/language/providers/translate";
 interface GraphAlgorithmsListProps {}
 
 const GraphAlgorithmsList: React.FC<GraphAlgorithmsListProps> = () => {
-  const { type, changeType } = useGraphSettings();
+  const { type, changeType, toggleSettings } = useGraphSettings();
   const t = useTranslate("graphPage");
 
   return (
@@ -19,7 +19,10 @@ const GraphAlgorithmsList: React.FC<GraphAlgorithmsListProps> = () => {
           name={name}
           caption={t.algorithms[key].caption}
           isActive={key === type}
-          onClick={() => changeType(key)}
+          onClick={() => {
+            changeType(key);
+            toggleSettings();
+          }}
         />
       ))}
     </div>

@@ -18,33 +18,36 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
 
   return (
     <div className={`flex gap-x-12 ${className}`} {...props}>
-      <div className="animate-child" data-delay="50">
-        <NavLink
-          icon={SolidSorting}
-          text={t.sorting}
-          href="/sorting-algorithms"
-        />
-      </div>
-      <div className="animate-child" data-delay="100">
-        <NavLink icon={SolidGraph} text={t.graphs} href="/graph-algorithms" />
-      </div>
-      <div className="animate-child" data-delay="150">
-        <NavLink
-          icon={SolidLightning}
-          text={t.dynamic}
-          href="/dynamic-algorithms"
-        />
-      </div>
-      <div className="animate-child" data-delay="200">
-        <NavLink icon={SolidBucket} text={t.physics} href="/physics" />
-      </div>
-      <div className="animate-child" data-delay="250">
-        <NavLink
-          icon={SolidCaseStudies}
-          text={t.caseStudies}
-          href="/case-studies"
-        />
-      </div>
+      <NavLink
+        icon={SolidSorting}
+        text={t.sorting}
+        href="/sorting-algorithms"
+        className="animation-delay-[25ms]"
+      />
+      <NavLink
+        icon={SolidGraph}
+        text={t.graphs}
+        href="/graph-algorithms"
+        className="animation-delay-[65ms]"
+      />
+      <NavLink
+        icon={SolidLightning}
+        text={t.dynamic}
+        href="/dynamic-algorithms"
+        className="animation-delay-[105ms]"
+      />
+      <NavLink
+        icon={SolidBucket}
+        text={t.physics}
+        href="/physics"
+        className="animation-delay-[145ms]"
+      />
+      <NavLink
+        icon={SolidCaseStudies}
+        text={t.caseStudies}
+        href="/case-studies"
+        className="animation-delay-[185ms]"
+      />
     </div>
   );
 };

@@ -1,16 +1,22 @@
 "use client";
-import { Dispatch, SetStateAction, createContext } from "react";
 import { UseGraphAlgorithmsProps } from "@/features/graphAlgorithms/hooks";
-import type { GraphPathNode } from "../../helpers";
+import { createContext } from "react";
 
 export interface GraphSettingsProps extends UseGraphAlgorithmsProps {
   isOpened: boolean;
-  changeStatus: (point: GraphSettingsProps["status"]) => void;
-  changeType: (point: GraphSettingsProps["type"]) => void;
-  setDisabled: Dispatch<SetStateAction<UseGraphAlgorithmsProps["disabled"]>>;
+  changeDisabled: (
+    param:
+      | GraphSettingsProps["disabled"]
+      | ((
+          nodes: GraphSettingsProps["disabled"]
+        ) => GraphSettingsProps["disabled"])
+  ) => void;
+  changeStatus: (status: GraphSettingsProps["status"]) => void;
+  changeType: (type: GraphSettingsProps["type"]) => void;
   clearDisabled: () => void;
   generateDisabled: () => void;
   toggleSettings: () => void;
+  closeSettings: () => void;
 }
 
 export const defaultProps: GraphSettingsProps = {
@@ -18,12 +24,13 @@ export const defaultProps: GraphSettingsProps = {
   status: "stopped",
   type: "depthFirstSearch",
   disabled: {},
+  changeDisabled: () => {},
   changeStatus: () => {},
   changeType: () => {},
-  setDisabled: () => {},
   clearDisabled: () => {},
   generateDisabled: () => {},
   toggleSettings: () => {},
+  closeSettings: () => {},
 };
 
 const GraphSettingsContext = createContext(defaultProps);

@@ -15,7 +15,7 @@ const SortingAlgorithmList: React.FC<SortingAlgorithmListProps> = ({
 
   return (
     <div className={`relative flex justify-center ${className}`} {...props}>
-      <ul className="-mx-4 px-4 py-1 flex gap-4 scroll-x-sortingpage">
+      <ul className="-mx-4 px-4 py-1 flex gap-4 no-scrollbar overflow-x-auto">
         {sortingAlgorithms.map(({ key, icon, name }) => (
           <SortingAlgorithmItem
             key={key}

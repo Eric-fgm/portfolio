@@ -76,6 +76,15 @@
       },
       "depthFirstSearch": {
         "caption": "Not Weighted & Not Short Path"
+      },
+      "aStar": {
+        "caption": "Not Weighted & Short Pat"
+      },
+      "greedyBestFirstSearch": {
+        "caption": "Not Weighted & Short Path"
+      },
+      "dijkstra": {
+        "caption": "Weighted & Short Path"
       }
     }
   }

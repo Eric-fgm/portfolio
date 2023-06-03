@@ -5,7 +5,7 @@ interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = ({}) => {
   return (
-    <nav className="fixed top-0 left-0 w-full transition-[height] z-40">
+    <nav className="fixed top-0 left-0 w-full z-40">
       <div className="md:hidden">
         <MobileNavigation />
       </div>

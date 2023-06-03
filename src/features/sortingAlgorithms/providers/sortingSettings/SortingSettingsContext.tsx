@@ -1,6 +1,6 @@
 "use client";
-import { Dispatch, SetStateAction, createContext } from "react";
 import type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hooks";
+import { Dispatch, SetStateAction, createContext } from "react";
 import { generateRandomValues } from "../../helpers";
 
 export interface SortingSettingsProps extends UseSortingAlgorithmsProps {
@@ -10,6 +10,7 @@ export interface SortingSettingsProps extends UseSortingAlgorithmsProps {
   changeStatus: (status: SortingSettingsProps["status"]) => void;
   changeType: (type: SortingSettingsProps["type"]) => void;
   toggleSettings: () => void;
+  closeSettings: () => void;
 }
 
 export const defaultProps: SortingSettingsProps = {
@@ -23,6 +24,7 @@ export const defaultProps: SortingSettingsProps = {
   changeStatus: () => {},
   changeType: () => {},
   toggleSettings: () => {},
+  closeSettings: () => {},
 };
 
 const SortingSettingsContext = createContext(defaultProps);

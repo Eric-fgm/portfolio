@@ -17,8 +17,8 @@ const Topbar: React.FC<TopbarProps> = ({ className = "", ...props }) => {
       className={`relative flex items-center h-16 bg-graphpage-secondary rounded-2xl ${className}`}
       {...props}
     >
-      <div className="absolute left-0 w-4 h-9 shadow-right-graph z-10" />
-      <div className="px-4 flex items-center gap-2 scroll-x-sortingpage">
+      <div className="absolute left-0 w-4 h-9 gradient-from-graphpage-secondary z-10" />
+      <div className="px-4 flex items-center gap-2 no-scrollbar overflow-x-auto">
         {/* <Button
           icon={SolidBubble}
           text="Entry Location"
@@ -47,7 +47,7 @@ const Topbar: React.FC<TopbarProps> = ({ className = "", ...props }) => {
         />
       </div>
       <div className="relative ml-auto pr-4 flex items-center gap-2">
-        <div className="absolute -left-4 top-0 w-4 h-9 shadow-left-graph z-10" />
+        <div className="absolute -left-4 top-0 w-4 h-9 gradient-to-graphpage-secondary z-10" />
         {status === "started" ? (
           <Button
             icon={SolidPause}

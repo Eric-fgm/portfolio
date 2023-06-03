@@ -3,7 +3,6 @@ import type { Locale } from "@/features/language";
 import { getDictionary } from "@/features/language";
 import {
   ControlPanel,
-  FloatingButtons,
   SortingAlgorithmList,
   SortingVisualizer,
 } from "@/features/sortingAlgorithms";
@@ -26,13 +25,12 @@ export default async function SortingPage({
           headline={t.title}
           className="py-8 slide-top-in"
         />
-        <SortingAlgorithmList className="slide-top-in animation-delay-200" />
+        <SortingAlgorithmList className="slide-top-in animation-delay-150" />
         <div className="pt-4 flex gap-4 lg:pt-12">
-          <ControlPanel className="slide-top-in-xl animation-delay-400" />
-          <SortingVisualizer className="slide-top-in animation-delay-400" />
+          <ControlPanel className="slide-top-in-xl animation-delay-300" />
+          <SortingVisualizer className="slide-top-in animation-delay-300" />
         </div>
       </Container>
-      <FloatingButtons className="animation-delay-200" />
     </SortingSettingsProvider>
   );
 }

@@ -1,10 +1,5 @@
 import { Container, Header } from "@/components";
-import {
-  FloatingButtons,
-  GraphVisualizer,
-  Sidebar,
-  Topbar,
-} from "@/features/graphAlgorithms";
+import { GraphVisualizer, Sidebar, Topbar } from "@/features/graphAlgorithms";
 import { GraphSettingsProvider } from "@/features/graphAlgorithms/providers/graphSettings";
 import type { Locale } from "@/features/language";
 import { getDictionary } from "@/features/language";
@@ -27,14 +22,14 @@ export default async function graphpage({
           className="py-8 slide-top-in"
         />
         <div className="pt-4 flex gap-4">
-          <Sidebar className="slide-top-in-xl animation-delay-200" />
-          <div className="mx-auto flex flex-col flex-1 gap-4 max-w-[950px] overflow-x-hidden slide-top-in animation-delay-200">
+          <Sidebar className="slide-top-in-xl animation-delay-150" />
+          <div className="mx-auto flex flex-col flex-1 gap-4 max-w-[950px] overflow-x-hidden slide-top-in animation-delay-150">
             <Topbar />
             <GraphVisualizer />
           </div>
         </div>
       </Container>
-      <FloatingButtons className="animation-delay-200" />
+      {/* <FloatingButtons className="animation-delay-150" /> */}
     </GraphSettingsProvider>
   );
 }

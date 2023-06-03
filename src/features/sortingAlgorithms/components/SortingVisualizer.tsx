@@ -58,28 +58,27 @@ const SortingVisualizer: React.FC<SortingVisualizerProps> = ({
   });
 
   return (
-    <div className={`mx-auto overflow-hidden lg:px-0 ${className}`} {...props}>
-      <Wrapper className="relative mx-auto max-w-[980px] h-[575px] scroll-x-sortingpage">
-        <div className="flex justify-center min-w-[948px] h-full">
-          <div className="sticky -mt-1 top-0 left-0 text-tiny">
-            <div className="absolute flex items-center whitespace-nowrap">
-              <span>
-                {t.settings.size}: {initialList.length}
-              </span>
-              <span className="mx-1.5 inline-block h-3 w-px bg-[#fff] opacity-30"></span>
-              <span>
-                {t.settings.speed}: {speed} ms
-              </span>
-              <span className="mx-1.5 inline-block h-3 w-px bg-[#fff] opacity-30"></span>
-              <span>
-                {t.settings.iteration}: {iteration}
-              </span>
-            </div>
-          </div>
-          {canvas}
+    <Wrapper
+      className={`relative mx-auto max-w-full no-scrollbar overflow-x-auto ${className}`}
+      {...props}
+    >
+      <div className="sticky text-tiny">
+        <div className="absolute -top-1 flex items-center whitespace-nowrap">
+          <span>
+            {t.settings.size}: {initialList.length}
+          </span>
+          <span className="mx-1.5 inline-block h-3 w-px bg-[#fff] opacity-30"></span>
+          <span>
+            {t.settings.speed}: {speed} ms
+          </span>
+          <span className="mx-1.5 inline-block h-3 w-px bg-[#fff] opacity-30"></span>
+          <span>
+            {t.settings.iteration}: {iteration}
+          </span>
         </div>
-      </Wrapper>
-    </div>
+      </div>
+      {canvas}
+    </Wrapper>
   );
 };
 
