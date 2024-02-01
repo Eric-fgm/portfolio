@@ -5,6 +5,7 @@
   "navigation": {
     "sorting": "Sorting",
     "graphs": "Graphs",
+    "generator": "Data Generator",
     "dynamic": "Dynamic",
     "physics": "Physics",
     "caseStudies": "Case Studies"
@@ -78,5 +79,9 @@
         "caption": "Not Weighted & Not Short Path"
       }
     }
+  },
+  "dataGeneratorPage": {
+    "title": "Data Generator",
+    "subtitle": "Visuzalizer"
   }
 }

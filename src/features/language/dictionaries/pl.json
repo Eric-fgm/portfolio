@@ -5,6 +5,7 @@
   "navigation": {
     "sorting": "Sortowanie",
     "graphs": "Grafy",
+    "generator": "Generator Danych",
     "dynamic": "Dynamiczne",
     "physics": "Fizyka",
     "caseStudies": "Projekty"
@@ -78,5 +79,9 @@
         "caption": "Nie Ważony & Brak Najkrótszej Ścieżki"
       }
     }
+  },
+  "dataGeneratorPage": {
+    "title": "Generator Danych",
+    "subtitle": "Wizualizacja"
   }
 }

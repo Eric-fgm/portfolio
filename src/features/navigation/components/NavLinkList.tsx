@@ -31,10 +31,17 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
       <div className="animate-child" data-delay="150">
         <NavLink
           icon={SolidLightning}
+          text={t.generator}
+          href="/data-generator"
+        />
+      </div>
+      {/* <div className="animate-child" data-delay="150">
+        <NavLink
+          icon={SolidLightning}
           text={t.dynamic}
           href="/dynamic-algorithms"
         />
-      </div>
+      </div> */}
       <div className="animate-child" data-delay="200">
         <NavLink icon={SolidBucket} text={t.physics} href="/physics" />
       </div>
