@@ -1,15 +1,16 @@
-import { getDictionary } from "@/features/language";
 import type { Locale } from "@/features/language";
+import { getDictionary } from "@/features/language";
 
 interface PageProps {
-  params: { locale: Locale };
+  params?: { locale: Locale };
 }
 
-export default async function Page({ params: { locale } }: PageProps) {
-  const t = (await getDictionary(locale))["home"];
+export default async function Page({ params }: PageProps) {
+  const { locale = "pl" } = params ?? {};
+  const t = (await getDictionary(locale)).home;
 
   return (
-    <main className="relative flex flex-col items-center w-full h-full bg-homepage no-scrollbar overflow-auto page-animation">
+    <main className="relative flex flex-col items-center w-full h-full bg-homepage no-scrollbar overflow-auto slide-left-in">
       <div className="flex-1 min-h-[88px]" />
       <div className="px-[4%] max-w-[1420px] md:flex md:items-end md:gap-x-12">
         <div className="flex flex-col flex-1">

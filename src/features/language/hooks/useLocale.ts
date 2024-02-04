@@ -5,7 +5,7 @@ import type { Locale } from "@/features/language";
 const useLocale = (): { code: Locale; name: (typeof config.names)[Locale] } => {
   const { locale } = useParams();
 
-  if ((config.locales as ReadonlyArray<string>).includes(locale))
+  if ((config.locales as ReadonlyArray<string>).includes(locale as string))
     return { code: locale as Locale, name: config.names[locale as Locale] };
 
   return {

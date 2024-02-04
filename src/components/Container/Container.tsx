@@ -9,10 +9,10 @@ const Container: React.FC<ContainerProps> = ({
 }) => {
   return (
     <main
-      className={`relative px-4 pt-18 pb-4 w-full h-full no-scrollbar overflow-auto lg:px-8 lg:pb-8 ${className}`}
+      className={`relative px-4 pt-16 pb-4 w-full h-full no-scrollbar overflow-auto lg:px-8 md:pt-18 lg:pb-8 ${className}`}
       {...props}
     >
-      <div className="mx-auto max-w-[1220px] page-animation">{children}</div>
+      <div className="mx-auto max-w-[1220px]">{children}</div>
     </main>
   );
 };

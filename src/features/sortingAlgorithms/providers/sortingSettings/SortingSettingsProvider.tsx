@@ -44,10 +44,12 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
     []
   );
 
-  const changeStatus = useCallback(
-    (status: SortingSettingsProps["status"]) => setStatus(status),
-    []
-  );
+  const closeSettings = useCallback(() => setIsOpened(false), []);
+
+  const changeStatus = useCallback((status: SortingSettingsProps["status"]) => {
+    if (status === "started") setIsOpened(false);
+    setStatus(status);
+  }, []);
 
   return (
     <SortingSettingsContext.Provider
@@ -62,6 +64,7 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
         changeStatus,
         changeType,
         toggleSettings,
+        closeSettings,
       }}
     >
       {children}

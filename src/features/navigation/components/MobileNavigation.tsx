@@ -1,6 +1,6 @@
-import { Logo } from "@/components";
+"use client";
+import { HamburgerMenu, Logo } from "@/components";
 import { LanguageSwitcher } from "@/features/language";
-import { SolidMenu } from "@/icons";
 import { NavLinkList } from "@/features/navigation";
 import { useTheme } from "@/providers/theme";
 
@@ -12,20 +12,14 @@ const MobileNavigation: React.FC<MobileNavigationProps> = () => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-full no-scrollbar overflow-auto mobile-navigation ${type} ${
-          isOpened ? "h-screen" : "h-0"
+        className={`fixed top-0 left-0 w-full no-scrollbar overflow-auto navigation-flyout ${type} ${
+          isOpened ? "navigation-flyout--opened h-screen" : "h-0"
         }`}
       >
-        <NavLinkList
-          className={`pt-28 flex-col items-center gap-y-16 ${
-            isOpened ? "animating-navigation" : "animate-navigation"
-          }`}
-        />
+        <NavLinkList className="pt-28 flex-col items-center gap-y-16" />
       </div>
       <div className="relative p-4 flex items-center justify-between w-full backdrop-blur-2xl">
-        <button type="button" onClick={toggleNavigation}>
-          <SolidMenu />
-        </button>
+        <HamburgerMenu isOpened={isOpened} onClick={toggleNavigation} />
         <Logo />
         <LanguageSwitcher minimal />
       </div>

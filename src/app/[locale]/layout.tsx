@@ -1,13 +1,7 @@
-import { config, getDictionary } from "@/features/language";
 import type { Locale } from "@/features/language";
+import { config, getDictionary } from "@/features/language";
 import { TranslateProvider } from "@/features/language/providers/translate";
-// import { Navigation } from "@/features/navigation";
-import dynamic from "next/dynamic";
-
-const Navigation = dynamic(
-  () => import("@/features/navigation/components/Navigation"),
-  { ssr: false }
-);
+import { Navigation } from "@/features/navigation";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;

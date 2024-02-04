@@ -2,13 +2,17 @@
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/features/language/dictionaries/*.json",
+  ],
   theme: {
     container: { center: true },
     fontFamily: {
       sans: ["Inter", "sans-serif"],
     },
     backgroundColor: {
+      white: "#fff",
       homepage: "var(--homepage-background)",
       sortingpage: "var(--sortingpage-background)",
       "sortingpage-secondary": "var(--sortingpage-secondary-background)",
@@ -75,10 +79,7 @@ module.exports = {
               width: "100%",
               height: "100%",
               boxShadow: `0 0 0 2px ${value}`,
-              "border-radius": "16px",
-              // opacity: 1,
-              // transform: "scale(1)",
-              // animation: "appear 0.3s cubic-bezier(0.25, 1, 0.5, 1)",
+              borderRadius: "16px",
             },
           }),
           "active-offset": (value) => ({
@@ -88,7 +89,28 @@ module.exports = {
           }),
         },
         { values: theme("backgroundColor") }
-      );
+      ),
+        matchUtilities(
+          {
+            "animation-delay": (value) => ({
+              animationDelay: value,
+            }),
+          },
+          { values: theme("transitionDelay") }
+        ),
+        matchUtilities(
+          {
+            "gradient-from": (value) => ({
+              background: `-webkit-gradient(-90deg, transparent 0, ${value} 9px)`,
+              background: `linear-gradient(-90deg, transparent 0, ${value} 9px)`,
+            }),
+            "gradient-to": (value) => ({
+              background: `-webkit-gradient(90deg, transparent 0, ${value} 9px)`,
+              background: `linear-gradient(90deg, transparent 0, ${value} 9px)`,
+            }),
+          },
+          { values: theme("backgroundColor") }
+        );
     }),
   ],
 };

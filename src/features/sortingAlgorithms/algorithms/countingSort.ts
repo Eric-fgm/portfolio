@@ -15,7 +15,10 @@ export default function* countingSort(
   for (let i = 0; i < length; i++) {
     iteration += 1;
     count[list[i].value]++;
-    list[i].fillStyle = "#c54f6b";
+    list[i] = {
+      ...list[i],
+      fillStyle: "#c54f6b",
+    };
     yield { list, iteration };
     list[i].fillStyle = "#fff";
   }

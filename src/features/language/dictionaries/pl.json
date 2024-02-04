@@ -77,11 +77,42 @@
       },
       "depthFirstSearch": {
         "caption": "Nie Ważony & Brak Najkrótszej Ścieżki"
+      },
+      "aStar": {
+        "caption": "Nie Ważony & Najkrótsza Ścieżka"
+      },
+      "greedyBestFirstSearch": {
+        "caption": "Nie Ważony & Najkrótsza Ścieżka"
+      },
+      "dijkstra": {
+        "caption": "Ważony & Najkrótsza Ścieżka"
       }
     }
   },
   "dataGeneratorPage": {
     "title": "Generator Danych",
-    "subtitle": "Wizualizacja"
+    "subtitle": "Wizualizacja",
+    "controlPanel": {
+      "title": "NOWE POLE",
+      "field": {
+        "label": "Nazwa",
+        "placeholder": "Wymagane"
+      },
+      "submit": "Dodaj"
+    },
+    "topBar": {
+      "save": "Zapisz"
+    },
+    "formFields": {
+      "placeholder": {
+        "top": "Brak wybranych pól.",
+        "bottom": "Dodaj pole w pasku bocznym."
+      }
+    },
+    "dataBox": {
+      "use": "Użyj",
+      "more": "Więcej",
+      "placeholder": "Podaj formułe, możesz użyc wygenerowanych danych w postaci {<nazwa-parametru>}"
+    }
   }
 }

@@ -1,11 +1,11 @@
 "use client";
+import { mazePath } from "@/features/graphAlgorithms/helpers";
+import type { GraphSettingsProps } from "@/features/graphAlgorithms/providers/graphSettings";
 import {
   GraphSettingsContext,
   defaultProps,
 } from "@/features/graphAlgorithms/providers/graphSettings";
-import type { GraphSettingsProps } from "@/features/graphAlgorithms/providers/graphSettings";
 import { useCallback, useState } from "react";
-import { mazePath } from "../../helpers";
 
 interface GraphSettingsProvider {
   children: React.ReactNode;
@@ -27,32 +27,53 @@ const GraphSettingsProvider: React.FC<GraphSettingsProvider> = ({
     defaultProps.disabled
   );
 
-  const changeStatus = useCallback(
-    (status: GraphSettingsProps["status"]) => setStatus(status),
-    []
-  );
+  const changeStatus = useCallback((status: GraphSettingsProps["status"]) => {
+    if (status === "started") setIsOpened(false);
+    setStatus(status);
+  }, []);
 
   const changeType = useCallback((type: GraphSettingsProps["type"]) => {
     setType(type);
     setStatus("stopped");
   }, []);
 
+  const changeDisabled = useCallback(
+    (
+      param:
+        | GraphSettingsProps["disabled"]
+        | ((
+            nodes: GraphSettingsProps["disabled"]
+          ) => GraphSettingsProps["disabled"])
+    ) => {
+      if (status === "started") return;
+      if (typeof param === "function")
+        setDisabled((prevNodes) => {
+          return param({ ...prevNodes });
+        });
+      else setDisabled(param);
+    },
+    [status]
+  );
+
   const generateDisabled = useCallback(() => {
-    if (status === "started") return;
     const disabledEntity: GraphSettingsProps["disabled"] = {};
-    mazePath.forEach(([x, y]) => (disabledEntity[`${x}.${y}`] = { x, y }));
-    setDisabled(disabledEntity);
-  }, [status]);
+    mazePath.forEach(
+      ([y, x]) =>
+        (disabledEntity[`${x}.${y}`] = { x, y, type: "wall", size: 0 })
+    );
+    changeDisabled(disabledEntity);
+  }, [changeDisabled]);
 
   const clearDisabled = useCallback(() => {
-    if (status === "started") return;
-    setDisabled({});
-  }, [status]);
+    changeDisabled({});
+  }, [changeDisabled]);
 
   const toggleSettings = useCallback(
     () => setIsOpened((wasOpened) => !wasOpened),
     []
   );
+
+  const closeSettings = useCallback(() => setIsOpened(false), []);
 
   return (
     <GraphSettingsContext.Provider
@@ -61,12 +82,13 @@ const GraphSettingsProvider: React.FC<GraphSettingsProvider> = ({
         status,
         type,
         disabled,
-        setDisabled,
+        changeDisabled,
         changeStatus,
         changeType,
         clearDisabled,
         generateDisabled,
         toggleSettings,
+        closeSettings,
       }}
     >
       {children}

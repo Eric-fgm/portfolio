@@ -1,53 +1,46 @@
-import { SolidGraph } from "@/icons";
+import {
+  SolidAStar,
+  SolidBFS,
+  SolidDFS,
+  SolidDijkstra,
+  SolidGreedyBFS,
+} from "@/icons";
 
-export interface GraphPathNode {
+export interface GraphNode {
   x: number;
   y: number;
+  type: "block" | "wall" | "path";
+  size: number;
 }
 
 export type GraphAlgorithmTypes = (typeof graphAlgorithms)[number]["key"];
 
 export const graphAlgorithms = [
-  // {
-  //   icon: SolidGraph,
-  //   name: "Dijkstra's Algorithm",
-  //   type: "dijkstra",
-  //   caption: "Weight & Short Path",
-  // },
   {
     key: "depthFirstSearch",
-    icon: SolidGraph,
-    name: "A* Search",
+    icon: SolidDFS,
+    name: "Depth First Search",
   },
   {
     key: "breadthFirstSearch",
-    icon: SolidGraph,
-    name: "Best-first Search",
+    icon: SolidBFS,
+    name: "Breadth First Search",
   },
-  // {
-  //   icon: SolidGraph,
-  //   name: "Bidirectional Swarm...",
-  //   type: "dfs2",
-  //   caption: "Weight & Not Short Path",
-  // },
-  // {
-  //   icon: SolidGraph,
-  //   name: "Best-first Search",
-  //   type: "dfs3",
-  //   caption: "Weight & Not Short Path",
-  // },
-  // {
-  //   icon: SolidGraph,
-  //   name: "Dijkstra's Algorithm",
-  //   type: "dfs4",
-  //   caption: "Weight & Not Short Path",
-  // },
-  // {
-  //   icon: SolidGraph,
-  //   name: "Dijkstra's Algorithm",
-  //   type: "dfs5",
-  //   caption: "Not Weight & Not Short Path",
-  // },
+  {
+    key: "aStar",
+    icon: SolidAStar,
+    name: "A* Search",
+  },
+  {
+    key: "greedyBestFirstSearch",
+    icon: SolidGreedyBFS,
+    name: "Greedy Best First Search",
+  },
+  {
+    key: "dijkstra",
+    icon: SolidDijkstra,
+    name: "Dijkstra's Algorithm",
+  },
 ] as const;
 
 export const mazePath = [
@@ -466,7 +459,7 @@ export const mazePath = [
 ];
 
 export const START_ROW = 11;
-export const START_COl = 4;
+export const START_COL = 4;
 export const END_ROW = START_ROW;
 export const END_COL = 33;
 export const ROWS_NUM = 24;

@@ -77,11 +77,42 @@
       },
       "depthFirstSearch": {
         "caption": "Not Weighted & Not Short Path"
+      },
+      "aStar": {
+        "caption": "Not Weighted & Short Pat"
+      },
+      "greedyBestFirstSearch": {
+        "caption": "Not Weighted & Short Path"
+      },
+      "dijkstra": {
+        "caption": "Weighted & Short Path"
       }
     }
   },
   "dataGeneratorPage": {
     "title": "Data Generator",
-    "subtitle": "Visuzalizer"
+    "subtitle": "Visuzalizer",
+    "controlPanel": {
+      "title": "NEW FIELD",
+      "field": {
+        "label": "Name",
+        "placeholder": "Required"
+      },
+      "submit": "Add"
+    },
+    "topBar": {
+      "save": "Save"
+    },
+    "formFields": {
+      "placeholder": {
+        "top": "No fields selected.",
+        "bottom": "Add a field in the sidebar."
+      }
+    },
+    "dataBox": {
+      "use": "Use",
+      "more": "More",
+      "placeholder": "Provide a formula, you can use the generated data in the form {<parameter-name>}"
+    }
   }
 }

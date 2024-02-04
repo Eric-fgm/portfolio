@@ -1,63 +1,60 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { GraphAlgorithmTypes, GraphPathNode } from "../helpers";
-import graphAlgorithms from "../algorithm";
+import graphAlgorithms from "@/features/graphAlgorithms/algorithm";
+import type {
+  GraphAlgorithmTypes,
+  GraphNode,
+} from "@/features/graphAlgorithms/helpers";
+import { useEffect, useMemo, useState } from "react";
 
 export interface UseGraphAlgorithmsProps {
   type: GraphAlgorithmTypes;
   status: "started" | "stopped" | "completed" | "restart";
-  disabled: Record<any, GraphPathNode>;
-  changeStatus: (payload: UseGraphAlgorithmsProps["status"]) => void;
+  disabled: Record<any, GraphNode & { type: "wall" }>;
+}
+
+interface UseGraphAlgorithmsCallbacks {
+  onSuccess: () => void;
 }
 
 const useGraphAlgorithms = ({
   type,
   status,
   disabled,
-  changeStatus,
-}: UseGraphAlgorithmsProps) => {
-  const [nodes, setNodes] = useState<GraphPathNode[]>([]);
-  const [path, setPath] = useState<GraphPathNode[]>([]);
-  const [algorithm, setAlgorithm] = useState(graphAlgorithms[type](disabled));
+  onSuccess = () => {},
+}: UseGraphAlgorithmsProps & UseGraphAlgorithmsCallbacks) => {
+  const [nodes, setNodes] = useState<GraphNode[]>([]);
+  const [path, setPath] = useState<GraphNode[]>([]);
 
-  useEffect(() => {
+  const algorithm = useMemo(() => {
+    let instance = graphAlgorithms[type](disabled);
     setNodes([]);
     setPath([]);
-    setAlgorithm(graphAlgorithms[type](disabled));
+    return () => ({
+      instance,
+      reset: () => (instance = graphAlgorithms[type](disabled)),
+    });
   }, [type, disabled]);
-
-  useEffect(() => {
-    if (status === "restart") {
-      setNodes([]);
-      setPath([]);
-      setAlgorithm(graphAlgorithms[type](disabled));
-    }
-  }, [status, type, disabled]);
 
   useEffect(() => {
     let intervalInstance: ReturnType<typeof setInterval> | null = null;
     if (status === "started") {
       intervalInstance = setInterval(() => {
-        const { value, done } = algorithm.next();
+        const { value, done } = algorithm().instance.next();
         if (done) {
-          changeStatus("completed");
-          setPath([...value]);
-          setAlgorithm(graphAlgorithms[type](disabled));
-        } else {
-          setPath([]);
-          setNodes([...value]);
+          algorithm().reset();
+          onSuccess();
         }
-      }, 10);
+        setPath(value.path);
+        setNodes(value.queue);
+      }, 30);
+    } else if (status === "restart") {
+      algorithm().reset();
+      setNodes([]);
+      setPath([]);
     }
     return () => {
       intervalInstance && clearInterval(intervalInstance);
     };
-  }, [status, type, disabled, algorithm, changeStatus]);
+  }, [status, algorithm, onSuccess]);
 
   return { nodes, path };
 };

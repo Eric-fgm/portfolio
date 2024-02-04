@@ -1,15 +1,17 @@
 "use client";
 import { DesktopNavigation, MobileNavigation } from "@/features/navigation";
-import { useTheme } from "@/providers/theme";
 
 interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = ({}) => {
-  const { isMobile } = useTheme();
-
   return (
-    <nav className="fixed top-0 left-0 w-full transition-[height] z-40">
-      {isMobile ? <MobileNavigation /> : <DesktopNavigation />}
+    <nav className="fixed top-0 left-0 w-full z-40">
+      <div className="md:hidden">
+        <MobileNavigation />
+      </div>
+      <div className="hidden md:block">
+        <DesktopNavigation />
+      </div>
     </nav>
   );
 };
