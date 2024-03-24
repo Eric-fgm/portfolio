@@ -1,12 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useEffect, useState } from "react";
-import {
-  useFieldArray,
-  useForm,
-  type FieldArrayWithId,
-  UseFormRegister,
-} from "react-hook-form";
+import { useFieldArray, useForm, type FieldArrayWithId } from "react-hook-form";
 
 export interface MathsSettingsProps {
   algorithms: ("lagrange-matrix" | "lagrange" | "chebyshev" | "spline")[];
@@ -67,11 +62,10 @@ const MathsSettingsProvider: React.FC<{ children?: React.ReactNode }> = ({
   });
 
   const points = fields
-    .filter((point) => !isNaN(point.value))
-    .map((_, index) => {
-      const x = watch(`listOfX.${index}.value`);
-      return { x, y: Math.max(-20, Math.min(20, equation.f(x))) };
-    });
+    .map((_, index) => watch(`listOfX.${index}.value`))
+    .filter((x, index, self) => !isNaN(x) && self.indexOf(x) === index)
+    .sort((x1, x2) => x1 - x2)
+    .map((x) => ({ x, y: Math.max(-20, Math.min(20, equation.f(x))) }));
 
   const appendPoint = useCallback(() => append({ value: 0 }), [append]);
   const removePoint = useCallback((index: number) => remove(index), [remove]);

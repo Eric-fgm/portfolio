@@ -26,20 +26,21 @@ export default async function DataGeneratorPage({
         className="py-8 slide-top-in"
       />
       <ExtendedFormProvider>
+        <Aside.Root>
+          <div className="fixed left-6 bottom-5 flex gap-2 slide-bottom-in z-30 xl:hidden">
+            <Aside.Button>
+              <Button icon={SolidSorting} className="p-3" rounded />
+            </Aside.Button>
+          </div>
+          <Aside.Panel className="pl-6 bottom-20 xl:hidden">
+            <ControlPanel className="shadow-2xl" />
+          </Aside.Panel>
+        </Aside.Root>
         <div className="pt-4 flex gap-4 slide-top-in animation-delay-150">
           <div className="hidden w-64 xl:block">
             <ControlPanel />
           </div>
-          <Aside.Root>
-            <div className="fixed left-6 bottom-5 flex gap-2 slide-bottom-in z-30 xl:hidden">
-              <Aside.Button>
-                <Button icon={SolidSorting} className="p-3" rounded />
-              </Aside.Button>
-            </div>
-            <Aside.Panel className="pl-6 bottom-20 xl:hidden">
-              <ControlPanel className="shadow-2xl" />
-            </Aside.Panel>
-          </Aside.Root>
+
           <div className="mx-auto max-w-[980px] flex-1 flex flex-col gap-4 min-w-0">
             <TopBar />
             <FieldsForm />
