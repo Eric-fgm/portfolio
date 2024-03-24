@@ -28,6 +28,7 @@ module.exports = {
       "muted-graph": "var(--muted-graph-text)",
       graph: "var(--graph-text)",
       red: "var(--red-text)",
+      blue: "var(--blue-text)",
       green: "var(--green-text)",
       yellow: "var(--yellow-text)",
       placeholder: "var(--placeholder-text)",

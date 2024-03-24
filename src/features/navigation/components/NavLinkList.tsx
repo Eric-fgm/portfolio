@@ -36,18 +36,24 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
         href="/data-generator"
         className="animation-delay-[105ms]"
       />
+      <NavLink
+        icon={SolidBucket}
+        text={t.maths}
+        href="/maths-algorithms"
+        className="animation-delay-[145ms]"
+      />
       {/* <NavLink
         icon={SolidLightning}
         text={t.dynamic}
         href="/dynamic-algorithms"
         className="animation-delay-[105ms]"
       /> */}
-      <NavLink
+      {/* <NavLink
         icon={SolidBucket}
         text={t.physics}
         href="/physics"
-        className="animation-delay-[145ms]"
-      />
+        className="animation-delay-[185ms]"
+      /> */}
       <NavLink
         icon={SolidCaseStudies}
         text={t.caseStudies}

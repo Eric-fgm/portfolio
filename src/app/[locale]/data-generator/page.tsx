@@ -20,9 +20,13 @@ export default async function DataGeneratorPage({
 
   return (
     <Container className="bg-[#132833]">
-      <Header headline={t.title} subhead={t.subtitle} className="py-8" />
+      <Header
+        headline={t.title}
+        subhead={t.subtitle}
+        className="py-8 slide-top-in"
+      />
       <ExtendedFormProvider>
-        <div className="pt-4 flex gap-4">
+        <div className="pt-4 flex gap-4 slide-top-in animation-delay-150">
           <div className="hidden w-64 xl:block">
             <ControlPanel />
           </div>

@@ -6,6 +6,7 @@
     "sorting": "Sorting",
     "graphs": "Graphs",
     "generator": "Data Generator",
+    "maths": "Matematics",
     "dynamic": "Dynamic",
     "physics": "Physics",
     "caseStudies": "Case Studies"
@@ -114,5 +115,34 @@
       "more": "More",
       "placeholder": "Provide a formula, you can use the generated data in the form {<parameter-name>}"
     }
+  },
+  "mathsPage": {
+    "title": "Mathematics",
+    "subtitle": "Visualizer & Interactive",
+    "interpolationNodes": "Interpolation nodes",
+    "points": "Points",
+    "add": "Add",
+    "algorithms": [
+      {
+        "key": "lagrange",
+        "name": "Langrange Polynomials",
+        "type": { "name": "INTERPOLATION", "className": "text-green" }
+      },
+      {
+        "key": "lagrange-matrix",
+        "name": "Langrange Polynomials (Matrix)",
+        "type": { "name": "INTERPOLATION", "className": "text-blue" }
+      },
+      {
+        "key": "spline",
+        "name": "Spline Functions",
+        "type": { "name": "INTERPOLATION", "className": "text-red" }
+      },
+      {
+        "key": "chebyshev",
+        "name": "Chebyshev Nodes",
+        "type": { "name": "APPROXIMATION", "className": "text-red" }
+      }
+    ]
   }
 }

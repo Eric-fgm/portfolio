@@ -6,6 +6,7 @@
     "sorting": "Sortowanie",
     "graphs": "Grafy",
     "generator": "Generator Danych",
+    "maths": "Matematyka",
     "dynamic": "Dynamiczne",
     "physics": "Fizyka",
     "caseStudies": "Projekty"
@@ -114,5 +115,34 @@
       "more": "Więcej",
       "placeholder": "Podaj formułe, możesz użyc wygenerowanych danych w postaci {<nazwa-parametru>}"
     }
+  },
+  "mathsPage": {
+    "title": "Matematyka",
+    "subtitle": "Wizualizacja & Interakcja",
+    "interpolationNodes": "Węzły interpolacji",
+    "points": "Punkty",
+    "add": "Dodaj",
+    "algorithms": [
+      {
+        "key": "lagrange",
+        "name": "Wielomiany Langrange’a",
+        "type": { "name": "INTERPOLACJA", "className": "text-green" }
+      },
+      {
+        "key": "lagrange-matrix",
+        "name": "Wielomiany Langrange’a (Macierz)",
+        "type": { "name": "INTERPOLACJA", "className": "text-blue" }
+      },
+      {
+        "key": "spline",
+        "name": "Funkcje Sklejające",
+        "type": { "name": "INTERPOLACJA", "className": "text-red" }
+      },
+      {
+        "key": "chebyshev",
+        "name": "Węzły Czebyszewa",
+        "type": { "name": "INTERPOLACJA", "className": "text-yellow" }
+      }
+    ]
   }
 }

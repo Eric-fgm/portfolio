@@ -99,6 +99,24 @@ body,
   }
 }
 
+body .MafsView {
+  background-color: var(--sortingpage-secondary-background);
+}
+
+body .MafsView > svg > g > pattern {
+  & > pattern {
+    // display: none;
+
+    & > g {
+      stroke: #151e2e;
+    }
+  }
+
+  & > g {
+    stroke: #222e43;
+  }
+}
+
 @keyframes rotate-from {
   0% {
     transform: translateX(0) rotate(0);
