@@ -15,16 +15,16 @@ const GraphSettingsProvider: React.FC<GraphSettingsProvider> = ({
   children,
 }) => {
   const [isOpened, setIsOpened] = useState<GraphSettingsProps["isOpened"]>(
-    defaultProps.isOpened
+    defaultProps.isOpened,
   );
   const [type, setType] = useState<GraphSettingsProps["type"]>(
-    defaultProps.type
+    defaultProps.type,
   );
   const [status, setStatus] = useState<GraphSettingsProps["status"]>(
-    defaultProps.status
+    defaultProps.status,
   );
   const [disabled, setDisabled] = useState<GraphSettingsProps["disabled"]>(
-    defaultProps.disabled
+    defaultProps.disabled,
   );
 
   const changeStatus = useCallback((status: GraphSettingsProps["status"]) => {
@@ -42,8 +42,8 @@ const GraphSettingsProvider: React.FC<GraphSettingsProvider> = ({
       param:
         | GraphSettingsProps["disabled"]
         | ((
-            nodes: GraphSettingsProps["disabled"]
-          ) => GraphSettingsProps["disabled"])
+            nodes: GraphSettingsProps["disabled"],
+          ) => GraphSettingsProps["disabled"]),
     ) => {
       if (status === "started") return;
       if (typeof param === "function")
@@ -52,14 +52,14 @@ const GraphSettingsProvider: React.FC<GraphSettingsProvider> = ({
         });
       else setDisabled(param);
     },
-    [status]
+    [status],
   );
 
   const generateDisabled = useCallback(() => {
     const disabledEntity: GraphSettingsProps["disabled"] = {};
     mazePath.forEach(
       ([y, x]) =>
-        (disabledEntity[`${x}.${y}`] = { x, y, type: "wall", size: 0 })
+        (disabledEntity[`${x}.${y}`] = { x, y, type: "wall", size: 0 }),
     );
     changeDisabled(disabledEntity);
   }, [changeDisabled]);
@@ -70,7 +70,7 @@ const GraphSettingsProvider: React.FC<GraphSettingsProvider> = ({
 
   const toggleSettings = useCallback(
     () => setIsOpened((wasOpened) => !wasOpened),
-    []
+    [],
   );
 
   const closeSettings = useCallback(() => setIsOpened(false), []);

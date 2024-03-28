@@ -3,7 +3,7 @@ import type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hoo
 let iteration = 0;
 
 export default function* mergeSort(
-  initialList: UseSortingAlgorithmsProps["initialList"]
+  initialList: UseSortingAlgorithmsProps["initialList"],
 ) {
   iteration = 0;
   const list = [...initialList];
@@ -14,7 +14,7 @@ export default function* mergeSort(
 function* mergeSortRange(
   list: UseSortingAlgorithmsProps["initialList"],
   l: number,
-  r: number
+  r: number,
 ): Generator<
   { list: UseSortingAlgorithmsProps["initialList"]; iteration: number },
   void,
@@ -33,7 +33,7 @@ function* merge(
   list: UseSortingAlgorithmsProps["initialList"],
   l: number,
   m: number,
-  r: number
+  r: number,
 ) {
   let res = list.slice(l, r + 1);
   let i1 = l;

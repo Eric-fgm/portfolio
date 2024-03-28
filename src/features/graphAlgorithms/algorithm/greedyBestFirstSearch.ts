@@ -34,17 +34,17 @@ function* greedyBestFirstSearch(disabled: UseGraphAlgorithmsProps["disabled"]) {
       visited: false,
       distance: 0,
       totalDistance: 0,
-    }))
+    })),
   );
   const path: GraphNode[] = [];
   Object.values(disabled).forEach(
-    ({ x, y }) => (metadata[x][y].visited = true)
+    ({ x, y }) => (metadata[x][y].visited = true),
   );
 
   while (stack.length) {
     stack.sort(
       (a, b) =>
-        metadata[a.x][a.y].totalDistance - metadata[b.x][b.y].totalDistance
+        metadata[a.x][a.y].totalDistance - metadata[b.x][b.y].totalDistance,
     );
     const closestNode = stack.shift()!;
 

@@ -10,16 +10,16 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   return (
     <button
       type="button"
-      className={`relative flex flex-col items-center justify-center w-8 h-8 ${className}`}
+      className={`relative flex h-8 w-8 flex-col items-center justify-center ${className}`}
       {...props}
     >
       <span
-        className={`absolute stick top-[11px] left-[5px] w-[22px] h-[2px] bg-white ${
+        className={`stick absolute left-[5px] top-[11px] h-[2px] w-[22px] bg-white ${
           isOpened ? "rotate-from" : ""
         }`}
       ></span>
       <span
-        className={`absolute stick bottom-[11px] left-[5px] w-[22px] h-[2px] bg-white ${
+        className={`stick absolute bottom-[11px] left-[5px] h-[2px] w-[22px] bg-white ${
           isOpened ? "rotate-to" : ""
         }`}
       ></span>

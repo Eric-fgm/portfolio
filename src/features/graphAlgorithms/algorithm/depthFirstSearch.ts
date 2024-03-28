@@ -40,7 +40,7 @@ function depthFirstSearchRecursion(
     y: START_ROW,
     size: 0,
     type: "block" as GraphNode["type"],
-  }
+  },
 ): GraphNode[] {
   queue.push(vertex);
   if (vertex.x === END_COL && vertex.y === END_ROW) {

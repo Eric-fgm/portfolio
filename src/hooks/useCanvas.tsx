@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useMemo, useRef } from "react";
 import { initCanvas } from "@/helpers/canvas";
 

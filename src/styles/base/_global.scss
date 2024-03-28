@@ -1,11 +1,8 @@
 html,
-body,
-#app {
-  width: 100%;
-  height: 100%;
+body {
   color: #fff;
   background-color: var(--homepage-background);
-  overflow: hidden;
+  min-height: 100vh;
 }
 
 #app {
@@ -17,45 +14,12 @@ body,
 }
 
 .no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
   &::-webkit-scrollbar {
     display: none;
   }
-}
-
-.navigation-flyout {
-  transition: height 0.2s cubic-bezier(0.4, 0, 0.6, 1), background 0.15s ease;
-
-  &.primary {
-    background-color: var(--homepage-background);
-  }
-
-  &.darkBlue {
-    background-color: var(--sortingpage-background);
-  }
-
-  &.lightBlue {
-    background-color: var(--graphpage-background);
-  }
-
-  & > div > a {
-    animation-name: appear-out;
-    animation-duration: 400ms;
-    animation-fill-mode: forwards;
-  }
-
-  &--opened > div > a {
-    transform: scale(0.75);
-    animation-name: appear-in;
-    animation-duration: 400ms;
-    animation-fill-mode: forwards;
-  }
-}
-
-.scale-in {
-  animation: scale-in 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  animation-fill-mode: forwards;
-  transform-box: fill-box;
-  transform-origin: center;
 }
 
 .slide-left-in {
@@ -84,18 +48,24 @@ body,
 }
 
 .stick {
-  transition: top 0.08s 0.15s ease-out, bottom 0.08s 0.15s ease-out,
+  transition:
+    top 0.08s 0.15s ease-out,
+    bottom 0.08s 0.15s ease-out,
     transform 0.2s ease;
 
   &.rotate-from {
     top: 15px;
     transform: rotate(45deg);
-    transition: top 0.05s ease-in, transform 0.15s 0.05s ease;
+    transition:
+      top 0.05s ease-in,
+      transform 0.15s 0.05s ease;
   }
   &.rotate-to {
     bottom: 15px;
     transform: rotate(-45deg);
-    transition: bottom 0.05s ease-in, transform 0.15s 0.05s ease;
+    transition:
+      bottom 0.05s ease-in,
+      transform 0.15s 0.05s ease;
   }
 }
 
@@ -171,17 +141,6 @@ body .MafsView > svg > g > pattern {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }
 

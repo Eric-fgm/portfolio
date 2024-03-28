@@ -1,5 +1,4 @@
 export { default as Button } from "@/components/Button/Button";
-export { default as Container } from "@/components/Container/Container";
 export { default as FormField } from "@/components/FormField/FormField";
 export { default as HamburgerMenu } from "@/components/HamburgerMenu/HamburgerMenu";
 export { default as Header } from "@/components/Header/Header";
@@ -8,4 +7,5 @@ export { default as Link } from "@/components/Link/Link";
 export { default as Logo } from "@/components/Logo/Logo";
 export { default as RangeInput } from "@/components/RangeInput/RangeInput";
 export { default as Switch } from "@/components/Switch/Switch";
-export * as Aside from "@/components/Aside/Aside";
+export { default as LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
+export { default as Card } from "@/components/Card/Card";

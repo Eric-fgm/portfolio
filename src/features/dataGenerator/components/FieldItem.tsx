@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { Switch } from "@/components";
+import { X } from "lucide-react";
 
 interface FieldItemProps {
   index: number;
@@ -12,15 +13,15 @@ const FieldItem: React.FC<FieldItemProps> = ({ index, onRemove }) => {
 
   const handleRemove = useCallback(
     () => onRemove && onRemove(index),
-    [index, onRemove]
+    [index, onRemove],
   );
 
   return (
-    <div className="py-2.5 flex items-center bg-[#234355] rounded-lg">
-      <div className="px-4 flex-1">
+    <div className="flex items-center rounded-lg bg-[#234355] py-2.5">
+      <div className="flex-1 px-4">
         <label
           htmlFor=""
-          className="text-xs text-[#a8c6d8] font-semibold block"
+          className="block text-xs font-semibold text-[#a8c6d8]"
         >
           Typ
         </label>
@@ -29,14 +30,14 @@ const FieldItem: React.FC<FieldItemProps> = ({ index, onRemove }) => {
             required: true,
           })}
           placeholder="Podaj typ"
-          className="mt-0.5 bg-[transparent] text-sm font-medium w-full outline-none placeholder:text-[#658da4]"
+          className="mt-0.5 w-full bg-[transparent] text-sm font-medium outline-none placeholder:text-[#658da4]"
         />
       </div>
-      <div className="border-l border-[#47677a] flex-1 flex px-4">
+      <div className="flex flex-1 border-l border-[#47677a] px-4">
         <div>
           <label
             htmlFor=""
-            className="text-xs text-[#a8c6d8] font-semibold block"
+            className="block text-xs font-semibold text-[#a8c6d8]"
           >
             Nazwa
           </label>
@@ -45,10 +46,10 @@ const FieldItem: React.FC<FieldItemProps> = ({ index, onRemove }) => {
               required: true,
             })}
             placeholder="Podaj nazwe"
-            className="mt-0.5 bg-[transparent] text-sm font-medium w-full outline-none placeholder:text-[#658da4]"
+            className="mt-0.5 w-full bg-[transparent] text-sm font-medium outline-none placeholder:text-[#658da4]"
           />
         </div>
-        <div className="ml-auto flex gap-2 items-center">
+        <div className="ml-auto flex items-center gap-2">
           <Controller
             name={`fields.${index}.state`}
             render={({ field }) => (
@@ -67,10 +68,10 @@ const FieldItem: React.FC<FieldItemProps> = ({ index, onRemove }) => {
           />
           <button
             type="button"
-            className="flex items-center text-xs justify-center w-6 h-6 rounded-full bg-[#3c6780]"
+            className="flex h-6 w-6 items-center justify-center rounded-full bg-[#3c6780] text-xs"
             onClick={handleRemove}
           >
-            x
+            <X width={16} height={16} />
           </button>
         </div>
       </div>

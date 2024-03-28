@@ -8,8 +8,8 @@ export interface GraphSettingsProps extends UseGraphAlgorithmsProps {
     param:
       | GraphSettingsProps["disabled"]
       | ((
-          nodes: GraphSettingsProps["disabled"]
-        ) => GraphSettingsProps["disabled"])
+          nodes: GraphSettingsProps["disabled"],
+        ) => GraphSettingsProps["disabled"]),
   ) => void;
   changeStatus: (status: GraphSettingsProps["status"]) => void;
   changeType: (type: GraphSettingsProps["type"]) => void;

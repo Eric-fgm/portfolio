@@ -32,11 +32,11 @@ function* dijkstra(disabled: UseGraphAlgorithmsProps["disabled"]) {
       visited: false,
       distance: Infinity,
       weight: 1,
-    }))
+    })),
   );
   const path: GraphNode[] = [];
   Object.values(disabled).forEach(
-    ({ x, y }) => (metadata[x][y].visited = true)
+    ({ x, y }) => (metadata[x][y].visited = true),
   );
 
   metadata[START_COL][START_ROW].distance = 0;

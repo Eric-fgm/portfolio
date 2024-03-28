@@ -2,7 +2,7 @@
 import { GraphAlgorithmsItem } from "@/features/graphAlgorithms";
 import { graphAlgorithms } from "@/features/graphAlgorithms/helpers";
 import { useGraphSettings } from "@/features/graphAlgorithms/providers/graphSettings";
-import { useTranslate } from "@/features/language/providers/translate";
+import { useTranslate } from "@/hooks";
 
 interface GraphAlgorithmsListProps {}
 

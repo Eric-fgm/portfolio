@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
+import { SquareMousePointer } from "lucide-react";
 import { Button } from "@/components";
 import { useExtendedForm } from "@/features/dataGenerator/providers";
 import { DataBox } from "@/features/dataGenerator/components";
-import { SolidBubble } from "@/icons";
-import { useTranslate } from "@/features/language/providers/translate";
+import { useTranslate } from "@/hooks";
 
 const HistoryDataBoxList = () => {
   const t = useTranslate("dataGeneratorPage").dataBox;
@@ -31,9 +31,9 @@ const HistoryDataBoxList = () => {
           data={data}
           renderTools={
             <Button
-              icon={SolidBubble}
+              icon={SquareMousePointer}
               text={t.use}
-              className="pl-2 pr-3.5 py-1.5"
+              className="py-1.5 pl-2 pr-3.5"
               onClick={() => setOutput(data)}
             />
           }

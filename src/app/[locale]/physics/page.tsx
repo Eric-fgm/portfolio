@@ -1,14 +1,8 @@
-import { getDictionary } from "@/features/language";
-import type { Locale } from "@/features/language";
+import { getDictionary } from "@/helpers/dictionaries";
+import type { PageProps } from "@/helpers/types";
 
-interface PhysicsPageProps {
-  params: { locale: Locale };
-}
-
-export default async function PhysicsPage({
-  params: { locale },
-}: PhysicsPageProps) {
+export default async function PhysicsPage({ params: { locale } }: PageProps) {
   const t = await getDictionary(locale);
 
-  return <main className="relative w-full h-full bg-physicspage"></main>;
+  return <main className="relative h-full w-full bg-physicspage"></main>;
 }

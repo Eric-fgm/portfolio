@@ -18,7 +18,7 @@ const FormField: React.FC<FormFieldProps> = ({
       } ${className}`}
       {...props}
     >
-      <span className={`text-xs ${atTop ? "h-9 flex items-center" : ""}`}>
+      <span className={`text-xs ${atTop ? "flex h-9 items-center" : ""}`}>
         {name}
       </span>
       <span className="w-36">{children}</span>

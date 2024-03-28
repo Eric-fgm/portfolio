@@ -10,7 +10,7 @@ export interface MathsSettingsProps {
   pointFields: FieldArrayWithId<
     {
       listOfX: {
-        value: number;
+        value: string;
       }[];
     },
     "listOfX",
@@ -48,11 +48,11 @@ const MathsSettingsProvider: React.FC<{ children?: React.ReactNode }> = ({
     MathsSettingsProps["algorithms"]
   >(defaultProps.algorithms);
   const [equation, setEquation] = useState<MathsSettingsProps["equation"]>(
-    defaultProps.equation
+    defaultProps.equation,
   );
 
   const { control, watch, register } = useForm<{
-    listOfX: { value: number }[];
+    listOfX: { value: string }[];
   }>();
 
   const { fields, append, remove } = useFieldArray({
@@ -62,18 +62,18 @@ const MathsSettingsProvider: React.FC<{ children?: React.ReactNode }> = ({
   });
 
   const points = fields
-    .map((_, index) => watch(`listOfX.${index}.value`))
+    .map((_, index) => parseInt(watch(`listOfX.${index}.value`), 10))
     .filter((x, index, self) => !isNaN(x) && self.indexOf(x) === index)
     .sort((x1, x2) => x1 - x2)
     .map((x) => ({ x, y: Math.max(-20, Math.min(20, equation.f(x))) }));
 
-  const appendPoint = useCallback(() => append({ value: 0 }), [append]);
+  const appendPoint = useCallback(() => append({ value: "" }), [append]);
   const removePoint = useCallback((index: number) => remove(index), [remove]);
 
   useEffect(() => {
-    append({ value: -1 }, { shouldFocus: false });
-    append({ value: 0 }, { shouldFocus: false });
-    append({ value: 1 }, { shouldFocus: false });
+    append({ value: "-1" }, { shouldFocus: false });
+    append({ value: "0" }, { shouldFocus: false });
+    append({ value: "1" }, { shouldFocus: false });
   }, [append]);
 
   return (

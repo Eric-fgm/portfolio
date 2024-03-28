@@ -1,14 +1,10 @@
-import { getDictionary } from "@/features/language";
-import type { Locale } from "@/features/language";
-
-interface CaseStudiesPageProps {
-  params: { locale: Locale };
-}
+import { getDictionary } from "@/helpers/dictionaries";
+import { PageProps } from "@/helpers/types";
 
 export default async function CaseStudiesPage({
   params: { locale },
-}: CaseStudiesPageProps) {
+}: PageProps) {
   const t = await getDictionary(locale);
 
-  return <main className="relative w-full h-full bg-casestudiespage"></main>;
+  return <main className="bg-casestudiespage relative h-full w-full"></main>;
 }

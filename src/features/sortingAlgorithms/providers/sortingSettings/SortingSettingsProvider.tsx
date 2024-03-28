@@ -17,37 +17,26 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
     SortingSettingsProps["initialList"]
   >(defaultProps.initialList);
   const [type, setType] = useState<SortingSettingsProps["type"]>(
-    defaultProps.type
+    defaultProps.type,
   );
   const [speed, setSpeed] = useState<SortingSettingsProps["speed"]>(
-    defaultProps.speed
+    defaultProps.speed,
   );
   const [status, setStatus] = useState<SortingSettingsProps["status"]>(
-    defaultProps.status
-  );
-  const [isOpened, setIsOpened] = useState<SortingSettingsProps["isOpened"]>(
-    defaultProps.isOpened
+    defaultProps.status,
   );
 
   const changeSpeed = useCallback(
     (speed: SortingSettingsProps["speed"]) => setSpeed(speed),
-    []
+    [],
   );
 
   const changeType = useCallback(
     (status: SortingSettingsProps["type"]) => setType(status),
-    []
+    [],
   );
-
-  const toggleSettings = useCallback(
-    () => setIsOpened((wasOpened) => !wasOpened),
-    []
-  );
-
-  const closeSettings = useCallback(() => setIsOpened(false), []);
 
   const changeStatus = useCallback((status: SortingSettingsProps["status"]) => {
-    if (status === "started") setIsOpened(false);
     setStatus(status);
   }, []);
 
@@ -58,13 +47,10 @@ const SortingSettingsProvider: React.FC<SortingSettingsProvider> = ({
         type,
         speed,
         status,
-        isOpened,
         setInitialList,
         changeSpeed,
         changeStatus,
         changeType,
-        toggleSettings,
-        closeSettings,
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 export const initCanvas = (
   canvas: HTMLCanvasElement,
   width: number,
-  height: number
+  height: number,
 ) => {
   const scale = window.devicePixelRatio;
   canvas.style.width = width + "px";

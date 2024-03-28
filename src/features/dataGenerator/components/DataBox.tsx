@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useMemo, useRef, useState, useEffect } from "react";
+import { Copy, RectangleEllipsis } from "lucide-react";
 import { Button } from "@/components";
-import { SolidBubble } from "@/icons";
 import {
   objectToString,
   objectToStringWithFormat,
 } from "@/features/dataGenerator/helpers";
-import { useTranslate } from "@/features/language/providers/translate";
+import { useTranslate } from "@/hooks";
 
 interface DataBoxProps {
   renderTools?: React.ReactNode;
@@ -35,7 +35,7 @@ const DataBox: React.FC<DataBoxProps> = ({
       isCustom
         ? objectToStringWithFormat(data, customFormat)
         : objectToString(data),
-    [isCustom, customFormat, data]
+    [isCustom, customFormat, data],
   );
 
   useEffect(() => {
@@ -49,13 +49,13 @@ const DataBox: React.FC<DataBoxProps> = ({
     navigator.clipboard.writeText(dataAsString).catch((error) => error);
 
   return (
-    <div className="relative p-4 min-w-0 flex flex-col gap-4 bg-[#1b3543] rounded-2xl overflow-hidden">
-      <div className="flex items-center">
+    <div className="relative flex min-w-0 flex-col gap-4 overflow-hidden rounded-2xl bg-[#1b3543] p-4">
+      <div className="no-scrollbar flex items-center gap-4 overflow-auto">
         <div className="flex gap-2">
           {data.map(({ name }, index) => (
             <div
               key={index}
-              className={`px-2 py-1 rounded-full text-xs bg-[#3c6780] ${
+              className={`rounded-full bg-[#3c6780] px-2 py-1 text-xs ${
                 onChipClick ? "cursor-pointer" : "cursor-default"
               }`}
               onClick={() => onChipClick && onChipClick(name)}
@@ -65,14 +65,10 @@ const DataBox: React.FC<DataBoxProps> = ({
           ))}
         </div>
         <div className="ml-auto flex gap-2">
+          <Button icon={Copy} className="p-2" onClick={handleCopyToClipboard} />
           <Button
-            icon={SolidBubble}
-            className="p-1.5"
-            onClick={handleCopyToClipboard}
-          />
-          <Button
-            icon={SolidBubble}
-            className="p-1.5"
+            icon={RectangleEllipsis}
+            className="p-2"
             onClick={() =>
               setCustom(({ customFormat, isCustom }) => ({
                 customFormat,
@@ -85,7 +81,7 @@ const DataBox: React.FC<DataBoxProps> = ({
       </div>
       {isCustom && (
         <textarea
-          className="px-3 py-2 text-sm font-medium bg-[#234355] rounded-lg w-full outline-none placeholder:text-[#658da4]"
+          className="w-full rounded-lg bg-[#234355] px-3 py-2 text-sm font-medium outline-none placeholder:text-[#658da4]"
           onChange={(event) => {
             const value = event.currentTarget.value;
             setCustom(({ isCustom }) => ({
@@ -96,17 +92,17 @@ const DataBox: React.FC<DataBoxProps> = ({
         ></textarea>
       )}
       {isCustom && !customFormat ? (
-        <p className="pt-2 pb-4 text-center text-sm text-[#9cbbcc]">
+        <p className="pb-4 pt-2 text-center text-sm text-[#9cbbcc]">
           {t.placeholder}
         </p>
       ) : (
         <div className={`${isExpanded ? "h-auto" : "max-h-[325px]"}`}>
-          <pre ref={preRef} className="text-ellipsis overflow-hidden">
+          <pre ref={preRef} className="overflow-hidden text-ellipsis">
             {dataAsString}
           </pre>
           {!isExpanded && (
             <div
-              className="absolute py-3 text-sm text-center bottom-0 w-full bg-gradient-to-t from-[#1b3543] cursor-pointer"
+              className="absolute bottom-0 w-full cursor-pointer bg-gradient-to-t from-[#1b3543] py-3 text-center text-sm"
               onClick={() => {
                 setIsExpanded(true);
                 alreadyExpanded.current = true;

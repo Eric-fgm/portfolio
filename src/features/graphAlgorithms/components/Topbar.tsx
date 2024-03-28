@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "@/components";
 import { GraphSettingsContext } from "@/features/graphAlgorithms/providers/graphSettings";
-import { useTranslate } from "@/features/language/providers/translate";
-import { SolidBubble, SolidPause, SolidPlay, SolidReset } from "@/icons";
+import { useTranslate } from "@/hooks";
+import { CircleX, Pause, Play, RotateCcw, Scan } from "lucide-react";
 import { useContext } from "react";
 
 interface TopbarProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -14,59 +14,42 @@ const Topbar: React.FC<TopbarProps> = ({ className = "", ...props }) => {
 
   return (
     <div
-      className={`relative flex items-center h-16 bg-graphpage-secondary rounded-2xl ${className}`}
+      className={`relative flex h-16 items-center rounded-2xl bg-graphpage-secondary ${className}`}
       {...props}
     >
-      <div className="absolute left-0 w-4 h-9 gradient-from-graphpage-secondary z-10" />
-      <div className="px-4 flex items-center gap-2 no-scrollbar overflow-x-auto">
-        {/* <Button
-          icon={SolidBubble}
-          text="Entry Location"
-          theme="lightBlue"
-          className="pl-2 pr-3.5 py-1.5 flex-shrink-0"
-        />`
+      <div className="absolute left-0 z-10 h-9 w-4 gradient-from-graphpage-secondary" />
+      <div className="no-scrollbar flex items-center gap-2 overflow-x-auto px-4">
         <Button
-          icon={SolidBubble}
-          text="End Location"
-          theme="lightBlue"
-          className="pl-2 pr-3.5 py-1.5 flex-shrink-0"
-        /> */}
-        <Button
-          icon={SolidBubble}
+          icon={Scan}
           text={t.generateMaze}
-          theme="lightBlue"
-          className="pl-2 pr-3.5 py-1.5 flex-shrink-0"
+          className="flex-shrink-0 py-2 pl-2 pr-3.5"
           onClick={generateDisabled}
         />
         <Button
-          icon={SolidBubble}
+          icon={CircleX}
           text={t.clearWall}
-          theme="lightBlue"
-          className="pl-2 pr-3.5 py-1.5 flex-shrink-0"
+          className="flex-shrink-0 py-2 pl-2 pr-3.5"
           onClick={clearDisabled}
         />
       </div>
-      <div className="relative ml-auto pr-4 flex items-center gap-2">
-        <div className="absolute -left-4 top-0 w-4 h-9 gradient-to-graphpage-secondary z-10" />
+      <div className="relative ml-auto flex items-center gap-2 pr-4">
+        <div className="absolute -left-4 top-0 z-10 h-9 w-4 gradient-to-graphpage-secondary" />
         {status === "started" ? (
           <Button
-            icon={SolidPause}
-            theme="lightBlue"
-            className="p-1.5"
+            icon={Pause}
+            className="p-2"
             onClick={() => changeStatus("stopped")}
           />
         ) : (
           <Button
-            icon={SolidPlay}
-            theme="lightBlue"
-            className="p-1.5"
+            icon={Play}
+            className="p-2"
             onClick={() => changeStatus("started")}
           />
         )}
         <Button
-          icon={SolidReset}
-          theme="lightBlue"
-          className="p-1.5"
+          icon={RotateCcw}
+          className="p-2"
           onClick={() => changeStatus("restart")}
         />
       </div>

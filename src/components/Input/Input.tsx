@@ -31,13 +31,13 @@ const Input: React.FC<InputProps> = ({
       // @ts-ignore
       onChange(event.target.value);
     },
-    [type, onChange]
+    [type, onChange],
   );
 
   return (
     <input
       type={type}
-      className={`px-3 w-full h-9 text-sm bg-sortingpage rounded-lg outline-none placeholder:text-placeholder ${className}`}
+      className={`h-9 w-full rounded-lg bg-sortingpage px-3 text-sm outline-none placeholder:text-placeholder ${className}`}
       onChange={handleChange}
       {...props}
     />

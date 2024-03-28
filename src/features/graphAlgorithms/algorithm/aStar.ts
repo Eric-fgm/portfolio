@@ -36,11 +36,11 @@ function* aStar(disabled: UseGraphAlgorithmsProps["disabled"]) {
       h: 0,
       f: 0,
       g: 0,
-    }))
+    })),
   );
   const path: GraphNode[] = [];
   Object.values(disabled).forEach(
-    ({ x, y }) => (metadata[x][y].visited = true)
+    ({ x, y }) => (metadata[x][y].visited = true),
   );
 
   while (stack.length) {

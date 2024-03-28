@@ -1,7 +1,7 @@
 import type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hooks";
 
 export default function* bubbleSort(
-  initialList: UseSortingAlgorithmsProps["initialList"]
+  initialList: UseSortingAlgorithmsProps["initialList"],
 ) {
   const list = [...initialList];
   yield { list, iteration: 0 };

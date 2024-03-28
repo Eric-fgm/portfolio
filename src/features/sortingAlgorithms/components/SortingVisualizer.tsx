@@ -1,13 +1,13 @@
 "use client";
-import { useTranslate } from "@/features/language/providers/translate";
-import { Wrapper } from "@/features/sortingAlgorithms";
+
+import { Card } from "@/components";
 import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
 } from "@/features/sortingAlgorithms/helpers";
 import { useSortingAlgorithms } from "@/features/sortingAlgorithms/hooks";
 import { useSortingSettings } from "@/features/sortingAlgorithms/providers/sortingSettings";
-import { useCanvas } from "@/hooks";
+import { useCanvas, useTranslate } from "@/hooks";
 import { useCallback } from "react";
 
 interface SortingVisualizerProps extends React.ComponentProps<"div"> {}
@@ -43,12 +43,12 @@ const SortingVisualizer: React.FC<SortingVisualizerProps> = ({
           CANVAS_HEIGHT - CANVAS_HEIGHT * (value / 100),
           CANVAS_WIDTH / valueListLength - 1,
           CANVAS_HEIGHT * (value / 100),
-          6
+          6,
         );
         canvasContext.fill();
       }
     },
-    [valueList]
+    [valueList],
   );
 
   const { canvas } = useCanvas({
@@ -58,8 +58,8 @@ const SortingVisualizer: React.FC<SortingVisualizerProps> = ({
   });
 
   return (
-    <Wrapper
-      className={`relative mx-auto max-w-full no-scrollbar overflow-x-auto ${className}`}
+    <Card
+      className={`no-scrollbar relative mx-auto max-w-full overflow-x-auto ${className}`}
       {...props}
     >
       <div className="sticky text-tiny">
@@ -78,7 +78,7 @@ const SortingVisualizer: React.FC<SortingVisualizerProps> = ({
         </div>
       </div>
       {canvas}
-    </Wrapper>
+    </Card>
   );
 };
 

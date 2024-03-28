@@ -3,7 +3,7 @@ import type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hoo
 let iteration = 0;
 
 export default function* quickSort(
-  initialList: UseSortingAlgorithmsProps["initialList"]
+  initialList: UseSortingAlgorithmsProps["initialList"],
 ) {
   iteration = 0;
   const list = [...initialList];
@@ -14,7 +14,7 @@ export default function* quickSort(
 function* quickSortRange(
   list: UseSortingAlgorithmsProps["initialList"],
   l: number,
-  r: number
+  r: number,
 ): Generator<
   { list: UseSortingAlgorithmsProps["initialList"]; iteration: number },
   void,
@@ -31,7 +31,7 @@ function* quickSortRange(
 function* partition(
   list: UseSortingAlgorithmsProps["initialList"],
   l: number,
-  r: number
+  r: number,
 ) {
   let i = l;
   let pivot = list[r].value;

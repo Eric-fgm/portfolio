@@ -4,7 +4,7 @@ import { Button } from "@/components";
 import { fetchGeneratedData } from "@/features/dataGenerator/api";
 import { useExtendedForm } from "@/features/dataGenerator/providers";
 import { DataBox, FieldItem } from "@/features/dataGenerator/components";
-import { useTranslate } from "@/features/language/providers/translate";
+import { useTranslate } from "@/hooks";
 
 const FieldsForm = () => {
   const {
@@ -22,7 +22,7 @@ const FieldsForm = () => {
   const submit = handleSubmit(async ({ fields }) => {
     fields.forEach(
       ({ active }, index) =>
-        active && setValue(`fields.${index}.state`, "loading")
+        active && setValue(`fields.${index}.state`, "loading"),
     );
 
     for (let index = 0; index < fields.length; index++) {
@@ -40,7 +40,7 @@ const FieldsForm = () => {
     <>
       <form onSubmit={submit}>
         <fieldset
-          className="p-4 bg-[#1b3543] rounded-2xl"
+          className="rounded-2xl bg-[#1b3543] p-4"
           disabled={formState.isSubmitting}
         >
           {Boolean(fields.length) ? (

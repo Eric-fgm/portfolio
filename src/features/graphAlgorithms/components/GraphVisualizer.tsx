@@ -10,7 +10,7 @@ import {
 import { useGraphAlgorithms } from "@/features/graphAlgorithms/hooks";
 import { useGraphSettings } from "@/features/graphAlgorithms/providers/graphSettings";
 import { useCanvas, useEventListener } from "@/hooks";
-import { SolidChevronArrow, SolidLocation } from "@/icons";
+import { ChevronRight, LocateFixed } from "lucide-react";
 import React, { useCallback, useRef } from "react";
 
 interface GraphVisualizerProps extends React.ComponentProps<"div"> {}
@@ -46,7 +46,10 @@ const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
       const pageY = "touches" in event ? event.touches[0].pageY : event.pageY;
 
       const x = Math.max(Math.floor((pageX - left) / 25), 0);
-      const y = Math.max(Math.floor((pageY - top) / 25), 0);
+      const y = Math.max(
+        Math.floor((pageY - top - document.documentElement.scrollTop) / 25),
+        0,
+      );
 
       if (
         x === mouseEntity.current.lastVertex?.x &&
@@ -60,14 +63,14 @@ const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
         return disabled;
       });
     },
-    [mouseEntity, changeDisabled]
+    [mouseEntity, changeDisabled],
   );
 
   const handleMouseDown = useCallback(
     (
       event:
         | React.MouseEvent<HTMLCanvasElement>
-        | React.TouchEvent<HTMLCanvasElement>
+        | React.TouchEvent<HTMLCanvasElement>,
     ) => {
       if (!event.currentTarget) return;
       event.currentTarget.addEventListener("mousemove", handleMouseMove);
@@ -79,7 +82,7 @@ const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
 
       mouseEntity.current.lastTimestamp = currentTimestamp;
     },
-    [mouseEntity, handleMouseMove]
+    [mouseEntity, handleMouseMove],
   );
 
   const draw = useCallback(
@@ -90,7 +93,7 @@ const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
       const animation = () => {
         const canvasContext = canvas.getContext("2d");
         if (!canvasContext) return;
-        canvasContext.clearRect(0, 0, 950, 600);
+        canvasContext.clearRect(0, 0, 956, 600);
         let animate = false;
 
         concatedNodes.forEach((currentNode) => {
@@ -110,7 +113,7 @@ const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
             y * 25 + offset,
             size,
             size,
-            0
+            0,
           );
           canvasContext.fill();
         });
@@ -120,12 +123,12 @@ const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
       };
       animation();
     },
-    [nodes, path, disabled]
+    [nodes, path, disabled],
   );
 
   const { canvas, reference } = useCanvas({
     draw,
-    width: 950,
+    width: 956,
     height: 600,
     onMouseDown: handleMouseDown,
     onTouchStart: handleMouseDown,
@@ -142,7 +145,7 @@ const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
 
   return (
     <div
-      className={`relative bg-graphpage-secondary rounded-2xl no-scrollbar overflow-auto ${className}`}
+      className={`no-scrollbar relative overflow-auto rounded-2xl bg-graphpage-secondary ${className}`}
       {...props}
     >
       <Board />
@@ -153,13 +156,13 @@ const GraphVisualizer: React.FC<GraphVisualizerProps> = ({
 
 const Board = React.memo(() => (
   <>
-    <svg width={950} height={600} className="absolute pointer-events-none">
+    <svg width={956} height={600} className="pointer-events-none absolute">
       {[...Array(ROWS_NUM - 1)].map((_, row) => (
         <rect
           key={row}
           x={0}
           y={(row + 1) * 25 - 1}
-          width={950}
+          width={956}
           height={1}
           fill="var(--graphpage-background)"
         ></rect>
@@ -176,16 +179,16 @@ const Board = React.memo(() => (
       ))}
     </svg>
     <div
-      className="absolute flex items-center justify-center w-6 h-6"
+      className="absolute flex h-6 w-6 items-center justify-center"
       style={{ left: START_COL * 25, top: START_ROW * 25 }}
     >
-      <SolidChevronArrow className="absolute" />
+      <ChevronRight width={20} className="absolute" />
     </div>
     <div
-      className="absolute flex items-center justify-center w-6 h-6"
+      className="absolute flex h-6 w-6 items-center justify-center"
       style={{ left: END_COL * 25, top: END_ROW * 25 }}
     >
-      <SolidLocation width={16} className="absolute" />
+      <LocateFixed width={16} className="absolute" />
     </div>
   </>
 ));

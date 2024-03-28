@@ -14,8 +14,8 @@ const Header: React.FC<HeaderProps> = ({
       className={`flex flex-col items-center text-center ${className}`}
       {...props}
     >
-      <h4 className="text-lg text-muted font-medium">{subhead}</h4>
-      <h1 className="mt-1 text-6xl text-white font-semibold">{headline}</h1>
+      <h4 className="text-lg font-medium text-muted">{subhead}</h4>
+      <h1 className="mt-1 text-6xl font-semibold text-white">{headline}</h1>
     </header>
   );
 };

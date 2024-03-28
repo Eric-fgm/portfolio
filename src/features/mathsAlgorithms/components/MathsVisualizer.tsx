@@ -119,7 +119,7 @@ const MathsVisualizer: React.FC<MathsVisualizerProps> = () => {
 
       return value;
     },
-    [points]
+    [points],
   );
 
   const chebyshevInterpolation = useMemo(() => {
@@ -160,8 +160,8 @@ const MathsVisualizer: React.FC<MathsVisualizerProps> = () => {
   }, [points, equation]);
 
   return (
-    <div className="rounded-2xl overflow-hidden">
-      <Mafs zoom={{ min: 0.5, max: 4 }} viewBox={{ x: [-12, 12] }}>
+    <div className="overflow-hidden rounded-2xl">
+      <Mafs zoom={{ min: 0.5, max: 4 }} viewBox={{ x: [-12, 12] }} height={564}>
         <Coordinates.Cartesian subdivisions={10} />
         <Plot.OfX y={equation.f} />
         {algorithms.map((algorithm) => {

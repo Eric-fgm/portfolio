@@ -1,14 +1,8 @@
-import { getDictionary } from "@/features/language";
-import type { Locale } from "@/features/language";
+import { getDictionary } from "@/helpers/dictionaries";
+import type { PageProps } from "@/helpers/types";
 
-interface DynamicPageProps {
-  params: { locale: Locale };
-}
-
-export default async function DynamicPage({
-  params: { locale },
-}: DynamicPageProps) {
+export default async function DynamicPage({ params: { locale } }: PageProps) {
   const t = await getDictionary(locale);
 
-  return <main className="relative w-full h-full bg-dynamicpage"></main>;
+  return <main className="bg-dynamicpage relative h-full w-full"></main>;
 }

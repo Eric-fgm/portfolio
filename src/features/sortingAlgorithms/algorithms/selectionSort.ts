@@ -2,7 +2,7 @@ import { generateRandomValues } from "@/features/sortingAlgorithms/helpers";
 import { UseSortingAlgorithmsProps } from "../hooks";
 
 export default function* selectionSort(
-  initialList: UseSortingAlgorithmsProps["initialList"]
+  initialList: UseSortingAlgorithmsProps["initialList"],
 ) {
   const list = [...initialList];
   yield { list, iteration: 0 };

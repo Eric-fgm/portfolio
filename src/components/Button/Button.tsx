@@ -1,12 +1,19 @@
+import { useTheme } from "@/hooks";
+import type { LucideIcon } from "lucide-react";
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
+  icon?: React.FC<React.SVGProps<SVGSVGElement>> | LucideIcon;
   text?: string;
   iconSize?: number;
   rounded?: boolean;
-  theme?: keyof typeof themeMap;
 }
 
-const themeMap = {
+const variantMap = {
+  dark: {
+    bg: "bg-homepage",
+    textColor: "text-white",
+    iconColor: "text-muted",
+  },
   darkBlue: {
     bg: "bg-sortingpage",
     textColor: "text-white",
@@ -17,6 +24,11 @@ const themeMap = {
     textColor: "text-white",
     iconColor: "text-graph",
   },
+  seaBlue: {
+    bg: "bg-[#132833]",
+    textColor: "text-white",
+    iconColor: "text-muted",
+  },
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -24,12 +36,12 @@ const Button: React.FC<ButtonProps> = ({
   text,
   type = "button",
   className = "",
-  iconSize = 24,
-  theme = "darkBlue",
+  iconSize = 20,
   rounded = false,
   ...props
 }) => {
-  const { bg, iconColor, textColor } = themeMap[theme];
+  const { variant } = useTheme();
+  const { bg, iconColor, textColor } = variantMap[variant];
   return (
     <button
       type={type}

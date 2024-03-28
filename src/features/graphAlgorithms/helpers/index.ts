@@ -4,7 +4,7 @@ import {
   SolidDFS,
   SolidDijkstra,
   SolidGreedyBFS,
-} from "@/icons";
+} from "@/features/graphAlgorithms/icons";
 
 export interface GraphNode {
   x: number;

@@ -1,22 +1,22 @@
 import {
-  SolidBubble,
-  SolidCount,
-  SolidCursor,
-  SolidMerge,
-  SolidQuick,
-} from "@/icons";
+  ChevronsUp,
+  CircleArrowOutDownLeft,
+  CircleFadingPlus,
+  Merge,
+  SquareMousePointer,
+} from "lucide-react";
 
 export type SortTypes = (typeof sortingAlgorithms)[number]["key"];
 
 export const sortingAlgorithms = [
-  { key: "bubbleSort", name: "Bubble Sort", icon: SolidBubble },
-  { key: "selectionSort", name: "Selection Sort", icon: SolidCursor },
-  { key: "mergeSort", name: "Merge Sort", icon: SolidMerge },
-  { key: "quickSort", name: "Quick Sort", icon: SolidQuick },
-  { key: "countingSort", name: "Counting Sort", icon: SolidCount },
+  { key: "bubbleSort", name: "Bubble Sort", icon: CircleArrowOutDownLeft },
+  { key: "selectionSort", name: "Selection Sort", icon: SquareMousePointer },
+  { key: "mergeSort", name: "Merge Sort", icon: Merge },
+  { key: "quickSort", name: "Quick Sort", icon: ChevronsUp },
+  { key: "countingSort", name: "Counting Sort", icon: CircleFadingPlus },
 ] as const;
 
-export const CANVAS_WIDTH = 948;
+export const CANVAS_WIDTH = 924;
 export const CANVAS_HEIGHT = 543;
 export const MAX_VALUE = 100;
 

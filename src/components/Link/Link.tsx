@@ -1,7 +1,8 @@
 "use client";
-import { useLocale } from "@/features/language/hooks";
+
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
+import { useLocale } from "@/hooks";
 
 interface LinkProps extends NextLinkProps {
   children: React.ReactNode;
@@ -29,8 +30,8 @@ const Link: React.FC<LinkProps> = ({
     typeof href === "string"
       ? getLocalizedHref(href)
       : href.pathname != null
-      ? { ...href, pathname: getLocalizedHref(href.pathname) }
-      : href;
+        ? { ...href, pathname: getLocalizedHref(href.pathname) }
+        : href;
 
   const isActive = `/${pathname}` === href;
 

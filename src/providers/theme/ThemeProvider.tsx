@@ -1,38 +1,21 @@
 "use client";
-import { ThemeContext } from "@/providers/theme";
-import { useSelectedLayoutSegments } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
 
-export type ThemeMapKeys = keyof typeof themeMap;
-export type ThemeMapValues = (typeof themeMap)[ThemeMapKeys];
+import { createContext } from "react";
 
-interface ThemeProviderProps {
-  children: React.ReactNode;
+interface ThemeContextProps {
+  variant: "dark" | "darkBlue" | "lightBlue" | "seaBlue";
 }
 
-const themeMap = {
-  primary: "primary",
-  "sorting-algorithms": "darkBlue",
-  "graph-algorithms": "lightBlue",
-} as const;
+export const ThemeContext = createContext<ThemeContextProps>({
+  variant: "dark",
+});
 
-const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [_, slug] = useSelectedLayoutSegments();
-
-  const [isOpened, setIsOpened] = useState<boolean>(false);
-
-  const type = useMemo(() => {
-    setIsOpened(false);
-    return themeMap[slug as ThemeMapKeys] ?? "primary";
-  }, [slug]);
-
-  const toggleNavigation = useCallback(
-    () => setIsOpened((wasOpened) => !wasOpened),
-    []
-  );
-
+const ThemeProvider: React.FC<React.PropsWithChildren & ThemeContextProps> = ({
+  children,
+  variant,
+}) => {
   return (
-    <ThemeContext.Provider value={{ isOpened, type, toggleNavigation }}>
+    <ThemeContext.Provider value={{ variant }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -16,15 +16,15 @@ const GraphAlgorithmsItem: React.FC<GraphAlgorithmsItemProps> = ({
   return (
     <button
       type="button"
-      className={`px-5 flex gap-4 items-center h-16 bg-graphpage-secondary rounded-2xl ${
+      className={`flex h-16 items-center gap-4 rounded-2xl bg-graphpage-secondary px-5 ${
         isActive ? "active-graphpage-accent active-offset-graphpage" : ""
       }`}
       {...props}
     >
       <Icon className="flex-shrink-0 text-muted-graph" />
-      <div className="text-left overflow-hidden">
-        <h4 className="text-md font-medium truncate">{name}</h4>
-        <h5 className="text-xs text-muted-graph font-semibold truncate">
+      <div className="overflow-hidden text-left">
+        <h4 className="truncate text-md font-medium">{name}</h4>
+        <h5 className="truncate text-xs font-semibold text-muted-graph">
           {caption}
         </h5>
       </div>

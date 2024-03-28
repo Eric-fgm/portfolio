@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "title": "Personal Portfolio (Poland)"
+  },
+  "navigation": {
+    "sorting": "Sorting",
+    "graphs": "Graphs",
+    "generator": "Data Generator",
+    "maths": "Matematics",
+    "dynamic": "Dynamic",
+    "physics": "Physics",
+    "caseStudies": "Case Studies"
+  },
+  "home": {
+    "title": "Web Developer<br/>Portfolio",
+    "subtitle": "Visualizer & Interactive"
+  },
+  "sortingPage": {
+    "title": "Sorting Algorithms",
+    "subtitle": "Visualizer",
+    "algorithms": {
+      "bubbleSort": {
+        "metadata": {
+          "name": "SLOW",
+          "className": "text-red"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(n<sup>2</sup>)<br/>Space - O(1)</p>"
+      },
+      "selectionSort": {
+        "metadata": {
+          "name": "SLOW",
+          "className": "text-red"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(n<sup>2</sup>)<br/>Space - O(1)</p>"
+      },
+      "mergeSort": {
+        "metadata": {
+          "name": "FAST",
+          "className": "text-green"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(n<sup>2</sup>)<br/>Space - O(1)</p>"
+      },
+      "quickSort": {
+        "metadata": {
+          "name": "FAST",
+          "className": "text-green"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(n<sup>2</sup>)<br/>Space - O(1)</p>"
+      },
+      "countingSort": {
+        "metadata": {
+          "name": "SPECIAL",
+          "className": "text-yellow"
+        },
+        "description": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(n<sup>2</sup>)<br/>Space - O(1)</p>"
+      }
+    },
+    "settings": {
+      "title": "SETTINGS",
+      "size": "Size",
+      "speed": "Speed",
+      "iteration": "Iteration",
+      "restart": "Restart"
+    },
+    "description": {
+      "title": "DESCRIPTION",
+      "content": "<p>Modi reiciendis illo velit similique blanditiis cumque architecto pariatur, enim fuga molestias repellat ducimus voluptates<br/>Complexity - O(n<sup>2</sup>)<br/>Space - O(1)</p>"
+    }
+  },
+  "graphPage": {
+    "title": "Graphs Algorithms",
+    "subtitle": "Visuzalizer & Interactive",
+    "generateMaze": "Generate Maze",
+    "clearWall": "Clear Wall",
+    "algorithms": {
+      "breadthFirstSearch": {
+        "caption": "Not Weighted & Short Path"
+      },
+      "depthFirstSearch": {
+        "caption": "Not Weighted & Not Short Path"
+      },
+      "aStar": {
+        "caption": "Not Weighted & Short Pat"
+      },
+      "greedyBestFirstSearch": {
+        "caption": "Not Weighted & Short Path"
+      },
+      "dijkstra": {
+        "caption": "Weighted & Short Path"
+      }
+    }
+  },
+  "dataGeneratorPage": {
+    "title": "Data Generator",
+    "subtitle": "Visuzalizer",
+    "controlPanel": {
+      "title": "NEW FIELD",
+      "field": {
+        "label": "Name",
+        "placeholder": "Required"
+      },
+      "submit": "Add"
+    },
+    "topBar": {
+      "save": "Save"
+    },
+    "formFields": {
+      "placeholder": {
+        "top": "No fields selected.",
+        "bottom": "Add a field in the sidebar."
+      }
+    },
+    "dataBox": {
+      "use": "Use",
+      "more": "More",
+      "placeholder": "Provide a formula, you can use the generated data in the form {<parameter-name>}"
+    }
+  },
+  "mathsPage": {
+    "title": "Mathematics",
+    "subtitle": "Visualizer & Interactive",
+    "interpolationNodes": "INTERPOLATION NODES",
+    "points": "Points",
+    "add": "Add",
+    "algorithms": [
+      {
+        "key": "lagrange",
+        "name": "Langrange Polynomial",
+        "type": { "name": "INTERPOLATION", "className": "text-green" }
+      },
+      {
+        "key": "lagrange-matrix",
+        "name": "Langrange Polynomial (Matrix)",
+        "type": { "name": "INTERPOLATION", "className": "text-blue" }
+      },
+      {
+        "key": "spline",
+        "name": "Spline Functions",
+        "type": { "name": "INTERPOLATION", "className": "text-red" }
+      },
+      {
+        "key": "chebyshev",
+        "name": "Chebyshev Nodes",
+        "type": { "name": "APPROXIMATION", "className": "text-red" }
+      }
+    ]
+  }
+}

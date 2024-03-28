@@ -2,15 +2,9 @@
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./src/features/language/dictionaries/*.json",
-  ],
+  // json, because of color in dictionaries ([To Do]: remove colors from dictionaries)
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./public/dictionaries/*"],
   theme: {
-    container: { center: true },
-    fontFamily: {
-      sans: ["Inter", "sans-serif"],
-    },
     backgroundColor: {
       white: "#fff",
       homepage: "var(--homepage-background)",
@@ -42,12 +36,6 @@ module.exports = {
       graph: "var(--graphpage-secondary-background)",
     },
     extend: {
-      keyframes: {
-        wiggle: {
-          "0%, 100%": { transform: "rotate(-3deg)" },
-          "50%": { transform: "rotate(3deg)" },
-        },
-      },
       boxShadow: {
         "end-over-graph":
           "-2px 0 8px 6px var(--graphpage-secondary-background)",
@@ -89,7 +77,7 @@ module.exports = {
             },
           }),
         },
-        { values: theme("backgroundColor") }
+        { values: theme("backgroundColor") },
       ),
         matchUtilities(
           {
@@ -97,7 +85,7 @@ module.exports = {
               animationDelay: value,
             }),
           },
-          { values: theme("transitionDelay") }
+          { values: theme("transitionDelay") },
         ),
         matchUtilities(
           {
@@ -110,7 +98,7 @@ module.exports = {
               background: `linear-gradient(90deg, transparent 0, ${value} 9px)`,
             }),
           },
-          { values: theme("backgroundColor") }
+          { values: theme("backgroundColor") },
         );
     }),
   ],

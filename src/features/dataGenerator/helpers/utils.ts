@@ -17,7 +17,7 @@ async function* streamAsyncIterable<T>(stream: ReadableStream<T>) {
 
 export const getResponse = async (
   payload: string,
-  onSuccess: (event: string[]) => void
+  onSuccess: (event: string[]) => void,
 ) => {
   const response = await fetch(
     "https://chat.openai.com/backend-api/conversation",
@@ -47,7 +47,7 @@ export const getResponse = async (
         Accept: "text/event-stream",
         "Content-Type": "application/json",
       },
-    }
+    },
   );
 
   if (!response.body || !response.ok) throw new Error(response.statusText);
@@ -57,7 +57,7 @@ export const getResponse = async (
   const parser = createParser((event) => {
     if (event.type === "event" && event.data === "[DONE]") {
       const result = JSON.parse(
-        buildMessage.split("```")?.[1]?.split("json\n")?.[1] ?? "[]"
+        buildMessage.split("```")?.[1]?.split("json\n")?.[1] ?? "[]",
       );
 
       onSuccess(recursiveParse(result));
@@ -82,7 +82,7 @@ const recursiveParse = (data: any, deep = 0): string[] => {
     if (data.some((val) => typeof val === "object")) {
       return recursiveParse(
         data.map((obj) => Object.values(obj)[0]),
-        deep + 1
+        deep + 1,
       );
     } else {
       return data;
@@ -98,7 +98,7 @@ const toObjectArray = (data: DataInput) =>
   data.reduce<Record<string, string>[]>((acc, { name, values }) => {
     !acc.length && values.forEach(() => acc.push({}));
     values.forEach(
-      (value, index) => (acc[index] = { ...acc[index], [name]: value })
+      (value, index) => (acc[index] = { ...acc[index], [name]: value }),
     );
     return acc;
   }, []);

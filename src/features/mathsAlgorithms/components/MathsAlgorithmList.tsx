@@ -1,8 +1,8 @@
 "use client";
-import { useTranslate } from "@/features/language/providers/translate";
 import MathsAlgorithmItem from "@/features/mathsAlgorithms/components/MathsAlgorithmItem";
 import { icons } from "@/features/mathsAlgorithms/helpers";
 import useMathsSettings from "../hooks/useMathsSettings";
+import { useTranslate } from "@/hooks";
 
 interface MathsAlgorithmListProps extends React.ComponentProps<"div"> {}
 
@@ -15,7 +15,7 @@ const MathsAlgorithmList: React.FC<MathsAlgorithmListProps> = ({
 
   return (
     <div className={`relative flex justify-center ${className}`} {...props}>
-      <ul className="-mx-4 px-4 py-1 flex gap-4 no-scrollbar overflow-x-auto">
+      <ul className="no-scrollbar -mx-4 flex gap-4 overflow-x-auto px-4 py-1">
         {t.algorithms.map(({ key, name, type }) => (
           <MathsAlgorithmItem
             key={key}
@@ -29,7 +29,7 @@ const MathsAlgorithmList: React.FC<MathsAlgorithmListProps> = ({
               setAlgorithms(
                 include
                   ? algorithms.filter((algorithm) => algorithm !== key)
-                  : [...algorithms, key as any]
+                  : [...algorithms, key as any],
               );
             }}
           />

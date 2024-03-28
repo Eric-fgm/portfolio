@@ -2,7 +2,7 @@ import { MAX_VALUE } from "@/features/sortingAlgorithms/helpers";
 import type { UseSortingAlgorithmsProps } from "@/features/sortingAlgorithms/hooks";
 
 export default function* countingSort(
-  initialList: UseSortingAlgorithmsProps["initialList"]
+  initialList: UseSortingAlgorithmsProps["initialList"],
 ) {
   let iteration = 0;
   const list = [...initialList];
