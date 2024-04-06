@@ -1,6 +1,6 @@
 "use client";
-import MathsAlgorithmItem from "@/features/mathsAlgorithms/components/MathsAlgorithmItem";
-import { icons } from "@/features/mathsAlgorithms/helpers";
+import MathsAlgorithmItem from "@/features/mathsAlgorithms/interpolation/components/MathsAlgorithmItem";
+import { icons } from "@/features/mathsAlgorithms/interpolation/helpers";
 import useMathsSettings from "../hooks/useMathsSettings";
 import { useTranslate } from "@/hooks";
 
@@ -10,7 +10,7 @@ const MathsAlgorithmList: React.FC<MathsAlgorithmListProps> = ({
   className = "",
   ...props
 }) => {
-  const t = useTranslate("mathsPage");
+  const t = useTranslate("mathsPage").interpolation;
   const { algorithms, setAlgorithms } = useMathsSettings();
 
   return (

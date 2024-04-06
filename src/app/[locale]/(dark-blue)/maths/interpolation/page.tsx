@@ -12,7 +12,7 @@ import type { PageProps } from "@/helpers/types";
 export default async function MathsAlgorithmsPage({
   params: { locale },
 }: PageProps) {
-  const t = (await getDictionary(locale)).mathsPage;
+  const t = (await getDictionary(locale)).mathsPage.interpolation;
 
   return (
     <MathsSettingsProvider>

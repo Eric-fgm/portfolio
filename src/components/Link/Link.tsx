@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
-import { useSelectedLayoutSegment } from "next/navigation";
+import { useSelectedLayoutSegment, usePathname } from "next/navigation";
 import { useLocale } from "@/hooks";
 
 interface LinkProps extends NextLinkProps {
@@ -9,6 +9,7 @@ interface LinkProps extends NextLinkProps {
   className?: string;
   activeClassName?: string;
   unActiveClassName?: string;
+  exact?: boolean;
 }
 
 const Link: React.FC<LinkProps> = ({
@@ -17,10 +18,12 @@ const Link: React.FC<LinkProps> = ({
   className = "",
   activeClassName = "",
   unActiveClassName = "",
+  exact = true,
   ...props
 }) => {
   const locale = useLocale();
-  const pathname = useSelectedLayoutSegment();
+  const selectedLayoutSegment = useSelectedLayoutSegment();
+  const pathname = usePathname();
 
   const getLocalizedHref = (originalHref: string) => {
     return originalHref.replace(/^\//, "/" + locale.code + "/");
@@ -33,7 +36,9 @@ const Link: React.FC<LinkProps> = ({
         ? { ...href, pathname: getLocalizedHref(href.pathname) }
         : href;
 
-  const isActive = `/${pathname}` === href;
+  const isActive = exact
+    ? localizedHref === pathname
+    : `/${selectedLayoutSegment}` === href;
 
   return (
     <NextLink

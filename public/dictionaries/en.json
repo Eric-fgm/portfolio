@@ -9,7 +9,9 @@
     "maths": "Matematics",
     "dynamic": "Dynamic",
     "physics": "Physics",
-    "caseStudies": "Case Studies"
+    "caseStudies": "Case Studies",
+    "interpolation": "Interpolation",
+    "quadrature": "Quadrature"
   },
   "home": {
     "title": "Web Developer<br/>Portfolio",
@@ -117,32 +119,53 @@
     }
   },
   "mathsPage": {
-    "title": "Mathematics",
-    "subtitle": "Visualizer & Interactive",
-    "interpolationNodes": "INTERPOLATION NODES",
-    "points": "Points",
-    "add": "Add",
-    "algorithms": [
-      {
-        "key": "lagrange",
-        "name": "Langrange Polynomial",
-        "type": { "name": "INTERPOLATION", "className": "text-green" }
-      },
-      {
-        "key": "lagrange-matrix",
-        "name": "Langrange Polynomial (Matrix)",
-        "type": { "name": "INTERPOLATION", "className": "text-blue" }
-      },
-      {
-        "key": "spline",
-        "name": "Spline Functions",
-        "type": { "name": "INTERPOLATION", "className": "text-red" }
-      },
-      {
-        "key": "chebyshev",
-        "name": "Chebyshev Nodes",
-        "type": { "name": "APPROXIMATION", "className": "text-red" }
-      }
-    ]
+    "quadrature": {
+      "title": "Quadrature",
+      "subtitle": "Visualizer & Interactive",
+      "panelTitle": "SETTINGS",
+      "boundary": "Boundary",
+      "patition": "Partition",
+      "algorithms": [
+        {
+          "key": "rectangle",
+          "name": "Rectangle Method",
+          "type": { "name": "WEAK", "className": "text-red" }
+        },
+        {
+          "key": "trapeze",
+          "name": "Trapeze Method",
+          "type": { "name": "WEAK", "className": "text-red" }
+        }
+      ]
+    },
+    "interpolation": {
+      "title": "Interpolation",
+      "subtitle": "Visualizer & Interactive",
+      "interpolationNodes": "INTERPOLATION NODES",
+      "points": "Points",
+      "add": "Add",
+      "algorithms": [
+        {
+          "key": "lagrange",
+          "name": "Langrange Polynomial",
+          "type": { "name": "INTERPOLATION", "className": "text-green" }
+        },
+        {
+          "key": "lagrange-matrix",
+          "name": "Langrange Polynomial (Matrix)",
+          "type": { "name": "INTERPOLATION", "className": "text-blue" }
+        },
+        {
+          "key": "spline",
+          "name": "Spline Functions",
+          "type": { "name": "INTERPOLATION", "className": "text-red" }
+        },
+        {
+          "key": "chebyshev",
+          "name": "Chebyshev Nodes",
+          "type": { "name": "APPROXIMATION", "className": "text-red" }
+        }
+      ]
+    }
   }
 }

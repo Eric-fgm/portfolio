@@ -1,7 +1,13 @@
 "use client";
 
 import NavLink from "@/features/layouts/components/NavLink";
-import { HamburgerMenu, Logo, LanguageSwitcher } from "@/components";
+import {
+  HamburgerMenu,
+  Logo,
+  LanguageSwitcher,
+  Popover,
+  Link,
+} from "@/components";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowDownNarrowWide, Database, Sigma, Waypoints } from "lucide-react";
@@ -29,9 +35,9 @@ const Navigation: React.FC<NavigationProps> = () => {
       />
       <Logo />
       <div
-        className={`absolute left-0 top-0 -z-10 w-full overflow-hidden pt-18 backdrop-blur-2xl transition-[height] duration-200 md:h-full md:pt-0 md:transition-none ${isOpen ? "h-screen" : "h-full"}`}
+        className={`absolute left-0 top-0 -z-10 w-full overflow-hidden pt-18 backdrop-blur-2xl transition-[height] duration-200 md:h-full md:overflow-visible md:pt-0 md:transition-none ${isOpen ? "h-screen" : "h-full"}`}
       >
-        <div className="no-scrollbar flex h-full flex-col items-center gap-x-12 gap-y-16 overflow-auto py-16 md:flex-row md:justify-center md:py-0">
+        <div className="no-scrollbar flex h-full flex-col items-center gap-x-12 gap-y-16 overflow-auto py-16 md:flex-row md:justify-center md:overflow-visible md:py-0">
           <NavLink
             icon={ArrowDownNarrowWide}
             text={t.sorting}
@@ -39,7 +45,38 @@ const Navigation: React.FC<NavigationProps> = () => {
           />
           <NavLink icon={Waypoints} text={t.graphs} href="/graph-algorithms" />
           <NavLink icon={Database} text={t.generator} href="/data-generator" />
-          <NavLink icon={Sigma} text={t.maths} href="/maths-algorithms" />
+          <Popover
+            button={
+              <NavLink
+                icon={Sigma}
+                text={t.maths}
+                href="/maths"
+                exact={false}
+                disabled
+              />
+            }
+          >
+            {({ close }) => (
+              <>
+                <Link
+                  href="/maths/interpolation"
+                  className="px-4 py-2 text-sm"
+                  unActiveClassName="opacity-60 hover:opacity-100"
+                  onClick={() => close()}
+                >
+                  {t.interpolation}
+                </Link>
+                <Link
+                  href="/maths/quadrature"
+                  className="px-4 py-2 text-sm"
+                  unActiveClassName="opacity-60 hover:opacity-100"
+                  onClick={() => close()}
+                >
+                  {t.quadrature}
+                </Link>
+              </>
+            )}
+          </Popover>
           {/* <NavLink
         icon={}
         text={t.dynamic}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { MathsSettingsContext } from "@/features/mathsAlgorithms/providers/MathsSettingsProvider";
+import { MathsSettingsContext } from "@/features/mathsAlgorithms/interpolation/providers/MathsSettingsProvider";
 
 const useMathsSettings = () => useContext(MathsSettingsContext);
 

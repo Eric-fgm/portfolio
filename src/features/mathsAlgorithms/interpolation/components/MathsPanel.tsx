@@ -9,22 +9,12 @@ import { useTranslate } from "@/hooks";
 interface MathsPanelProps {}
 
 const MathsPanel: React.FC<MathsPanelProps> = () => {
-  const t = useTranslate("mathsPage");
+  const t = useTranslate("mathsPage").interpolation;
   const { pointFields, appendPoint, removePoint, registerField } =
     useMathsSettings();
 
   return (
     <div className="flex flex-col gap-4">
-      {/* <Wrapper title="Funkcja" className="shadow-2xl">
-        <div className="flex flex-col gap-3">
-          <Button
-            icon={}
-            className="px-1.5 h-9"
-            onClick={appendPoint}
-            text="Dodaj"
-          />
-        </div>
-      </Wrapper> */}
       <Card title={t.interpolationNodes} className="shadow-2xl xl:shadow-none">
         <div className="flex flex-col gap-3">
           <FormField name={t.points} atTop>
@@ -50,7 +40,6 @@ const MathsPanel: React.FC<MathsPanelProps> = () => {
             </div>
           </FormField>
           <button type="submit" className="hidden"></button>
-
           <Button
             icon={CirclePlus}
             className="h-9 px-2"

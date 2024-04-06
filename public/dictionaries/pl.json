@@ -9,7 +9,9 @@
     "maths": "Matematyka",
     "dynamic": "Dynamiczne",
     "physics": "Fizyka",
-    "caseStudies": "Projekty"
+    "caseStudies": "Projekty",
+    "interpolation": "Interpolacja",
+    "quadrature": "Kwadratura"
   },
   "home": {
     "title": "Web Developer<br/>Portfolio",
@@ -117,32 +119,53 @@
     }
   },
   "mathsPage": {
-    "title": "Matematyka",
-    "subtitle": "Wizualizacja & Interakcja",
-    "interpolationNodes": "WĘZŁY INTERPOLACJI",
-    "points": "Punkty",
-    "add": "Dodaj",
-    "algorithms": [
-      {
-        "key": "lagrange",
-        "name": "Wielomian Langrange’a",
-        "type": { "name": "INTERPOLACJA", "className": "text-green" }
-      },
-      {
-        "key": "lagrange-matrix",
-        "name": "Wielomian Langrange’a (Macierz)",
-        "type": { "name": "INTERPOLACJA", "className": "text-blue" }
-      },
-      {
-        "key": "spline",
-        "name": "Funkcje Sklejające",
-        "type": { "name": "INTERPOLACJA", "className": "text-red" }
-      },
-      {
-        "key": "chebyshev",
-        "name": "Węzły Czebyszewa",
-        "type": { "name": "INTERPOLACJA", "className": "text-yellow" }
-      }
-    ]
+    "quadrature": {
+      "title": "Kwadratura",
+      "subtitle": "Wizualizacja & Interakcja",
+      "panelTitle": "USTAWIENIA",
+      "boundary": "Granica",
+      "patition": "Podział",
+      "algorithms": [
+        {
+          "key": "rectangle",
+          "name": "Metoda prostokątów",
+          "type": { "name": "SŁABA", "className": "text-red" }
+        },
+        {
+          "key": "trapeze",
+          "name": "Metoda trapezów",
+          "type": { "name": "SŁABA", "className": "text-red" }
+        }
+      ]
+    },
+    "interpolation": {
+      "title": "Interpolacja",
+      "subtitle": "Wizualizacja & Interakcja",
+      "interpolationNodes": "WĘZŁY INTERPOLACJI",
+      "points": "Punkty",
+      "add": "Dodaj",
+      "algorithms": [
+        {
+          "key": "lagrange",
+          "name": "Wielomian Langrange’a",
+          "type": { "name": "INTERPOLACJA", "className": "text-green" }
+        },
+        {
+          "key": "lagrange-matrix",
+          "name": "Wielomian Langrange’a (Macierz)",
+          "type": { "name": "INTERPOLACJA", "className": "text-blue" }
+        },
+        {
+          "key": "spline",
+          "name": "Funkcje Sklejające",
+          "type": { "name": "INTERPOLACJA", "className": "text-red" }
+        },
+        {
+          "key": "chebyshev",
+          "name": "Węzły Czebyszewa",
+          "type": { "name": "INTERPOLACJA", "className": "text-yellow" }
+        }
+      ]
+    }
   }
 }

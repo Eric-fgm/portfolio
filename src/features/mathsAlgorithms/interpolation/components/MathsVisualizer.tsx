@@ -1,10 +1,9 @@
 "use client";
 
 import { Mafs, Coordinates, Plot } from "mafs";
-import "mafs/core.css";
 import { useCallback, useMemo } from "react";
-import { createMatrix } from "@/features/mathsAlgorithms/helpers";
-import useMathsSettings from "@/features/mathsAlgorithms/hooks/useMathsSettings";
+import { createMatrix } from "@/features/mathsAlgorithms/interpolation/helpers";
+import useMathsSettings from "@/features/mathsAlgorithms/interpolation/hooks/useMathsSettings";
 
 interface MathsVisualizerProps {}
 
