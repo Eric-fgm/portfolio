@@ -74,6 +74,14 @@ const Navigation: React.FC<NavigationProps> = () => {
                 >
                   {t.quadrature}
                 </Link>
+                <Link
+                  href="/maths/images"
+                  className="px-4 py-2 text-sm"
+                  unActiveClassName="opacity-60 hover:opacity-100"
+                  onClick={() => close()}
+                >
+                  Zdjęcia
+                </Link>
               </>
             )}
           </Popover>
