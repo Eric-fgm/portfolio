@@ -1,16 +1,16 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import batImageProps from "../../../../public/images/bat.png";
-import universityImageProps from "../../../../public/images/40484university.png";
-import flowerImageProps from "../../../../public/images/dsa.webp";
-import floorImageProps from "../../../../public/images/floor.png";
-import dogImageProps from "../../../../public/images/g-d.png";
-import familyImageProps from "../../../../public/images/img.jpg";
-import tableImageProps from "../../../../public/images/img.png";
-import monaImageProps from "../../../../public/images/mona-lisa.jpg";
-import canyonImageProps from "../../../../public/images/t.jpg";
-import womenImageProps from "../../../../public/images/test.png";
+import batImageProps from "/public/images/bat.png";
+import universityImageProps from "/public/images/40484university.png";
+import flowerImageProps from "/public/images/dsa.webp";
+import floorImageProps from "/public/images/floor.png";
+import dogImageProps from "/public/images/g-d.png";
+import familyImageProps from "/public/images/img.jpg";
+import tableImageProps from "/public/images/img.png";
+import monaImageProps from "/public/images/mona-lisa.jpg";
+import canyonImageProps from "/public/images/t.jpg";
+import womenImageProps from "/public/images/test.png";
 
 export interface ImageSettingsProps {
   algorithm: "chromaticAdaptation" | "histogramEqualization" | "adaptiveGamma";

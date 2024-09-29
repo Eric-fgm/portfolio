@@ -4,20 +4,19 @@ import {
   ImageSettingsProvider,
   ImageAlgorithmList,
 } from "@/features/imageAlgorithms";
-import { ContentLayout } from "@/features/layouts";
 import { getDictionary } from "@/helpers/dictionaries";
 import type { PageProps } from "@/helpers/types";
 
 export default async function ImageAlgorithmsPage({
   params: { locale },
 }: PageProps) {
-  //   const t = (await getDictionary(locale)).mathsPage.interpolation;
+  const t = (await getDictionary(locale)).mathsPage.images;
 
   return (
     <>
       <Header
-        subhead={"Wizualizacja & interakcja"}
-        headline={"Kolorystyka zdjęć"}
+        subhead={t.subtitle}
+        headline={t.title}
         className="slide-top-in py-8"
       />
       <ImageSettingsProvider>

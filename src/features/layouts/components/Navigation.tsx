@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 import { ArrowDownNarrowWide, Database, Sigma, Waypoints } from "lucide-react";
 import { useTranslate } from "@/hooks";
 
-interface NavigationProps {}
+interface NavigationProps { }
 
 const Navigation: React.FC<NavigationProps> = () => {
   const pathname = usePathname();
@@ -80,7 +80,7 @@ const Navigation: React.FC<NavigationProps> = () => {
                   unActiveClassName="opacity-60 hover:opacity-100"
                   onClick={() => close()}
                 >
-                  Zdjęcia
+                  {t.images}
                 </Link>
               </>
             )}

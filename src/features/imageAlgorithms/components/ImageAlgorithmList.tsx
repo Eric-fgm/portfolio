@@ -1,23 +1,23 @@
 "use client";
 import { useTranslate } from "@/hooks";
 import { useImageSettings } from "@/features/imageAlgorithms/providers/ImageSettingsProvider";
-import { ChevronsUpDown, Image } from "lucide-react";
-import ImageAlgorithmItem from "./ImageAlgorithmItem";
+import { ChevronsUpDown, ScanEye, Shapes, BarChart } from "lucide-react";
+import ImageAlgorithmItem from "@/features/imageAlgorithms/components/ImageAlgorithmItem";
 
 interface ImageAlgorithmListProps extends React.ComponentProps<"div"> { }
-
-const algorithms = [
-  { key: "chromaticAdaptation", name: "Adaptacja Chromatyczna", icon: Image },
-  { key: "adaptiveGamma", name: "Korekcja Gamma", icon: Image },
-  { key: "histogramEqualization", name: "Histogram Equalization", icon: Image },
-] as const;
 
 const ImageAlgorithmList: React.FC<ImageAlgorithmListProps> = ({
   className = "",
   ...props
 }) => {
-  // const t = useTranslate("mathsPage").interpolation;
+  const t = useTranslate("mathsPage").images;
   const { algorithm, setAlgorithm, setImageSrc, images } = useImageSettings();
+
+  const iconsMap = {
+    "chromaticAdaptation": ScanEye,
+    "adaptiveGamma": Shapes,
+    "histogramEqualization": BarChart,
+  }
 
   return (
     <div
@@ -25,13 +25,13 @@ const ImageAlgorithmList: React.FC<ImageAlgorithmListProps> = ({
       {...props}
     >
       <ul className="no-scrollbar -mx-4 flex gap-4 overflow-x-auto px-4 py-1">
-        {algorithms.map(({ key, name, icon }) => (
+        {t.algorithms.map(({ key, name }) => (
           <ImageAlgorithmItem
             key={key}
-            icon={icon}
+            icon={iconsMap[key as never]}
             name={name}
             isActive={algorithm === key}
-            onClick={() => setAlgorithm(key)}
+            onClick={() => setAlgorithm(key as never)}
           />
         ))}
       </ul>

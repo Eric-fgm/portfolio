@@ -11,7 +11,8 @@
     "physics": "Physics",
     "caseStudies": "Case Studies",
     "interpolation": "Interpolation",
-    "quadrature": "Quadrature"
+    "quadrature": "Quadrature",
+    "images": "Images"
   },
   "home": {
     "title": "Web Developer<br/>Portfolio",
@@ -129,12 +130,18 @@
         {
           "key": "rectangle",
           "name": "Rectangle Method",
-          "type": { "name": "WEAK", "className": "text-red" }
+          "type": {
+            "name": "WEAK",
+            "className": "text-red"
+          }
         },
         {
           "key": "trapeze",
           "name": "Trapeze Method",
-          "type": { "name": "WEAK", "className": "text-red" }
+          "type": {
+            "name": "WEAK",
+            "className": "text-red"
+          }
         }
       ]
     },
@@ -148,22 +155,52 @@
         {
           "key": "lagrange",
           "name": "Langrange Polynomial",
-          "type": { "name": "INTERPOLATION", "className": "text-green" }
+          "type": {
+            "name": "INTERPOLATION",
+            "className": "text-green"
+          }
         },
         {
           "key": "lagrange-matrix",
           "name": "Langrange Polynomial (Matrix)",
-          "type": { "name": "INTERPOLATION", "className": "text-blue" }
+          "type": {
+            "name": "INTERPOLATION",
+            "className": "text-blue"
+          }
         },
         {
           "key": "spline",
           "name": "Spline Functions",
-          "type": { "name": "INTERPOLATION", "className": "text-red" }
+          "type": {
+            "name": "INTERPOLATION",
+            "className": "text-red"
+          }
         },
         {
           "key": "chebyshev",
           "name": "Chebyshev Nodes",
-          "type": { "name": "APPROXIMATION", "className": "text-red" }
+          "type": {
+            "name": "APPROXIMATION",
+            "className": "text-red"
+          }
+        }
+      ]
+    },
+    "images": {
+      "title": "Colors Of Photo",
+      "subtitle": "Visualization & Interaction",
+      "algorithms": [
+        {
+          "key": "chromaticAdaptation",
+          "name": "Chromatic Adaptation"
+        },
+        {
+          "key": "adaptiveGamma",
+          "name": "Gamma Correction"
+        },
+        {
+          "key": "histogramEqualization",
+          "name": "Equalization Histogram"
         }
       ]
     }

@@ -11,7 +11,8 @@
     "physics": "Fizyka",
     "caseStudies": "Projekty",
     "interpolation": "Interpolacja",
-    "quadrature": "Kwadratura"
+    "quadrature": "Kwadratura",
+    "images": "Zdjęcia"
   },
   "home": {
     "title": "Web Developer<br/>Portfolio",
@@ -129,12 +130,18 @@
         {
           "key": "rectangle",
           "name": "Metoda prostokątów",
-          "type": { "name": "SŁABA", "className": "text-red" }
+          "type": {
+            "name": "SŁABA",
+            "className": "text-red"
+          }
         },
         {
           "key": "trapeze",
           "name": "Metoda trapezów",
-          "type": { "name": "SŁABA", "className": "text-red" }
+          "type": {
+            "name": "SŁABA",
+            "className": "text-red"
+          }
         }
       ]
     },
@@ -148,22 +155,52 @@
         {
           "key": "lagrange",
           "name": "Wielomian Langrange’a",
-          "type": { "name": "INTERPOLACJA", "className": "text-green" }
+          "type": {
+            "name": "INTERPOLACJA",
+            "className": "text-green"
+          }
         },
         {
           "key": "lagrange-matrix",
           "name": "Wielomian Langrange’a (Macierz)",
-          "type": { "name": "INTERPOLACJA", "className": "text-blue" }
+          "type": {
+            "name": "INTERPOLACJA",
+            "className": "text-blue"
+          }
         },
         {
           "key": "spline",
           "name": "Funkcje Sklejające",
-          "type": { "name": "INTERPOLACJA", "className": "text-red" }
+          "type": {
+            "name": "INTERPOLACJA",
+            "className": "text-red"
+          }
         },
         {
           "key": "chebyshev",
           "name": "Węzły Czebyszewa",
-          "type": { "name": "INTERPOLACJA", "className": "text-yellow" }
+          "type": {
+            "name": "INTERPOLACJA",
+            "className": "text-yellow"
+          }
+        }
+      ]
+    },
+    "images": {
+      "title": "Kolorystyka Zdjęć",
+      "subtitle": "Wizualizacja & Interakcja",
+      "algorithms": [
+        {
+          "key": "chromaticAdaptation",
+          "name": "Adaptacja Chromatyczna"
+        },
+        {
+          "key": "adaptiveGamma",
+          "name": "Korekcja Gamma"
+        },
+        {
+          "key": "histogramEqualization",
+          "name": "Histogram Equalization"
         }
       ]
     }

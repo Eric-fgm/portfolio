@@ -6,8 +6,8 @@ import {
   gammaCorrectionAlgorithm,
   histogramEqualisationAlgorithm,
   chromaticAdaptationAlgorithm,
-} from "../algorithms";
-import { useImageSettings } from "../providers/ImageSettingsProvider";
+} from "@/features/imageAlgorithms/algorithms";
+import { useImageSettings } from "@/features/imageAlgorithms/providers/ImageSettingsProvider";
 
 const algorithmsMap = {
   chromaticAdaptation: chromaticAdaptationAlgorithm,
