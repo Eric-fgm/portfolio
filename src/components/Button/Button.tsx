@@ -1,18 +1,21 @@
+import { Link } from "@/components";
 import { useTheme } from "@/hooks";
 import type { LucideIcon } from "lucide-react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  href?: string;
   icon?: React.FC<React.SVGProps<SVGSVGElement>> | LucideIcon;
   text?: string;
   iconSize?: number;
   rounded?: boolean;
+  blank?: boolean;
 }
 
 const variantMap = {
   dark: {
-    bg: "bg-homepage",
-    textColor: "text-white",
-    iconColor: "text-muted",
+    bg: "bg-homepage-secondary",
+    textColor: "text-light",
+    iconColor: "text-light",
   },
   darkBlue: {
     bg: "bg-sortingpage",
@@ -38,16 +41,20 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   iconSize = 20,
   rounded = false,
+  blank = false,
+  href,
   ...props
 }) => {
   const { variant } = useTheme();
   const { bg, iconColor, textColor } = variantMap[variant];
+  const Tag = (href ? Link : "button") as any;
   return (
-    <button
+    <Tag
       type={type}
       className={`flex items-center justify-center gap-2 ${
         rounded ? "rounded-full" : "rounded-lg"
-      } ${bg} ${className}`}
+      } ${blank ? "" : bg} ${className}`}
+      href={href}
       {...props}
     >
       {Icon && (
@@ -56,7 +63,7 @@ const Button: React.FC<ButtonProps> = ({
       {text && (
         <span className={`text-rg font-medium ${textColor}`}>{text}</span>
       )}
-    </button>
+    </Tag>
   );
 };
 

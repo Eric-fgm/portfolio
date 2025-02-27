@@ -10,6 +10,8 @@ interface LinkProps extends NextLinkProps {
   activeClassName?: string;
   unActiveClassName?: string;
   exact?: boolean;
+  rel?: string;
+  target?: string;
 }
 
 const Link: React.FC<LinkProps> = ({

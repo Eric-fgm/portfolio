@@ -3,6 +3,7 @@ body {
   color: #fff;
   background-color: var(--homepage-background);
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 #app {

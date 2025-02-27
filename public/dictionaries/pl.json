@@ -9,14 +9,48 @@
     "maths": "Matematyka",
     "dynamic": "Dynamiczne",
     "physics": "Fizyka",
-    "caseStudies": "Projekty",
+    "caseStudy": "Realizacje",
     "interpolation": "Interpolacja",
     "quadrature": "Kwadratura",
     "images": "Zdjęcia"
   },
-  "home": {
-    "title": "Web Developer<br/>Portfolio",
-    "subtitle": "Wizualizacja & Interakcja"
+  "homePage": {
+    "title": "Gdzie Pomysły Stają<br/>Się Kodem",
+    "subtitle": "Projektowanie i Kreatywność",
+    "sentence": "Tworzę responsywne, wydajne aplikacje webowe dla wielu klientów.",
+    "caseStudy": "Realizacje",
+    "contact": "Kontakt",
+    "smallDescription": "Stworzyłem 10+ dużych projektów",
+    "skills": {
+      "subtitle": "Ekspertyza i Umiejętności",
+      "title": "Moje Umiejętności i Zdolności w Tworzeniu Aplikacji Webowych",
+      "sentence": "Połączenie wiedzy technicznej i kreatywnych rozwiązań w projektach.",
+      "cards": [
+        {
+          "key": "ui",
+          "title": "UX & UI",
+          "description": "Tworzenie interfejsów przyjaznych użytkownikowi, wydajnych i przyjemnych w obsłudze"
+        },
+        {
+          "key": "app",
+          "title": "Aplikacje Webowe i Mobilne",
+          "description": "Przekształcanie pomysłów w doskonałe rozwiązania webowe i mobilne"
+        },
+        {
+          "key": "design",
+          "title": "Projektowanie i Kreatywność",
+          "description": "Projektowanie innowacyjnych, wizualnie przyciągających rozwiązań, które inspirują i angażują użytkowników"
+        },
+        {
+          "key": "development",
+          "title": "Rozwój",
+          "description": "Realizowanie Twoich pomysłów za pomocą nowoczesnej technologii i trendów projektowych"
+        }
+      ]
+    },
+    "contactTitle": "Skontaktuj się ze mną i<br/>Stwórzmy coś razem",
+    "sendEmail": "Wyślij e-mail",
+    "copyRights": "Wszelkie prawa zastrzeżone"
   },
   "sortingPage": {
     "title": "Algorytmy Sortujące",
@@ -204,5 +238,59 @@
         }
       ]
     }
+  },
+  "caseStudyPage": {
+    "title": "Najnowsze Realizacje",
+    "subtitle": "Projekty",
+    "filters": [
+      { "key": "library", "name": "Biblioteka" },
+      { "key": "crud", "name": "CRUD" },
+      { "key": "realtime", "name": "Realtime" },
+      { "key": "frontend", "name": "Frontend" },
+      { "key": "backend", "name": "Backend" }
+    ],
+    "all": "Wszystko",
+    "projects": [
+      {
+        "name": "Ether Auth",
+        "description": "Najlepsze rozwiązanie uwierzytelniania dla Node.js",
+        "link": "https://github.com/Eric-fgm/ether-auth"
+      },
+      {
+        "name": "Ether Serve",
+        "description": "Lekki i wydajny framework HTTP",
+        "link": "https://github.com/Eric-fgm/ether-serve"
+      },
+      {
+        "name": "Fieve CMS",
+        "description": "Nowoczesny, modułowy system zarządzania treścią (CMS)",
+        "link": "https://github.com/Eric-fgm/fieve"
+      },
+      {
+        "name": "Fieve ORM",
+        "description": "Upraszcza interakcję z bazą danych, mapując tabele na obiekty",
+        "link": "https://github.com/Eric-fgm/fieve"
+      },
+      {
+        "name": "Wingle",
+        "description": "Aplikacja do czatowania w czasie rzeczywistym",
+        "link": "https://github.com/Eric-fgm/wingle"
+      },
+      {
+        "name": "Todo App",
+        "description": "Aplikacja do zarządania zadaniami z opcją grupowania na listy",
+        "link": "https://github.com/Eric-fgm/todo"
+      },
+      {
+        "name": "Drag & Drop",
+        "description": "Kreator HTML typu Przeciągnij i Upuść",
+        "link": "https://github.com/Eric-fgm/Drag-Drop-Builder"
+      },
+      {
+        "name": "ZSE Dashboard",
+        "description": "Aplikacja do zarządzania plikami",
+        "link": "https://github.com/Eric-fgm/zse-frontend"
+      }
+    ]
   }
 }

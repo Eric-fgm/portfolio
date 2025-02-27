@@ -9,14 +9,48 @@
     "maths": "Matematics",
     "dynamic": "Dynamic",
     "physics": "Physics",
-    "caseStudies": "Case Studies",
+    "caseStudy": "Case Study",
     "interpolation": "Interpolation",
     "quadrature": "Quadrature",
     "images": "Images"
   },
-  "home": {
-    "title": "Web Developer<br/>Portfolio",
-    "subtitle": "Visualizer & Interactive"
+  "homePage": {
+    "title": "Where Ideas Turn<br/>Into Code",
+    "subtitle": "Code Meets Creativity",
+    "sentence": "I create responsive, high-performing websites with seamless user experiences.",
+    "caseStudy": "Case Study",
+    "contact": "Contact",
+    "smallDescription": "I`ve Created 10+ Big Projects",
+    "skills": {
+      "subtitle": "Expertise & Skills",
+      "title": "My Skills and Abilities for Building Exceptional Web Experiences",
+      "sentence": "A blend of technical expertise and creative solutions for web development.",
+      "cards": [
+        {
+          "key": "ui",
+          "title": "UX & UI",
+          "description": "Crafting interfaces that are user-friendly, efficient, and enjoyable to navigate"
+        },
+        {
+          "key": "app",
+          "title": "Web & Mobile App",
+          "description": "Turning concepts into outstanding web and mobile app solutions"
+        },
+        {
+          "key": "design",
+          "title": "Design & Creative",
+          "description": "Designing innovative, visually captivating solutions that inspire and engage users"
+        },
+        {
+          "key": "development",
+          "title": "Development",
+          "description": "Bringing your ideas to life using cutting-edge technology and design trends"
+        }
+      ]
+    },
+    "contactTitle": "Contact Me &<br/>Let's Create",
+    "sendEmail": "Send Email",
+    "copyRights": "All rights reserved"
   },
   "sortingPage": {
     "title": "Sorting Algorithms",
@@ -204,5 +238,59 @@
         }
       ]
     }
+  },
+  "caseStudyPage": {
+    "title": "Case Study",
+    "subtitle": "Projects",
+    "filters": [
+      { "key": "library", "name": "Library" },
+      { "key": "crud", "name": "CRUD" },
+      { "key": "realtime", "name": "Realtime" },
+      { "key": "frontend", "name": "Frontend" },
+      { "key": "backend", "name": "Backend" }
+    ],
+    "all": "All",
+    "projects": [
+      {
+        "name": "Ether Auth",
+        "description": "The Ultimate Authentication Solution for Node.js",
+        "link": "https://github.com/Eric-fgm/ether-auth"
+      },
+      {
+        "name": "Ether Serve",
+        "description": "A lightweight and high-performance HTTP framework",
+        "link": "https://github.com/Eric-fgm/ether-serve"
+      },
+      {
+        "name": "Fieve CMS",
+        "description": "Modern, modular content management system (CMS)",
+        "link": "https://github.com/Eric-fgm/fieve"
+      },
+      {
+        "name": "Fieve ORM",
+        "description": "Simplifies database interaction by mapping tables to objects",
+        "link": "https://github.com/Eric-fgm/fieve"
+      },
+      {
+        "name": "Wingle",
+        "description": "Real-time chat application",
+        "link": "https://github.com/Eric-fgm/wingle"
+      },
+      {
+        "name": "Todo App",
+        "description": "Task management application with list grouping",
+        "link": "https://github.com/Eric-fgm/todo"
+      },
+      {
+        "name": "Drag & Drop",
+        "description": "Drag & Drop HTML Builder",
+        "link": "https://github.com/Eric-fgm/Drag-Drop-Builder"
+      },
+      {
+        "name": "ZSE Dashboard",
+        "description": "File management application",
+        "link": "https://github.com/Eric-fgm/zse-frontend"
+      }
+    ]
   }
 }

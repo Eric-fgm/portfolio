@@ -1,16 +1,16 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import batImageProps from "/public/images/bat.png";
-import universityImageProps from "/public/images/40484university.png";
-import flowerImageProps from "/public/images/dsa.webp";
+import batImageProps from "/public/images/batman.png";
+import universityImageProps from "/public/images/university.png";
+import flowerImageProps from "/public/images/flower.webp";
 import floorImageProps from "/public/images/floor.png";
-import dogImageProps from "/public/images/g-d.png";
-import familyImageProps from "/public/images/img.jpg";
-import tableImageProps from "/public/images/img.png";
+import dogImageProps from "/public/images/dog.png";
+import familyImageProps from "/public/images/family.jpg";
+import tableImageProps from "/public/images/table-football.png";
 import monaImageProps from "/public/images/mona-lisa.jpg";
-import canyonImageProps from "/public/images/t.jpg";
-import womenImageProps from "/public/images/test.png";
+import canyonImageProps from "/public/images/canyon.jpg";
+import womenImageProps from "/public/images/women.png";
 
 export interface ImageSettingsProps {
   algorithm: "chromaticAdaptation" | "histogramEqualization" | "adaptiveGamma";
@@ -18,13 +18,15 @@ export interface ImageSettingsProps {
     React.SetStateAction<ImageSettingsProps["algorithm"]>
   >;
   images: { src: string; name: string }[];
-  imageSrc: string
-  setImageSrc: React.Dispatch<React.SetStateAction<ImageSettingsProps["imageSrc"]>>;
+  imageSrc: string;
+  setImageSrc: React.Dispatch<
+    React.SetStateAction<ImageSettingsProps["imageSrc"]>
+  >;
 }
 
 const defaultProps: ImageSettingsProps = {
   algorithm: "chromaticAdaptation",
-  setAlgorithm: () => { },
+  setAlgorithm: () => {},
   images: [
     {
       name: "Batman",
@@ -68,7 +70,7 @@ const defaultProps: ImageSettingsProps = {
     },
   ],
   imageSrc: batImageProps.src,
-  setImageSrc: () => { },
+  setImageSrc: () => {},
 };
 
 const ImageSettingsContext = createContext(defaultProps);
@@ -88,7 +90,13 @@ const ImageSettingsProvider: React.FC<{ children?: React.ReactNode }> = ({
 
   return (
     <ImageSettingsContext.Provider
-      value={{ algorithm, setAlgorithm, images: defaultProps.images, imageSrc, setImageSrc }}
+      value={{
+        algorithm,
+        setAlgorithm,
+        images: defaultProps.images,
+        imageSrc,
+        setImageSrc,
+      }}
     >
       {children}
     </ImageSettingsContext.Provider>

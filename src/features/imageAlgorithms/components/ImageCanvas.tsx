@@ -16,7 +16,7 @@ const algorithmsMap = {
     gammaCorrectionAlgorithm(imageData, 2),
 } as const;
 
-interface ImageCanvasProps extends React.ComponentProps<"div"> { }
+interface ImageCanvasProps extends React.ComponentProps<"div"> {}
 
 const ImageCanvas: React.FC<ImageCanvasProps> = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -27,7 +27,9 @@ const ImageCanvas: React.FC<ImageCanvasProps> = () => {
 
   const { algorithm, imageSrc } = useImageSettings();
 
-  const drawCanvasImage = (selectedAlgorithm: (data: ImageData) => ImageData) => {
+  const drawCanvasImage = (
+    selectedAlgorithm: (data: ImageData) => ImageData,
+  ) => {
     const canvas = canvasRef.current;
     if (!canvas || !imageRef.current) return;
     const imageWidth = imageRef.current.width;
@@ -43,7 +45,7 @@ const ImageCanvas: React.FC<ImageCanvasProps> = () => {
 
     context.putImageData(selectedAlgorithm(imageData), 0, 0);
 
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   const handleMouseDown = useCallback(() => {
@@ -55,7 +57,7 @@ const ImageCanvas: React.FC<ImageCanvasProps> = () => {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
   }, [imageSrc]);
 
   useEffect(() => {
@@ -67,7 +69,7 @@ const ImageCanvas: React.FC<ImageCanvasProps> = () => {
       if (resizeRef.current && imageRef.current) {
         const { left } = resizeRef.current.getBoundingClientRect();
         const diffX = Math.max(
-          0,
+          4,
           Math.min(imageRef.current.width, event.clientX - left),
         );
         resizeRef.current.style.width = `${diffX}px`;
@@ -87,8 +89,8 @@ const ImageCanvas: React.FC<ImageCanvasProps> = () => {
   }, [isDragging]);
 
   return (
-    <div className={`relative w-full `}>
-      <div className={`${isLoading && 'invisible'}`}>
+    <div className={`relative w-full overflow-hidden rounded-xl`}>
+      <div className={`${isLoading ? "invisible" : ""}`}>
         <div className="absolute h-full w-full">
           <img
             ref={imageRef}
@@ -111,7 +113,11 @@ const ImageCanvas: React.FC<ImageCanvasProps> = () => {
         </div>
         <canvas ref={canvasRef} />
       </div>
-      {isLoading && <div className="absolute top-24 left-0 opacity-75 w-full"><Loader className="animate-spin mx-auto" /></div>}
+      {isLoading && (
+        <div className="absolute left-0 top-24 w-full opacity-75">
+          <Loader className="mx-auto animate-spin" />
+        </div>
+      )}
     </div>
   );
 };

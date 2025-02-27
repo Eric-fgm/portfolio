@@ -10,3 +10,4 @@ export { default as Switch } from "@/components/Switch/Switch";
 export { default as LanguageSwitcher } from "@/components/LanguageSwitcher/LanguageSwitcher";
 export { default as Card } from "@/components/Card/Card";
 export { default as Popover } from "@/components/Popover/Popover";
+export { default as Chip } from "@/components/Chip/Chip";

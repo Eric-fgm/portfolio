@@ -10,10 +10,16 @@ import {
 } from "@/components";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowDownNarrowWide, Database, Sigma, Waypoints } from "lucide-react";
+import {
+  ArrowDownNarrowWide,
+  Database,
+  FolderGit,
+  Sigma,
+  Waypoints,
+} from "lucide-react";
 import { useTranslate } from "@/hooks";
 
-interface NavigationProps { }
+interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = () => {
   const pathname = usePathname();
@@ -85,23 +91,7 @@ const Navigation: React.FC<NavigationProps> = () => {
               </>
             )}
           </Popover>
-          {/* <NavLink
-        icon={}
-        text={t.dynamic}
-        href="/dynamic-algorithms"
-        className="animation-delay-[105ms]"
-      /> */}
-          {/* <NavLink
-        icon={}
-        text={t.physics}
-        href="/physics"
-        className="animation-delay-[185ms]"
-      /> */}
-          {/* <NavLink
-            icon={}
-            text={t.caseStudies}
-            href="/case-studies"
-          /> */}
+          <NavLink icon={FolderGit} text={t.caseStudy} href="/case-study" />
         </div>
       </div>
       <LanguageSwitcher />

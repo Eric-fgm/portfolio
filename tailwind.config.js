@@ -8,6 +8,8 @@ module.exports = {
     backgroundColor: {
       white: "#fff",
       homepage: "var(--homepage-background)",
+      "homepage-accent": "#211738",
+      "homepage-secondary": "var(--homepage-secondary-background)",
       sortingpage: "var(--sortingpage-background)",
       "sortingpage-secondary": "var(--sortingpage-secondary-background)",
       "sortingpage-accent": "#202d45",
@@ -18,6 +20,7 @@ module.exports = {
     },
     textColor: {
       white: "#fff",
+      light: "var(--light-text)",
       muted: "var(--muted-text)",
       "muted-graph": "var(--muted-graph-text)",
       graph: "var(--graph-text)",
@@ -36,6 +39,9 @@ module.exports = {
       graph: "var(--graphpage-secondary-background)",
     },
     extend: {
+      screens: {
+        xs: "480px",
+      },
       boxShadow: {
         "end-over-graph":
           "-2px 0 8px 6px var(--graphpage-secondary-background)",
