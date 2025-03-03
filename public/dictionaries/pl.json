@@ -17,12 +17,12 @@
   "homePage": {
     "title": "Gdzie Pomysły Stają<br/>Się Kodem",
     "subtitle": "Projektowanie i Kreatywność",
-    "sentence": "Tworzę responsywne, wydajne aplikacje webowe dla wielu klientów.",
+    "sentence": "Tworzę responsywne i wydajne aplikacje webowe, wykorzystując nowoczesne technologie.",
     "caseStudy": "Realizacje",
     "contact": "Kontakt",
     "smallDescription": "Stworzyłem 10+ dużych projektów",
     "skills": {
-      "subtitle": "Ekspertyza i Umiejętności",
+      "subtitle": "Umiejętności i Doświadczenie",
       "title": "Moje Umiejętności i Zdolności w Tworzeniu Aplikacji Webowych",
       "sentence": "Połączenie wiedzy technicznej i kreatywnych rozwiązań w projektach.",
       "cards": [
@@ -44,11 +44,11 @@
         {
           "key": "development",
           "title": "Rozwój",
-          "description": "Realizowanie Twoich pomysłów za pomocą nowoczesnej technologii i trendów projektowych"
+          "description": "Realizowanie pomysłów za pomocą nowoczesnej technologii i trendów projektowych"
         }
       ]
     },
-    "contactTitle": "Skontaktuj się ze mną i<br/>Stwórzmy coś razem",
+    "contactTitle": "Skontaktuj się<br/>ze mną",
     "sendEmail": "Wyślij e-mail",
     "copyRights": "Wszelkie prawa zastrzeżone"
   },
@@ -253,7 +253,7 @@
     "projects": [
       {
         "name": "Ether Auth",
-        "description": "Najlepsze rozwiązanie uwierzytelniania dla Node.js",
+        "description": "Bezpieczne rozwiązanie uwierzytelniania dla Node.js",
         "link": "https://github.com/Eric-fgm/ether-auth"
       },
       {

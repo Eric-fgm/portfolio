@@ -27,7 +27,7 @@ const Card: React.FC<{
   <div>
     <Icon />
     <h4 className="mt-4 font-medium">{title}</h4>
-    <p className="text-light mt-2 text-sm">{description}</p>
+    <p className="mt-2 text-sm text-light">{description}</p>
   </div>
 );
 
@@ -52,7 +52,7 @@ const Content: React.FC<ContentProps> = () => {
             className="mt-2 text-6xl font-semibold leading-[1.15] text-white"
             dangerouslySetInnerHTML={{ __html: t.title }}
           />
-          <p className="text-light mt-10 max-w-[324px] font-normal leading-[22px]">
+          <p className="mt-10 max-w-[364px] font-normal leading-[22px] text-light">
             {t.sentence}
           </p>
           <div className="mt-8 flex gap-4">
@@ -70,7 +70,7 @@ const Content: React.FC<ContentProps> = () => {
               href="#contact"
             />
           </div>
-          <p className="text-light mt-2 text-xs">{t.smallDescription}</p>
+          <p className="mt-2 text-xs text-light">{t.smallDescription}</p>
           <div className="no-scrollbar -mx-4 mt-16 flex items-center gap-12 overflow-x-auto px-4 lg:gap-16">
             <Image
               {...javascriptImageProps}
@@ -116,10 +116,10 @@ const Content: React.FC<ContentProps> = () => {
             text={t.caseStudy}
             className="mt-8 py-2 pl-2.5 pr-3.5"
           />
-          <div className="xs:max-w-[628px] mt-12 max-w-[260px] lg:max-w-[948px]">
+          <div className="mt-12 max-w-[260px] xs:max-w-[628px] lg:max-w-[948px]">
             <div className="-m-[18px] flex flex-wrap justify-center">
               {t.skills.cards.map(({ key, title, description }) => (
-                <div key={key} className="xs:basis-1/2 p-[18px] lg:basis-1/4">
+                <div key={key} className="p-[18px] xs:basis-1/2 lg:basis-1/4">
                   <Card
                     icon={iconsMap[key as keyof typeof iconsMap]}
                     title={title}

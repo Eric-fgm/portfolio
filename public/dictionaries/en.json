@@ -17,12 +17,12 @@
   "homePage": {
     "title": "Where Ideas Turn<br/>Into Code",
     "subtitle": "Code Meets Creativity",
-    "sentence": "I create responsive, high-performing websites with seamless user experiences.",
+    "sentence": "I develop responsive, high-performing websites using modern technologies.",
     "caseStudy": "Case Study",
     "contact": "Contact",
     "smallDescription": "I`ve Created 10+ Big Projects",
     "skills": {
-      "subtitle": "Expertise & Skills",
+      "subtitle": "Skills & Experience",
       "title": "My Skills and Abilities for Building Exceptional Web Experiences",
       "sentence": "A blend of technical expertise and creative solutions for web development.",
       "cards": [
@@ -44,11 +44,11 @@
         {
           "key": "development",
           "title": "Development",
-          "description": "Bringing your ideas to life using cutting-edge technology and design trends"
+          "description": "Bringing ideas to life using cutting-edge technology and design trends"
         }
       ]
     },
-    "contactTitle": "Contact Me &<br/>Let's Create",
+    "contactTitle": "Get in touch<br/>with me",
     "sendEmail": "Send Email",
     "copyRights": "All rights reserved"
   },
